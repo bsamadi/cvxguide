@@ -1,3 +1,9 @@
+---
+title: "Convex Optimization: A Practical Guide"
+author: Behzad Samadi
+date: February 17, 2014
+---
+
 ## Convex Optimization: A Practical Guide
 
 Behzad Samadi

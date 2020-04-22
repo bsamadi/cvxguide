@@ -1,3 +1,8 @@
+---
+title: "Convex Optimization: A Practical Guide"
+author: Behzad Samadi
+date: February 2, 2014
+---
 
 $\DeclareMathOperator{\sign}{sgn}$
 $\newcommand{\CO}{\textbf{\rm conv}}$

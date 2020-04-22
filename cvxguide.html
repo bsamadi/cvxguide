@@ -4,9 +4,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <meta name="author" content="Behzad Samadi" />
+  <meta name="date" content="2014-02-02" />
+  <title>Convex Optimization: A Practical Guide</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="css\markdown7.css" type="text/css" />
+  <link rel="stylesheet" href="css/markdown7.css" />
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       extensions: ["tex2jax.js"],
@@ -18,68 +20,89 @@
       "HTML-CSS": { availableFonts: ["TeX"] }
     });
   </script>
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
 </head>
 <body>
-<p><span class="math">\(\DeclareMathOperator{\sign}{sgn}\)</span> <span class="math">\(\newcommand{\CO}{\textbf{\rm conv}}\)</span> <span class="math">\(\newcommand{\RR}{{\mathcal R}}\)</span> <span class="math">\(\newcommand{\RE}{\mathbb{R}}\)</span> <span class="math">\(\newcommand{\TR}{\text{T}}\)</span> <span class="math">\(\newcommand{\beq}{\begin{equation}}\)</span> <span class="math">\(\newcommand{\eeq}{\end{equation}}\)</span> <span class="math">\(\newcommand{\bmat}{\left[\begin{array}}\)</span> <span class="math">\(\newcommand{\emat}{\end{array}\right]}\)</span> <span class="math">\(\newcommand{\bsmat}{\left[\begin{smallmatrix}}\)</span> <span class="math">\(\newcommand{\esmat}{\end{smallmatrix}\right]}\)</span> <span class="math">\(\newcommand{\barr}{\begin{array}}\)</span> <span class="math">\(\newcommand{\earr}{\end{array}}\)</span> <span class="math">\(\newcommand{\bsm}{\begin{smallmatrix}}\)</span> <span class="math">\(\newcommand{\esm}{\end{smallmatrix}}\)</span></p>
+<div id="header">
+<h1 class="title">Convex Optimization: A Practical Guide</h1>
+<h2 class="author">Behzad Samadi</h2>
+<h3 class="date">February 2, 2014</h3>
+</div>
+<p><span class="math inline">\(\DeclareMathOperator{\sign}{sgn}\)</span> <span class="math inline">\(\newcommand{\CO}{\textbf{\rm conv}}\)</span> <span class="math inline">\(\newcommand{\RR}{{\mathcal R}}\)</span> <span class="math inline">\(\newcommand{\RE}{\mathbb{R}}\)</span> <span class="math inline">\(\newcommand{\TR}{\text{T}}\)</span> <span class="math inline">\(\newcommand{\beq}{\begin{equation}}\)</span> <span class="math inline">\(\newcommand{\eeq}{\end{equation}}\)</span> <span class="math inline">\(\newcommand{\bmat}{\left[\begin{array}}\)</span> <span class="math inline">\(\newcommand{\emat}{\end{array}\right]}\)</span> <span class="math inline">\(\newcommand{\bsmat}{\left[\begin{smallmatrix}}\)</span> <span class="math inline">\(\newcommand{\esmat}{\end{smallmatrix}\right]}\)</span> <span class="math inline">\(\newcommand{\barr}{\begin{array}}\)</span> <span class="math inline">\(\newcommand{\earr}{\end{array}}\)</span> <span class="math inline">\(\newcommand{\bsm}{\begin{smallmatrix}}\)</span> <span class="math inline">\(\newcommand{\esm}{\end{smallmatrix}}\)</span></p>
 <h1 id="convex-optimization-a-practical-guide">Convex Optimization: A Practical Guide</h1>
 <p>Behzad Samadi</p>
 <p>http://www.mechatronics3d.com/</p>
 <p>February 2, 2014</p>
 <h2 id="introduction">Introduction</h2>
-<p>Optimization problems happen in many fields including engineering, economics and medicine. The objective of many engineering problems is to design &quot;the best&quot; product. &quot;The best&quot; needs a formal definition that is not subject to personal judgement as much as possible. In a mathematical optimization, the objective function defines &quot;the best&quot;. The objective function can be the description of a cost function we want to minimize or it can be a quantified description of the product's fitness, which is required to be maximized. We live in a real world with lots of constraints. The energy is not free. The time we can spend to design the product is limited. The computation power we have is limited. The size, weight and price of the product is limited. Therefore, the optimization problems are usually defined as minimizing or maximizing an objective function considering a set of constraints. In this text, we focus on a certain class of optimization problems: convex optimization. The main importance of convex optimization problems is that there is no locally optimum point. If a given point is locally optimal then it is globally optimal. In addition, there exist effective numerical methods to solve convex optimization problems. In addition, it is possible to convert many nonconvex optimization problems to convex problems by changing the variables or introducing new variables. In this text, we will review what convex sets, functions and optimization problems are. Also, we show you numerical examples and applications of convex optimization in control systems. Also, there are many examples with the corresponding code in Python to help the reader understand how the problems are solved in practive. The Python code is based on <a href="https://github.com/cvxgrp/cvxpy">cvxpy</a>.</p>
+<p>Optimization problems happen in many fields including engineering, economics and medicine. The objective of many engineering problems is to design “the best” product. “The best” needs a formal definition that is not subject to personal judgement as much as possible. In a mathematical optimization, the objective function defines “the best”. The objective function can be the description of a cost function we want to minimize or it can be a quantified description of the product’s fitness, which is required to be maximized. We live in a real world with lots of constraints. The energy is not free. The time we can spend to design the product is limited. The computation power we have is limited. The size, weight and price of the product is limited. Therefore, the optimization problems are usually defined as minimizing or maximizing an objective function considering a set of constraints. In this text, we focus on a certain class of optimization problems: convex optimization. The main importance of convex optimization problems is that there is no locally optimum point. If a given point is locally optimal then it is globally optimal. In addition, there exist effective numerical methods to solve convex optimization problems. In addition, it is possible to convert many nonconvex optimization problems to convex problems by changing the variables or introducing new variables. In this text, we will review what convex sets, functions and optimization problems are. Also, we show you numerical examples and applications of convex optimization in control systems. Also, there are many examples with the corresponding code in Python to help the reader understand how the problems are solved in practive. The Python code is based on <a href="https://github.com/cvxgrp/cvxpy">cvxpy</a>.</p>
 <p>In the following, the definitions are taken from [1] unless otherwise stated. The reader is referred to the <a href="http://www.stanford.edu/~boyd/cvxbook/">Convex Optimization book by Stephen Boyd and Lieven Vandenberghe</a> for a detailed review of the theory of convex optimization and applications.</p>
 <h2 id="convex-sets">Convex Sets</h2>
-<em>Definition. Convex combination:</em> Given <span class="math">\(m\)</span> points in <span class="math">\(\RR^n\)</span> denoted by <span class="math">\(x_i\)</span> for <span class="math">\(i=1,\ldots,m\)</span>, <span class="math">\(x\)</span> is a convex combination of the <span class="math">\(m\)</span> points if it can be written as:
-
-where <span class="math">\(\lambda_i\geq 0\)</span> and
-
-<p><em>Definition. Convex set:</em> A set <span class="math">\(C\subseteq\RR^n\)</span> is convex if the convex combination of any two points in <span class="math">\(C\)</span> belongs to <span class="math">\(C\)</span>.</p>
-<p><em>Definition. Convex hull:</em> The convex hull of a set <span class="math">\(S\)</span>, denoted by <span class="math">\(\text{conv}(S)\)</span>, is the set of all convex combinations of points in <span class="math">\(S\)</span>.</p>
-<em>Definition. Affine combination:</em> <span class="math">\(x\)</span> is an affine combination of <span class="math">\(x_1\)</span> and <span class="math">\(x_2\)</span> if it can be written as:
-
-<p><em>Definition. Affine set:</em> A set <span class="math">\(C\subseteq\RR^n\)</span> is affine if the affine combination of any two points in <span class="math">\(C\)</span> belongs to <span class="math">\(C\)</span>.</p>
-<em>Definition. Cone (nonnegative) combination:</em> Cone combination of two points <span class="math">\(x_1\)</span> and <span class="math">\(x_2\)</span> is a point <span class="math">\(x\)</span> that can be written as:
-
-<p>with <span class="math">\(\theta_1\geq 0\)</span> and <span class="math">\(\theta_2\geq 0\)</span>.</p>
-<p><em>Definition. Convex cone:</em> A set <span class="math">\(S\)</span> is a convex cone, if it contains all convex combinations of points in the set.</p>
-<p><em>Definition. Hyperplane:</em> A hyperplane is a set of the form <span class="math">\(\{x|a^\text{T}x=b\}\)</span> with <span class="math">\(a\neq 0\)</span>.</p>
-<p><em>Definition. Halfspace:</em> A halfspace is a set of the form <span class="math">\(\{x|a^\text{T}x\leq b\}\)</span> with <span class="math">\(a\neq 0\)</span>.</p>
-<em>Definition. Polyhedron:</em> A polyhedron is the intersection of finite number of hyperplanes and halfspaces. A polyhedron can be written as:
-
-<p>where <span class="math">\(\preceq\)</span> denotes componentwise inequality.</p>
-<em>Definition. Euclidean ball:</em> A ball with center <span class="math">\(x_c\)</span> and radius <span class="math">\(r\)</span> is defined as:
-
-<em>Definition. Ellipsoid:</em> An ellipsoid is defined as:
-
-where <span class="math">\(P\)</span> is a positive definite matrix. It can also be defined as:
-
+<p><em>Definition. Convex combination:</em> Given <span class="math inline">\(m\)</span> points in <span class="math inline">\(\RR^n\)</span> denoted by <span class="math inline">\(x_i\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span>, <span class="math inline">\(x\)</span> is a convex combination of the <span class="math inline">\(m\)</span> points if it can be written as: <span class="math display">\[\begin{equation}
+x = \sum_{i=1}^m \lambda_ix_i
+\end{equation}\]</span> where <span class="math inline">\(\lambda_i\geq 0\)</span> and <span class="math display">\[\begin{equation}
+\sum_{i=1}^m\lambda_i=1
+\end{equation}\]</span></p>
+<p><em>Definition. Convex set:</em> A set <span class="math inline">\(C\subseteq\RR^n\)</span> is convex if the convex combination of any two points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
+<p><em>Definition. Convex hull:</em> The convex hull of a set <span class="math inline">\(S\)</span>, denoted by <span class="math inline">\(\text{conv}(S)\)</span>, is the set of all convex combinations of points in <span class="math inline">\(S\)</span>.</p>
+<p><em>Definition. Affine combination:</em> <span class="math inline">\(x\)</span> is an affine combination of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> if it can be written as: <span class="math display">\[\begin{equation}
+x=\lambda_1x_1+\lambda_2x_2
+\end{equation}\]</span></p>
+<p><em>Definition. Affine set:</em> A set <span class="math inline">\(C\subseteq\RR^n\)</span> is affine if the affine combination of any two points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
+<p><em>Definition. Cone (nonnegative) combination:</em> Cone combination of two points <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> is a point <span class="math inline">\(x\)</span> that can be written as: <span class="math display">\[\begin{equation}
+x=\theta_1x_1+\theta_2x_2
+\end{equation}\]</span> with <span class="math inline">\(\theta_1\geq 0\)</span> and <span class="math inline">\(\theta_2\geq 0\)</span>.</p>
+<p><em>Definition. Convex cone:</em> A set <span class="math inline">\(S\)</span> is a convex cone, if it contains all convex combinations of points in the set.</p>
+<p><em>Definition. Hyperplane:</em> A hyperplane is a set of the form <span class="math inline">\(\{x|a^\text{T}x=b\}\)</span> with <span class="math inline">\(a\neq 0\)</span>.</p>
+<p><em>Definition. Halfspace:</em> A halfspace is a set of the form <span class="math inline">\(\{x|a^\text{T}x\leq b\}\)</span> with <span class="math inline">\(a\neq 0\)</span>.</p>
+<p><em>Definition. Polyhedron:</em> A polyhedron is the intersection of finite number of hyperplanes and halfspaces. A polyhedron can be written as: <span class="math display">\[\begin{equation}
+\mathcal{P}=\{x| Ax \preceq b, Cx=d \}
+\end{equation}\]</span> where <span class="math inline">\(\preceq\)</span> denotes componentwise inequality.</p>
+<p><em>Definition. Euclidean ball:</em> A ball with center <span class="math inline">\(x_c\)</span> and radius <span class="math inline">\(r\)</span> is defined as: <span class="math display">\[\begin{equation}
+B(x_c,r)=\{x| \|x-x_c\|_2\leq r\}=\{x| x=x_c+ru, \|u\|_2\leq r\}
+\end{equation}\]</span></p>
+<p><em>Definition. Ellipsoid:</em> An ellipsoid is defined as: <span class="math display">\[\begin{equation}
+\{x | (x-x_c)^\text{T}P^{-1}(x-x_c)\leq 1\}
+\end{equation}\]</span> where <span class="math inline">\(P\)</span> is a positive definite matrix. It can also be defined as: <span class="math display">\[\begin{equation}
+\{x| x=x_c+Au, \|u\|_2\leq r\}
+\end{equation}\]</span></p>
 <h3 id="generalized-inequalities">Generalized inequalities</h3>
 <p><em>Definition. Proper code:</em> A cone is proper if it is closed (contains its boundary), solid (has nonempty interior) and pointed (contains no lines).</p>
-<p>The nonnegative orthant of <span class="math">\(\mathbb{R}^n\)</span>, <span class="math">\(\{x|x\in\mathbb{R}^n,x_i\geq 0, i=1,\ldots,n \}\)</span> is a proper cone. Also the cone of positive semidefinite matrices in <span class="math">\(\mathbb{R}^{n\times n}\)</span> is a proper cone.</p>
-<em>Definition. Generalized inequality:</em> A generalized inequality is defined by a proper cone <span class="math">\(K\)</span>:
-
-
+<p>The nonnegative orthant of <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(\{x|x\in\mathbb{R}^n,x_i\geq 0, i=1,\ldots,n \}\)</span> is a proper cone. Also the cone of positive semidefinite matrices in <span class="math inline">\(\mathbb{R}^{n\times n}\)</span> is a proper cone.</p>
+<p><em>Definition. Generalized inequality:</em> A generalized inequality is defined by a proper cone <span class="math inline">\(K\)</span>: <span class="math display">\[\begin{equation}
+x\preceq_K y \Leftrightarrow y-x\in K
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+x\prec_K y \Leftrightarrow y-x\in \text{interior}(K)
+\end{equation}\]</span></p>
 <p>In this context, we deal with the following inequalities:</p>
 <ul>
-<li>The inequality on real numbers is defined based on the proper cone of nonnegative real numbers <span class="math">\(K=\mathbb{R}_+\)</span>.</li>
-<li>The componentwise inequality on real vectors in <span class="math">\(\mathbb{R}^n\)</span> is defined based on the nonnegative orthant <span class="math">\(K=\mathbb{R}^n_+\)</span>.</li>
-<li>The matrix inequality is defined based on the proper cone of positive semidefinite matrices <span class="math">\(K=S^n_+\)</span>.</li>
+<li>The inequality on real numbers is defined based on the proper cone of nonnegative real numbers <span class="math inline">\(K=\mathbb{R}_+\)</span>.</li>
+<li>The componentwise inequality on real vectors in <span class="math inline">\(\mathbb{R}^n\)</span> is defined based on the nonnegative orthant <span class="math inline">\(K=\mathbb{R}^n_+\)</span>.</li>
+<li>The matrix inequality is defined based on the proper cone of positive semidefinite matrices <span class="math inline">\(K=S^n_+\)</span>.</li>
 </ul>
 <h2 id="convex-functions">Convex Functions</h2>
-<em>Definition. Convex function:</em> A function <span class="math">\(f:X_D \rightarrow X_R\)</span> with <span class="math">\(X_D\subseteq\RR^n\)</span> and <span class="math">\(X_R\subseteq\RR\)</span> is a convex function if for any <span class="math">\(x_1\)</span> and <span class="math">\(x_2\)</span> in <span class="math">\(X_D\)</span> and <span class="math">\(\lambda_1 \geq 0\)</span>, <span class="math">\(\lambda_2 \geq 0\)</span> such that <span class="math">\(\lambda_1+\lambda_2=1\)</span>, we have:
-
+<p><em>Definition. Convex function:</em> A function <span class="math inline">\(f:X_D \rightarrow X_R\)</span> with <span class="math inline">\(X_D\subseteq\RR^n\)</span> and <span class="math inline">\(X_R\subseteq\RR\)</span> is a convex function if for any <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in <span class="math inline">\(X_D\)</span> and <span class="math inline">\(\lambda_1 \geq 0\)</span>, <span class="math inline">\(\lambda_2 \geq 0\)</span> such that <span class="math inline">\(\lambda_1+\lambda_2=1\)</span>, we have: <span class="math display">\[\begin{equation}
+f(\lambda_1x_1+\lambda_2x_2)\leq \lambda_1f(x_1)+\lambda_2f(x_2)
+\end{equation}\]</span></p>
 <h2 id="convex-optimization">Convex Optimization</h2>
-A mathematical optimization is convex if the objective is a convex function and the feasible set is a convex set. The standard form of a convex optimization problem is:
-
+<p>A mathematical optimization is convex if the objective is a convex function and the feasible set is a convex set. The standard form of a convex optimization problem is: <span class="math display">\[\begin{align}
+\text{minimize }   &amp; f_0(x) \nonumber\\
+\text{subject to } &amp; f_i(x) \leq 0,\ i=1,\ldots,m\nonumber\\
+                  &amp; h_i(x) = 0,\ i=1,\ldots,p
+\end{align}\]</span></p>
 <h3 id="linear-program">Linear Program</h3>
-Linear programming (LP) is one of the best known forms of convex optimization. A LP problem can be written as:
-
-<p>where <span class="math">\(x\)</span>, <span class="math">\(c\)</span> and <span class="math">\(a_i\)</span> for <span class="math">\(i=1,\ldots,m\)</span> belong to <span class="math">\(\mathbb{R}^n\)</span>. In general, there is no analytical solution for a LP problem. A numerical algorithm is therefore required to solve the problem. The earliest algorithms for solving LP problems were the one developed by Kantorovich in 1940  and the simplex method proposed by George Dantzig in 1947 . In 1978, the Russian mathematician L. G. Khachian developed a polynomial-time algorithm for solving linear programsthe Russian mathematician L. G. Khachian developed a polynomial-time algorithm for solving LP problems. This algorithm was an interior method, which was later improved by Karmarkar .</p>
-<p>If some of the entries of <span class="math">\(x\)</span> are required to be integers, we have a Mixed Integer Linear Programming (MILP) program. A MILP problem is in general difficult to solve (non-convex and NP-complete). However, in practice, the global optimum can be found for many useful MILP problems.</p>
-<p>In general, the feasible set of a linear programming is a polyhedron. The objective function defines a family of parallel hyperplanes. The optimal value for the objective function is the lowest value corresponding to a hyperplane that has a non-empty intersection with the feasible set polyhedron. The intersection can be a vertice or edge or any higher dimensional faces. Therefore, the optimal value of the objective function is unique but the optimal solution, <span class="math">\(x^\star\)</span>, is not.</p>
+<p>Linear programming (LP) is one of the best known forms of convex optimization. A LP problem can be written as: <span class="math display">\[\begin{align}\label{LP}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m
+\end{align}\]</span> where <span class="math inline">\(x\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(a_i\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span> belong to <span class="math inline">\(\mathbb{R}^n\)</span>. In general, there is no analytical solution for a LP problem. A numerical algorithm is therefore required to solve the problem. The earliest algorithms for solving LP problems were the one developed by Kantorovich in 1940  and the simplex method proposed by George Dantzig in 1947 . In 1978, the Russian mathematician L. G. Khachian developed a polynomial-time algorithm for solving linear programsthe Russian mathematician L. G. Khachian developed a polynomial-time algorithm for solving LP problems. This algorithm was an interior method, which was later improved by Karmarkar .</p>
+<p>If some of the entries of <span class="math inline">\(x\)</span> are required to be integers, we have a Mixed Integer Linear Programming (MILP) program. A MILP problem is in general difficult to solve (non-convex and NP-complete). However, in practice, the global optimum can be found for many useful MILP problems.</p>
+<p>In general, the feasible set of a linear programming is a polyhedron. The objective function defines a family of parallel hyperplanes. The optimal value for the objective function is the lowest value corresponding to a hyperplane that has a non-empty intersection with the feasible set polyhedron. The intersection can be a vertice or edge or any higher dimensional faces. Therefore, the optimal value of the objective function is unique but the optimal solution, <span class="math inline">\(x^\star\)</span>, is not.</p>
 <p><em>Example:</em> Consider the following LP problem (LP1):</p>
-
+<p><span class="math display">\[\begin{align}
+ \text{maximize: }   &amp; x + y\nonumber\\
+ \text{Subject to: } &amp; x + y \geq -1 \\
+ \text{}             &amp; \frac{x}{2}-y \geq -2\nonumber\\
+ \text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}\]</span></p>
 <p>In order to solve this LP problem in Python, we need to import the required modules:</p>
 <pre><code>import numpy as np
 from pylab import *
@@ -136,11 +159,16 @@ plt.text(2, -4.5, &quot;x+y=-1&quot;)
 plt.text(3.5, -0.75, &quot;x+y=4&quot;)
 plt.text(4.5, 2.25, &quot;x+y=8&quot;)
 plt.show()</code></pre>
-<div class="figure">
-<img src="cvxguide_files/cvxguide_31_0.png" alt="png" /><p class="caption">png</p>
-</div>
+<figure>
+<img src="cvxguide_files/cvxguide_31_0.png" alt="" /><figcaption>png</figcaption>
+</figure>
 <p>Now, to solve the following LP problem (LP2):</p>
-
+<p><span class="math display">\[\begin{align}
+ \text{minimize: }   &amp; x + y\nonumber\\
+ \text{Subject to: } &amp; x + y \geq -1 \\
+ \text{}             &amp; \frac{x}{2}-y \leq -2\nonumber\\
+ \text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}\]</span></p>
 <p>we change the objective function in the code:</p>
 <pre><code>objective = cp.Minimize(x+y)
 p = cp.Problem(objective, constraints)
@@ -163,15 +191,18 @@ print(round(y_star,5))
 
 -1.49742</code></pre>
 <p>In this case the optimzal value of the objective function is unique. However, it can be seen in Figure ref{LPfeas} that any point on the line connecting the two points (-2,1) and (1,-2) including the point (0.49742,-1.49742) can be the optimal solution. Therefore, the LP problem ref{LP2} has infinite optimal solutions. The code, however, returns just one of the optimal solutions.</p>
-<em>Example:</em> Finding the Chebyshev center of a polyhedron is an example of optimization problems that can be solved using LP . However, the original description of the problem is not in LP form. Consider the following polyhedron:
-
-The Chebyshev center of <span class="math">\(\mathcal{P}\)</span> is the center of the largest ball in <span class="math">\(\mathcal{P}\)</span>:
-
-In order for <span class="math">\(\mathcal{B}\)</span> to be inside <span class="math">\(\mathcal{P}\)</span>, we need to have <span class="math">\(a_i^Tx\leq b_i\)</span> for all <span class="math">\(x\)</span> in <span class="math">\(\mathcal{B}\)</span> and all <span class="math">\(i\)</span> from <span class="math">\(1\)</span> to <span class="math">\(m\)</span>. For each <span class="math">\(i\)</span>, the point with the largest value of <span class="math">\(a_i^Tx\)</span> is: <span class="math">\[x^\star=x_c+\frac{r}{\sqrt{a_i^Ta_i}}a_i=x_c+\frac{r}{\|a_i\|_2}a_i\]</span> Therefore, if we have: <span class="math">\[a_i^Tx_c+r\|a_i\|_2\leq b_i\]</span> for all <span class="math">\(i=1,..,m\)</span> then <span class="math">\(\mathcal{B}\)</span> is inside <span class="math">\(\mathcal{P}\)</span>. Now, we can write the problem as the following LP problem (LP3):
-
-As a numerical example, consider a polyhedron <span class="math">\(\mathcal{P}\)</span> where:
-
-<p>This is a triangle. The Chebyshev center of this triangle is computed as:</p>
+<p><em>Example:</em> Finding the Chebyshev center of a polyhedron is an example of optimization problems that can be solved using LP . However, the original description of the problem is not in LP form. Consider the following polyhedron: <span class="math display">\[\begin{equation}
+\mathcal{P} = \{x | a_i^Tx \leq b_i, i=1,...,m \}
+\end{equation}\]</span> The Chebyshev center of <span class="math inline">\(\mathcal{P}\)</span> is the center of the largest ball in <span class="math inline">\(\mathcal{P}\)</span>: <span class="math display">\[\begin{equation}
+\mathcal{B}=\{x|\|x-x_c\|\leq r\}
+\end{equation}\]</span> In order for <span class="math inline">\(\mathcal{B}\)</span> to be inside <span class="math inline">\(\mathcal{P}\)</span>, we need to have <span class="math inline">\(a_i^Tx\leq b_i\)</span> for all <span class="math inline">\(x\)</span> in <span class="math inline">\(\mathcal{B}\)</span> and all <span class="math inline">\(i\)</span> from <span class="math inline">\(1\)</span> to <span class="math inline">\(m\)</span>. For each <span class="math inline">\(i\)</span>, the point with the largest value of <span class="math inline">\(a_i^Tx\)</span> is: <span class="math display">\[x^\star=x_c+\frac{r}{\sqrt{a_i^Ta_i}}a_i=x_c+\frac{r}{\|a_i\|_2}a_i\]</span> Therefore, if we have: <span class="math display">\[a_i^Tx_c+r\|a_i\|_2\leq b_i\]</span> for all <span class="math inline">\(i=1,..,m\)</span> then <span class="math inline">\(\mathcal{B}\)</span> is inside <span class="math inline">\(\mathcal{P}\)</span>. Now, we can write the problem as the following LP problem (LP3): <span class="math display">\[\begin{align}
+ \text{maximize: }   &amp; r\nonumber\\
+ \text{Subject to: } &amp; a_i^Tx_c + r\|a_i\|_2 \leq b_i,\ i=1,..,m
+\end{align}\]</span> As a numerical example, consider a polyhedron <span class="math inline">\(\mathcal{P}\)</span> where: <span class="math display">\[\begin{align}
+a_1 =&amp;[-1,-1]^T,\ b_1=1\nonumber\\
+a_2 =&amp;[-1/2,1]^T,\ b_2=2\nonumber\\
+a_3 =&amp;[2,-1]^T,\ b_3=4\nonumber
+\end{align}\]</span> This is a triangle. The Chebyshev center of this triangle is computed as:</p>
 <pre><code>r = cp.Variable(1)
 xc = cp.Variable(2)
 
@@ -219,42 +250,65 @@ plt.xlabel(&#39;x1&#39;)
 plt.ylabel(&#39;x2&#39;)
 plt.axis([-3, 5, -3, 5])
 plt.show()</code></pre>
-<div class="figure">
-<img src="cvxguide_files/cvxguide_46_0.png" alt="png" /><p class="caption">png</p>
-</div>
+<figure>
+<img src="cvxguide_files/cvxguide_46_0.png" alt="" /><figcaption>png</figcaption>
+</figure>
 <h3 id="generalized-linear-fractional-program">Generalized linear fractional program</h3>
-A linear fractional program is defined as (LFP):
-
-with <span class="math">\(f_0(x)=\frac{c^\text{T}x+d}{e^\text{T}x+f}\)</span> and <span class="math">\(\text{dom}f_0(x)=\{x|e^\text{T}x+f &gt; 0\}\)</span>. The problem (ref{LFP}) can be rewritten as:
-
-is a quasilinear (both quasiconvex and quasiconcave) optimization problem. To solve the problem using the bisection method, we need to write it as:
-
-<p>For a fixed <span class="math">\(t\)</span>, the above problem is a LP feasibility problem. Therefore, the bisection method can be used to find the smallest possible <span class="math">\(t\)</span> within acceptable accuracy.</p>
-Another approach is introduce auxiliary variables <span class="math">\(y\)</span> and <span class="math">\(z\)</span>:
-
-Then the optimization problem (ref{LFP}) can be written as the following LP problem:
-
-<p>Therefore, linear fractional programs can be converted to convex optimization problems.</p>
-A closely related class of optimization problems is the generalized linear fraction problems formulated as (GLFP):
-
-where:
-
-and the domain of <span class="math">\(f_0(x)\)</span> is defined as:
-
+<p>A linear fractional program is defined as (LFP): <span class="math display">\[\begin{align}
+\text{minimize }&amp;f_0(x)\nonumber\\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\]</span> with <span class="math inline">\(f_0(x)=\frac{c^\text{T}x+d}{e^\text{T}x+f}\)</span> and <span class="math inline">\(\text{dom}f_0(x)=\{x|e^\text{T}x+f &gt; 0\}\)</span>. The problem (ref{LFP}) can be rewritten as: <span class="math display">\[\begin{align}
+\text{minimize }&amp;\frac{c^\text{T}x+d}{e^\text{T}x+f}\nonumber\\
+\text{subject to }&amp;e^\text{T}x+f &gt; 0\nonumber\\
+                  &amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\]</span> is a quasilinear (both quasiconvex and quasiconcave) optimization problem. To solve the problem using the bisection method, we need to write it as: <span class="math display">\[\begin{align}
+\text{minimize }&amp;t\nonumber\\
+\text{subject to }&amp;c^\text{T}x+d\leq t(e^\text{T}x+f)\nonumber\\
+                  &amp;e^\text{T}x+f &gt; 0\nonumber\\
+                  &amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\]</span> For a fixed <span class="math inline">\(t\)</span>, the above problem is a LP feasibility problem. Therefore, the bisection method can be used to find the smallest possible <span class="math inline">\(t\)</span> within acceptable accuracy.</p>
+<p>Another approach is introduce auxiliary variables <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>: <span class="math display">\[\begin{align}
+y =&amp; \frac{x}{e^\text{T}x+f}\nonumber\\
+z =&amp; \frac{1}{e^\text{T}x+f}
+\end{align}\]</span> Then the optimization problem (ref{LFP}) can be written as the following LP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}y+dz\nonumber\\
+\text{subject to }&amp;z &gt; 0\nonumber\\
+                  &amp;e^\text{T}y+fz=1\nonumber\\
+                  &amp;a_i^\text{T}y\leq b_iz,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}y = g_iz,\ i=1,\ldots,p
+\end{align}\]</span> Therefore, linear fractional programs can be converted to convex optimization problems.</p>
+<p>A closely related class of optimization problems is the generalized linear fraction problems formulated as (GLFP): <span class="math display">\[\begin{align}
+\text{minimize }&amp;f_0(x)\nonumber\\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\]</span> where: <span class="math display">\[\begin{equation}
+f_0(x)=\max_{i=1,\ldots,r} \frac{c_i^\text{T}x+d_i}{e_i^\text{T}x+f_i}
+\end{equation}\]</span> and the domain of <span class="math inline">\(f_0(x)\)</span> is defined as: <span class="math display">\[\begin{equation}
+\text{dom}f_0(x)=\{x|e_i^\text{T}x+f_i &gt; 0, \text{for }i=1,\ldots,r\}
+\end{equation}\]</span></p>
 <h3 id="quadratic-program">Quadratic program</h3>
-A quadratic programming (QP) optimization problem is described as:
-
-<p><span class="math">\(P\)</span> is assumed to be positive semidefinite. The feasible set of QP is a polygon and the objective function is a convex quadratic function.</p>
-If the objective function is quadratic and the constraints include quadratic constraints, then we have a quadratically constrained quadratic program (QCQP):
-
-<p>where <span class="math">\(P_i\)</span> for <span class="math">\(i=0,\cdots,m\)</span> are positive semidefinite.</p>
-<em>Example:</em> Consider the set of linear equations <span class="math">\(Ax=b\)</span> for the case when <span class="math">\(A\)</span> has more rows than columns. Finding an <span class="math">\(x\)</span> where the equality is exactly satisfied is in general impossible. However, there is a solution for an <span class="math">\(x\)</span> that minimizes the cost function <span class="math">\(e^\text{T}e\)</span> where <span class="math">\(e=Ax-b\)</span>. The solution is even analytic and it can be written as:
-
-However, after adding linear constraints on <span class="math">\(x\)</span>, the optimization problem does not have an analytic solution:
-
-As a numerical example, consider:
-
-<p>The analytical answer to <span class="math">\(Ax=b\)</span> is computed as:</p>
+<p>A quadratic programming (QP) optimization problem is described as: <span class="math display">\[\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}Px+q^\text{T}x+r\nonumber\\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\\
+                  &amp;Ax = b
+\end{align}\]</span> <span class="math inline">\(P\)</span> is assumed to be positive semidefinite. The feasible set of QP is a polygon and the objective function is a convex quadratic function.</p>
+<p>If the objective function is quadratic and the constraints include quadratic constraints, then we have a quadratically constrained quadratic program (QCQP): <span class="math display">\[\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}P_0x+q_0^\text{T}x+r_0\nonumber\\
+\text{subject to }&amp;\frac{1}{2}x^\text{T}P_ix+q_i^\text{T}x+r_i\leq 0,\
+i=1\cdots,m \nonumber\\
+                  &amp;Ax = b
+\end{align}\]</span> where <span class="math inline">\(P_i\)</span> for <span class="math inline">\(i=0,\cdots,m\)</span> are positive semidefinite.</p>
+<p><em>Example:</em> Consider the set of linear equations <span class="math inline">\(Ax=b\)</span> for the case when <span class="math inline">\(A\)</span> has more rows than columns. Finding an <span class="math inline">\(x\)</span> where the equality is exactly satisfied is in general impossible. However, there is a solution for an <span class="math inline">\(x\)</span> that minimizes the cost function <span class="math inline">\(e^\text{T}e\)</span> where <span class="math inline">\(e=Ax-b\)</span>. The solution is even analytic and it can be written as: <span class="math display">\[\begin{equation}
+x^\star = (A^\text{T}A)^{-1}A^\text{T}
+\end{equation}\]</span> However, after adding linear constraints on <span class="math inline">\(x\)</span>, the optimization problem does not have an analytic solution: <span class="math display">\[\begin{align}
+\text{minimize }&amp;(Ax-b)^\text{T}(Ax-b)\nonumber\\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\\
+\end{align}\]</span> As a numerical example, consider: <span class="math display">\[\begin{equation}
+A = \bmat{cc} 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat
+\end{equation}\]</span> The analytical answer to <span class="math inline">\(Ax=b\)</span> is computed as:</p>
 <pre><code>A = np.array([[1,1],[2,1],[3,2]])
 b = np.array([[2], [3], [4]])
 xs = np.dot(np.linalg.pinv(A),b)
@@ -299,15 +353,23 @@ print(result)
 
 [ 9.00e-01]
 [ 8.18e-01]</code></pre>
-<em>Example (Linear Program with a Stochastic Objective Function):</em> Consider a random vector <span class="math">\(c\)</span> and the following LP problem:
-
-<p>Assume that <span class="math">\(c\)</span> is a random vector with the normal distribution of <span class="math">\(\mathcal{N}(\bar c,\Sigma)\)</span>. Also we assume that <span class="math">\(x\)</span>, the unknown vector, is deterministic. With this assumptions, the objective function <span class="math">\(c^\text{T}x\)</span> is a normal random variable with mean <span class="math">\({\bar c}^\text{T}x\)</span> and variance <span class="math">\(x^\text{T}\Sigma x\)</span>.</p>
-One way to formulate the problem so that it is practically solveable is to set the objective function as:
-
-where <span class="math">\(\gamma\geq 0\)</span>. This objective function is called the risk-sensitive cost and <span class="math">\(\gamma\)</span> is call the risk-aversion parameter. The larger <span class="math">\(\gamma\)</span> is, the more the uncertainty of the original objective function is penalized and it thus leads to a more certain result. With this approach, the problem is formulated as the following deterministic LP:
-
-As a numerical example, let us consider an uncertain version of ref{LP2}:
-
+<p><em>Example (Linear Program with a Stochastic Objective Function):</em> Consider a random vector <span class="math inline">\(c\)</span> and the following LP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\\
+                  &amp; Ax = b
+\end{align}\]</span> Assume that <span class="math inline">\(c\)</span> is a random vector with the normal distribution of <span class="math inline">\(\mathcal{N}(\bar c,\Sigma)\)</span>. Also we assume that <span class="math inline">\(x\)</span>, the unknown vector, is deterministic. With this assumptions, the objective function <span class="math inline">\(c^\text{T}x\)</span> is a normal random variable with mean <span class="math inline">\({\bar c}^\text{T}x\)</span> and variance <span class="math inline">\(x^\text{T}\Sigma x\)</span>.</p>
+<p>One way to formulate the problem so that it is practically solveable is to set the objective function as: <span class="math display">\[\begin{equation}
+{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x
+\end{equation}\]</span> where <span class="math inline">\(\gamma\geq 0\)</span>. This objective function is called the risk-sensitive cost and <span class="math inline">\(\gamma\)</span> is call the risk-aversion parameter. The larger <span class="math inline">\(\gamma\)</span> is, the more the uncertainty of the original objective function is penalized and it thus leads to a more certain result. With this approach, the problem is formulated as the following deterministic LP: <span class="math display">\[\begin{align}
+\text{minimize }&amp;{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x\nonumber\\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\\
+                  &amp; Ax = b
+\end{align}\]</span> As a numerical example, let us consider an uncertain version of ref{LP2}: <span class="math display">\[\begin{align}
+\bar c=&amp;\bmat{c} 22\\ 14.5 \emat \nonumber\\
+\Sigma=&amp;\bmat{ccc} 5 &amp; 1\\ 1 &amp; 4 \emat\nonumber\\
+G =&amp;\bmat{cc} -1 &amp; -1\\ -0.5 &amp; 1\\ 2 &amp; -1 \emat \nonumber\\
+h =&amp;\bmat{c} 1\\2\\4\emat
+\end{align}\]</span></p>
 <p>Now, the optimization can be solved with the following code:</p>
 <pre><code>Sigma = co.matrix([ 5, 1,
                     1, 4,], (2,2))
@@ -360,16 +422,20 @@ Z = cb[0]*X + cb[1]*Y + Sigma[0,0]*X*X + 2*Sigma[0,1]*X*Y + Sigma[1,1]*Y*Y
 plt.contour(X, Y, Z)
 X, Y = np.meshgrid(x, y)
 plt.show()</code></pre>
-<div class="figure">
-<img src="cvxguide_files/cvxguide_73_0.png" alt="png" /><p class="caption">png</p>
-</div>
-<em>Example (Distance between polyhedra):</em> Consider the following two polyhedra:
-
-The distance between <span class="math">\(\mathcal{P}_1\)</span> and <span class="math">\(\mathcal{P}_2\)</span> is defined as:
-
-This ditance can computed using the following QP problem:
-
-<p>As a numerical example, consider the following polygons:</p>
+<figure>
+<img src="cvxguide_files/cvxguide_73_0.png" alt="" /><figcaption>png</figcaption>
+</figure>
+<p><em>Example (Distance between polyhedra):</em> Consider the following two polyhedra: <span class="math display">\[\begin{equation}
+\mathcal{P}_1=\{x| A_1x \preccurlyeq b_1\},\ \mathcal{P}_2=\{x| A_2x
+\preccurlyeq b_2\}
+\end{equation}\]</span> The distance between <span class="math inline">\(\mathcal{P}_1\)</span> and <span class="math inline">\(\mathcal{P}_2\)</span> is defined as: <span class="math display">\[\begin{equation}
+\text{d}(\mathcal{P}_1,\mathcal{P}_2)=\inf\{\|x_1-x_2\|_2 |
+x_1\in\mathcal{P}_1,\ x_2\in\mathcal{P}_2\}
+\end{equation}\]</span> This ditance can computed using the following QP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp; \|x_1-x_2\|_2^2\nonumber\\
+\text{subject to }&amp;A_1x \preccurlyeq b_1 \nonumber\\
+                  &amp;A_2x \preccurlyeq b_2
+\end{align}\]</span> As a numerical example, consider the following polygons:</p>
 <pre><code># Draw the triangle
 path = mpl.path.Path([[4, 4], [1, -2], [-2, 1], [4, 4]])            
 patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
@@ -385,9 +451,9 @@ plt.ylabel(&#39;y&#39;)
 plt.xlim(-4,6)
 plt.ylim(-3,5)
 plt.show()</code></pre>
-<div class="figure">
-<img src="cvxguide_files/cvxguide_75_0.png" alt="png" /><p class="caption">png</p>
-</div>
+<figure>
+<img src="cvxguide_files/cvxguide_75_0.png" alt="" /><figcaption>png</figcaption>
+</figure>
 <p>The distance between these two polygons is computed with the following QP optimization problem:</p>
 <pre><code>x1 = cp.Variable(2)
 x2 = cp.Variable(2)
@@ -432,39 +498,56 @@ print(result)
 [-2.00e+00]
 [ 2.00e+00]</code></pre>
 <h3 id="second-order-cone-program">Second order cone program</h3>
-A second order cone program (SOCP) is defined as:
-
-<p>Note that:</p>
+<p>A second order cone program (SOCP) is defined as: <span class="math display">\[\begin{align}
+\text{minimize }&amp; f^\text{T}x\nonumber\\
+\text{subject to }&amp;\|A_ix+b_i\|_2\leq c_i^\text{T}x+d_i,\
+i=1,\ldots,m\nonumber\\
+                  &amp;Fx = g
+\end{align}\]</span> Note that:</p>
 <ul>
-<li>If <span class="math">\(c_i=0\)</span> for <span class="math">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a QP.</li>
-<li>If <span class="math">\(A_i=0\)</span> for <span class="math">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a LP.</li>
+<li>If <span class="math inline">\(c_i=0\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a QP.</li>
+<li>If <span class="math inline">\(A_i=0\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a LP.</li>
 </ul>
-<em>Example (robust linear program):</em> Consider the following LP problem:
-
-where the parameters are assumed to be uncertain. For simplicity, let us assume that <span class="math">\(c\)</span> and <span class="math">\(b_i\)</span> are known and <span class="math">\(a_i\)</span> are uncertain and belong to given ellipsoids:
-
-For each constraint <span class="math">\(a_i^\text{T}x\leq b_i\)</span>, it is sufficient that the suprimum value of <span class="math">\(a_i^\text{T}x\)</span> be less than or equal to <span class="math">\(b_i\)</span>. The supremum value can be written as:
-
-Therefore, the robust LP problem can be written as the following SOCP problem:
-
-<p><em>Example (stochastic linear program):</em> The same robust LP problem can be addressed in a stochastic framework. In this framework, <span class="math">\(a_i\)</span> are assumed to be independent normal random vectors with the distribution <span class="math">\(\mathcal{N}(\bar a_i, \Sigma_i)\)</span>. The requirement is that each constraint <span class="math">\(a_i^\text{T}x\leq b_i\)</span> should be satisfied with a probability more than <span class="math">\(\eta\)</span>, where <span class="math">\(\eta\geq 0.5\)</span>.</p>
-Assuming that <span class="math">\(x\)</span> is deterministic, <span class="math">\(a_i^\text{T}x\)</span> is a scalar normal random variable with mean <span class="math">\(\bar u=\bar a_i^\text{T}x\)</span> and variance <span class="math">\(\sigma=x^\text{T}\Sigma_ix\)</span>. The probability of <span class="math">\(a_i^\text{T}x\)</span> being less than <span class="math">\(b_i\)</span> is <span class="math">\(\Phi((b_i-\bar u)/\sigma)\)</span> where <span class="math">\(\Phi(z)\)</span> is the cumulative distribution function of a zero mean unit variance Gaussian random variable:
-
-Therefore, for the probability of <span class="math">\(a_i^\text{T}x\leq b_i\)</span> be larger than <span class="math">\(\eta\)</span>, we should have:
-
-This is equivalent to:
-
-Therefore, the stochastic LP problem:
-
-can be reformulated as the following SOCP:
-
-<em>Example:</em> Consider the equation <span class="math">\(Ax=b\)</span> where <span class="math">\(x\in\mathbb{R}^n\)</span>, <span class="math">\(A\in\mathbb{R}^{m\times n}\)</span> and <span class="math">\(b\in\mathbb{R}^m\)</span>. It is assumed that <span class="math">\(m&gt;n\)</span>. Let us consider the following optimization problem:
-
-The objective function is a weighted sum of the 2-norm of equation error and the 1-norm of <span class="math">\(x\)</span>. The optimization problem can be written as the following SOCP problem:
-
-As a numerical example, consider:
-
-<p>The optimization problem can be solved using the following code:</p>
+<p><em>Example (robust linear program):</em> Consider the following LP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; a_i^\text{T}x \leq b_i,\ i=1,\ldots,m
+\end{align}\]</span> where the parameters are assumed to be uncertain. For simplicity, let us assume that <span class="math inline">\(c\)</span> and <span class="math inline">\(b_i\)</span> are known and <span class="math inline">\(a_i\)</span> are uncertain and belong to given ellipsoids: <span class="math display">\[\begin{equation}
+a_i \in \mathcal{E}_i = \{\bar a_i+P_iu|\ \|u\|_2\leq 1\}
+\end{equation}\]</span> For each constraint <span class="math inline">\(a_i^\text{T}x\leq b_i\)</span>, it is sufficient that the suprimum value of <span class="math inline">\(a_i^\text{T}x\)</span> be less than or equal to <span class="math inline">\(b_i\)</span>. The supremum value can be written as: <span class="math display">\[\begin{align}
+\sup\{a_i^\text{T}x|a_i\in\mathcal{E}_i \} =&amp; \bar a_i^\text{T}x+\sup\{
+u^\text{T}P_i^\text{T}x |\ \|u\|_2\leq 1\}\nonumber\\
+&amp;\bar a_i^\text{T}x+\|P_i^\text{T}x\|_2
+\end{align}\]</span> Therefore, the robust LP problem can be written as the following SOCP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; \bar a_i^\text{T}x+\|P_i^\text{T}x\|_2 \leq b_i,\
+i=1,\ldots,m
+\end{align}\]</span></p>
+<p><em>Example (stochastic linear program):</em> The same robust LP problem can be addressed in a stochastic framework. In this framework, <span class="math inline">\(a_i\)</span> are assumed to be independent normal random vectors with the distribution <span class="math inline">\(\mathcal{N}(\bar a_i, \Sigma_i)\)</span>. The requirement is that each constraint <span class="math inline">\(a_i^\text{T}x\leq b_i\)</span> should be satisfied with a probability more than <span class="math inline">\(\eta\)</span>, where <span class="math inline">\(\eta\geq 0.5\)</span>.</p>
+<p>Assuming that <span class="math inline">\(x\)</span> is deterministic, <span class="math inline">\(a_i^\text{T}x\)</span> is a scalar normal random variable with mean <span class="math inline">\(\bar u=\bar a_i^\text{T}x\)</span> and variance <span class="math inline">\(\sigma=x^\text{T}\Sigma_ix\)</span>. The probability of <span class="math inline">\(a_i^\text{T}x\)</span> being less than <span class="math inline">\(b_i\)</span> is <span class="math inline">\(\Phi((b_i-\bar u)/\sigma)\)</span> where <span class="math inline">\(\Phi(z)\)</span> is the cumulative distribution function of a zero mean unit variance Gaussian random variable: <span class="math display">\[\begin{equation}
+\Phi(z)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^ze^{-t^2/2}dt
+\end{equation}\]</span> Therefore, for the probability of <span class="math inline">\(a_i^\text{T}x\leq b_i\)</span> be larger than <span class="math inline">\(\eta\)</span>, we should have: <span class="math display">\[\begin{equation}
+\Phi\left(\frac{b_i-\bar u}{\sigma}\right)\geq \eta
+\end{equation}\]</span> This is equivalent to: <span class="math display">\[\begin{align}
+\bar a_i^\text{T}x+\Phi^{-1}(\eta)\sigma\leq b_i \nonumber\\
+\bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq b_i
+\end{align}\]</span> Therefore, the stochastic LP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; \text{prob} (a_i^\text{T}x \leq b_i)\geq \eta,\ i=1,\ldots,m
+\end{align}\]</span> can be reformulated as the following SOCP: <span class="math display">\[\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; \bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq
+b_i,\ i=1,\ldots,m
+\end{align}\]</span></p>
+<p><em>Example:</em> Consider the equation <span class="math inline">\(Ax=b\)</span> where <span class="math inline">\(x\in\mathbb{R}^n\)</span>, <span class="math inline">\(A\in\mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb{R}^m\)</span>. It is assumed that <span class="math inline">\(m&gt;n\)</span>. Let us consider the following optimization problem: <span class="math display">\[\begin{equation}
+\text{minimize }\|Ax-b\|_2+\gamma\|x\|_1
+\end{equation}\]</span> The objective function is a weighted sum of the 2-norm of equation error and the 1-norm of <span class="math inline">\(x\)</span>. The optimization problem can be written as the following SOCP problem: <span class="math display">\[\begin{align}
+\text{minimize }&amp; t\nonumber\\
+                &amp; \|Ax-b\|_2+\gamma \sum_{i=1}^n t_i\leq t\nonumber\\
+                &amp; -t_i \leq x_i \leq t_i, i=1,\ldots,n
+\end{align}\]</span> As a numerical example, consider: <span class="math display">\[\begin{equation}
+A = \bmat{cc} 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat,\ \gamma
+= 0.5
+\end{equation}\]</span> The optimization problem can be solved using the following code:</p>
 <pre><code>x = cp.Variable(2)
 t = cp.Variable(1)
 t1 = cp.Variable(1)
@@ -496,28 +579,41 @@ print(x.value)
 [ 1.32e+00]
 [ 1.40e-01]</code></pre>
 <h3 id="semidefinite-program">Semidefinite program</h3>
-Generalized inequalities can be defined based on propoer cones. Till now we have seen inequalities for real numbers and elementwise inequalities real vectors. The former type of inequality is defined by the propoer cone of nonnegative real numbers. The later type is defined by the proper cone of the nonnegative orthant (<span class="math">\(\mathbb{R}^n_+\)</span>) in <span class="math">\(\mathbb{R}^n\)</span>. One natural extension of the optimization problems we have seen so far is to define the inequalities by the proper cone of positive semidefinite matrices. For example, consider the following linear optimization problem:
-
-<p>where <span class="math">\(\mathcal{S}^n_+\)</span> is the cone of positive semidefinite matrices in <span class="math">\(\mathcal{R}^{n\times n}\)</span>. In other words, the first constraint of the above optimization problem says that <span class="math">\(Fx+g\)</span> is positive semidefinite. This is an extension of linear programming.</p>
-A semidefinite program (SDP) is defined as:
-
-<p>where <span class="math">\(x =\left[\begin{matrix}x_1&amp;x_2&amp;\cdots&amp;x_n\end{matrix}\right]^\text{T}\)</span> is a vector in <span class="math">\(\mathbb{R}^n\)</span> and <span class="math">\(F_i, i=1,\ldots,m\)</span> and <span class="math">\(G\)</span> are symetric matrices in <span class="math">\(\mathcal{R}^{m\times m}\)</span>.</p>
-Note that the standard LP problem:
-
-can be written as the following SDP problem:
-
-<p>where <span class="math">\(\text{diag}(v)\)</span> for <span class="math">\(v\in\mathbb{R}^n\)</span> is a diagonal matrix in <span class="math">\(\mathbb{R}^{n\times n}\)</span> with <span class="math">\(v\)</span> as the main diagonal.</p>
-Also the standard SOCP problem:
-
-can be written as the following SDP problem:
-
-<em>Example (eigenvalue minimization):</em> Consider minimizing the maximum eigenvalue of matrix <span class="math">\(A(x)\)</span>:
-
-where <span class="math">\(A(x)=A_0+x_1A_1+\cdots+x_nA_n\)</span> where <span class="math">\(A_i\)</span>'s are symmetric matrices. This problem can be written as the following SDP problem:
-
-As a numerical example, consider:
-
-<p>We would like to minimize the largest eigenvalue of <span class="math">\(A\)</span> subject to <span class="math">\(A\)</span> being a positive semidefinite matrix. The following code solves this problem:</p>
+<p>Generalized inequalities can be defined based on propoer cones. Till now we have seen inequalities for real numbers and elementwise inequalities real vectors. The former type of inequality is defined by the propoer cone of nonnegative real numbers. The later type is defined by the proper cone of the nonnegative orthant (<span class="math inline">\(\mathbb{R}^n_+\)</span>) in <span class="math inline">\(\mathbb{R}^n\)</span>. One natural extension of the optimization problems we have seen so far is to define the inequalities by the proper cone of positive semidefinite matrices. For example, consider the following linear optimization problem: <span class="math display">\[\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\\
+\text{subject to}&amp; Fx+g\preccurlyeq_{\mathcal{S}^n_+} 0\nonumber\\
+                 &amp; Ax=b
+\end{align}\]</span> where <span class="math inline">\(\mathcal{S}^n_+\)</span> is the cone of positive semidefinite matrices in <span class="math inline">\(\mathcal{R}^{n\times n}\)</span>. In other words, the first constraint of the above optimization problem says that <span class="math inline">\(Fx+g\)</span> is positive semidefinite. This is an extension of linear programming.</p>
+<p>A semidefinite program (SDP) is defined as: <span class="math display">\[\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\\
+\text{subject to}&amp; x_1F_1+x_2F_2+\cdots+x_nF_n+G \leq 0\nonumber\\
+                 &amp; Ax=b
+\end{align}\]</span> where <span class="math inline">\(x =\left[\begin{matrix}x_1&amp;x_2&amp;\cdots&amp;x_n\end{matrix}\right]^\text{T}\)</span> is a vector in <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(F_i, i=1,\ldots,m\)</span> and <span class="math inline">\(G\)</span> are symetric matrices in <span class="math inline">\(\mathcal{R}^{m\times m}\)</span>.</p>
+<p>Note that the standard LP problem: <span class="math display">\[\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;Ax\preccurlyeq b
+\end{align}\]</span> can be written as the following SDP problem: <span class="math display">\[\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;\text{diag}(Ax) \leq b
+\end{align}\]</span> where <span class="math inline">\(\text{diag}(v)\)</span> for <span class="math inline">\(v\in\mathbb{R}^n\)</span> is a diagonal matrix in <span class="math inline">\(\mathbb{R}^{n\times n}\)</span> with <span class="math inline">\(v\)</span> as the main diagonal.</p>
+<p>Also the standard SOCP problem: <span class="math display">\[\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;\|A_ix+b_i\|_2 \leq c_i^\text{T}x+d_i,\ i=1,\ldots,m
+\end{align}\]</span> can be written as the following SDP problem: <span class="math display">\[\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp; \left[\begin{matrix} (c_i^\text{T}x+d_i)I &amp; A_ix+b_i\\ A_ix+b_i
+&amp; c_i^\text{T}x+d_i\end{matrix}\right] \geq 0,\ i=1,\ldots,m
+\end{align}\]</span></p>
+<p><em>Example (eigenvalue minimization):</em> Consider minimizing the maximum eigenvalue of matrix <span class="math inline">\(A(x)\)</span>: <span class="math display">\[\begin{align}
+\text{minimize}&amp; \lambda_\max(A(x))
+\end{align}\]</span> where <span class="math inline">\(A(x)=A_0+x_1A_1+\cdots+x_nA_n\)</span> where <span class="math inline">\(A_i\)</span>’s are symmetric matrices. This problem can be written as the following SDP problem: <span class="math display">\[\begin{align}
+\text{minimize}&amp;t\nonumber\\
+               &amp; A(x)\leq tI
+\end{align}\]</span> As a numerical example, consider: <span class="math display">\[\begin{equation}
+A(x) = \left[\begin{matrix} x_3 &amp; 0 &amp; 0 &amp; x_1+x_2-2\\ 0 &amp; x_3 &amp; 0 &amp;
+2x_1+x_2-3\\0 &amp; 0 &amp; x_3 &amp; 3x_1+2x_2-4\\ x_1+x_2-2 &amp; 2x_1+x_2-3 &amp; 3x_1+2x_2-4 &amp;
+x_3 \end{matrix}\right]
+\end{equation}\]</span> We would like to minimize the largest eigenvalue of <span class="math inline">\(A\)</span> subject to <span class="math inline">\(A\)</span> being a positive semidefinite matrix. The following code solves this problem:</p>
 <pre><code>x1 = cp.Variable()
 x2 = cp.Variable()
 x3 = cp.Variable()
@@ -536,23 +632,23 @@ objective = cp.Minimize(t)
 Ax = A0+A1*x1+A2*x2+A3*x3
 constraints = [ Ax == X, t*I-Ax == Y ]
 p = cp.Problem(objective, constraints)</code></pre>
-<p>The optimal largest eigenvalue of <span class="math">\(A(x)\)</span> is equal to:</p>
+<p>The optimal largest eigenvalue of <span class="math inline">\(A(x)\)</span> is equal to:</p>
 <pre><code>result=p.solve()
 print(result)
 
 1.15470050608</code></pre>
-<p>The optimal solution for <span class="math">\(x\)</span> is:</p>
+<p>The optimal solution for <span class="math inline">\(x\)</span> is:</p>
 <pre><code>print([x1.value,x2.value,x3.value])
 
 [1.0000000000000004, 0.6666666666666659, 0.5773502530380881]</code></pre>
-<p>The value of <span class="math">\(A(x)\)</span> for the optimal solution is equal to:</p>
+<p>The value of <span class="math inline">\(A(x)\)</span> for the optimal solution is equal to:</p>
 <pre><code>print(Ax.value)
 
 [ 5.77e-01  0.00e+00  0.00e+00 -3.33e-01]
 [ 0.00e+00  5.77e-01  0.00e+00 -3.33e-01]
 [ 0.00e+00  0.00e+00  5.77e-01  3.33e-01]
 [-3.33e-01 -3.33e-01  3.33e-01  5.77e-01]</code></pre>
-<p>In this case, eigenvalues of <span class="math">\(A(x)\)</span> are equal to:</p>
+<p>In this case, eigenvalues of <span class="math inline">\(A(x)\)</span> are equal to:</p>
 <pre><code>EigenValues = np.linalg.eig(Ax.value)[0]
 print(EigenValues)
 
@@ -560,36 +656,49 @@ print(EigenValues)
 <h2 id="applications-in-control-theory">Applications in Control Theory</h2>
 <p>Many problems in control theory can be formulated as convex optimization problems. It is beyond the scope of this text to cover all of them. However, in the following, you will see an introduction about applications of convex optimization in control theory.</p>
 <h3 id="stability">Stability</h3>
-Consider the following autonomous system:
-
-<p>with <span class="math">\(x\in\mathbb{R}^n\)</span> and <span class="math">\(t\geq 0\)</span>. A solution of this system with initial condition <span class="math">\(x(0)=x_0\)</span> is denoted by <span class="math">\(\phi(t,x_0)\)</span>.</p>
-<span class="math">\(x^\star\)</span> is an equilibrium point of this system if:
-
-<p><em>Definition [2]:</em> An equilibrium point <span class="math">\(x^\star\)</span> is:</p>
+<p>Consider the following autonomous system: <span class="math display">\[\begin{equation}
+\dot x = f(x),\ x(0)=x_0
+\end{equation}\]</span> with <span class="math inline">\(x\in\mathbb{R}^n\)</span> and <span class="math inline">\(t\geq 0\)</span>. A solution of this system with initial condition <span class="math inline">\(x(0)=x_0\)</span> is denoted by <span class="math inline">\(\phi(t,x_0)\)</span>.</p>
+<p><span class="math inline">\(x^\star\)</span> is an equilibrium point of this system if: <span class="math display">\[\begin{equation}
+\forall t \geq 0, \phi(t,x^\star)=x^\star
+\end{equation}\]</span></p>
+<p><em>Definition [2]:</em> An equilibrium point <span class="math inline">\(x^\star\)</span> is:</p>
 <ul>
-<li><em>stable</em> (in the sense of Lyapunov) if for any given <span class="math">\(\epsilon&gt;0\)</span>, there exists <span class="math">\(\delta(\epsilon)&gt;0\)</span> such that:
-</li>
-<li><em>attractive</em> if there exists <span class="math">\(\delta&gt;0\)</span> such that:
-</li>
+<li><em>stable</em> (in the sense of Lyapunov) if for any given <span class="math inline">\(\epsilon&gt;0\)</span>, there exists <span class="math inline">\(\delta(\epsilon)&gt;0\)</span> such that: <span class="math display">\[\begin{equation}
+\|x_0-x^\star\|\leq \delta \Rightarrow \lim_{t\rightarrow
+\infty}\|\phi(t,x_0)-x^\star\|=0
+\end{equation}\]</span></li>
+<li><em>attractive</em> if there exists <span class="math inline">\(\delta&gt;0\)</span> such that: <span class="math display">\[\begin{equation}
+\|x_0-x^\star\|\leq\delta \Rightarrow \lim_{t\rightarrow
+\infty}\|\phi(t,x_0)-x^\star\|=0
+\end{equation}\]</span></li>
 <li><em>asymptotically stable</em> (in the sense of Lyapunov) if it is both stable and attractive.</li>
 </ul>
-<em>Theorem [3]:</em> If there exists a continuous function <span class="math">\(V(x)\)</span> defined in a forward invariant set <span class="math">\(\mathcal{X}\)</span> of the autonomous system (*) such that:
-
-then <span class="math">\(x^\star\)</span> is a stable equilibrium point. Moreover if there exists a continuous function <span class="math">\(Q(x)\)</span> such that:
-
-<p>then <span class="math">\(x^\star\)</span> is an asymptotically stable equilibrium point.</p>
+<p><em>Theorem [3]:</em> If there exists a continuous function <span class="math inline">\(V(x)\)</span> defined in a forward invariant set <span class="math inline">\(\mathcal{X}\)</span> of the autonomous system (*) such that: <span class="math display">\[\begin{align}
+V(x^\star)=0,\nonumber\\
+V(x) &gt; 0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
+t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))
+\end{align}\]</span> then <span class="math inline">\(x^\star\)</span> is a stable equilibrium point. Moreover if there exists a continuous function <span class="math inline">\(Q(x)\)</span> such that: <span class="math display">\[\begin{equation}
+Q(x^\star)=0,\nonumber\\
+Q(x)&gt;0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
+t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))+\int_{t_1}^{t_2}
+Q(\phi(\tau,x_0))d\tau\nonumber\\
+\|x\|\rightarrow\infty \Rightarrow V(x)\rightarrow\infty
+\end{equation}\]</span> then <span class="math inline">\(x^\star\)</span> is an asymptotically stable equilibrium point.</p>
 <h4 id="linear-systems">Linear Systems</h4>
-Consider the linear system:
-
-where <span class="math">\(x\in\mathbb{R}^n\)</span>. The only equilibrium point of this system is <span class="math">\(x^\star=0\)</span>. Consider the following candidate Lyapunov function:
-
-where <span class="math">\(P\in\mathbb{n\times n}\)</span> is a positive definite matrix and therefore <span class="math">\(V(x)&gt;0\)</span> for <span class="math">\(x\neq 0\)</span>. The linear system () is stable if there exists a <span class="math">\(P\)</span>:
-
-In case of linear systems, the existence of a Lyapunov function is a necessary and sufficient condition for stability. The Lyapunov conditions can be written as the following linear matrix inequalities:
-
-<em>Example:</em> Consider a linear system with:
-
-<p>The eigenvalues of <span class="math">\(A\)</span> are negative:</p>
+<p>Consider the linear system: <span class="math display">\[\begin{equation}
+\dot x=Ax, x(0)=x_0
+\end{equation}\]</span> where <span class="math inline">\(x\in\mathbb{R}^n\)</span>. The only equilibrium point of this system is <span class="math inline">\(x^\star=0\)</span>. Consider the following candidate Lyapunov function: <span class="math display">\[\begin{equation}
+V(x)=x^\text{T}Px
+\end{equation}\]</span> where <span class="math inline">\(P\in\mathbb{n\times n}\)</span> is a positive definite matrix and therefore <span class="math inline">\(V(x)&gt;0\)</span> for <span class="math inline">\(x\neq 0\)</span>. The linear system () is stable if there exists a <span class="math inline">\(P\)</span>: <span class="math display">\[\begin{equation}
+\dot V(x) = (Ax)^\text{T}Px+x^\text{T}PAx &lt; 0
+\end{equation}\]</span> In case of linear systems, the existence of a Lyapunov function is a necessary and sufficient condition for stability. The Lyapunov conditions can be written as the following linear matrix inequalities: <span class="math display">\[\begin{align}
+P&gt;0\nonumber\\
+A^\text{T}P+PA&lt;0
+\end{align}\]</span></p>
+<p><em>Example:</em> Consider a linear system with: <span class="math display">\[\begin{equation}
+A=\left[\begin{matrix}0&amp;1\\-1&amp;-2\end{matrix}\right]
+\end{equation}\]</span> The eigenvalues of <span class="math inline">\(A\)</span> are negative:</p>
 <pre><code>A = np.matrix(&#39;0 1; -1 -2&#39;)
 np.linalg.eig(A)[0]
 
@@ -615,11 +724,13 @@ prob.solve()
 
 [ 0.00e+00  0.00e+00]
 [ 0.00e+00  0.00e+00]</code></pre>
-However, this is the trivial answer of these LMIs:
-
-In order to find a feasible answer for strict inequalities using non-strict inequalities, we can rewrite the inequalities as:
-
-<p>Let us now solve the following LMIs to find a valid Lyapunov function for the linear system:</p>
+<p>However, this is the trivial answer of these LMIs: <span class="math display">\[\begin{align}
+P\geq 0\nonumber\\
+A^\text{T}P+PA\leq 0
+\end{align}\]</span> In order to find a feasible answer for strict inequalities using non-strict inequalities, we can rewrite the inequalities as: <span class="math display">\[\begin{align}
+P-\epsilon I\geq 0\nonumber\\
+A^\text{T}P+PA+\alpha P\leq 0
+\end{align}\]</span> Let us now solve the following LMIs to find a valid Lyapunov function for the linear system:</p>
 <pre><code>I = np.identity(2)
 
 prob = cp.Problem(objective, [A.T*P+P*A+0.5*P == -cp.SDPVar(2,2), P - 0.1*I == cp.SDPVar(2,2)])
@@ -637,7 +748,7 @@ print(P.value)
 
 [ 1.13e+00  1.88e+00]
 [ 4.93e-02  9.40e-01]</code></pre>
-<p>It is also possible to add an objective function to the LMIs, for example <span class="math">\(\lambda_{max}(P)\)</span>, the largest eigenvalue of <span class="math">\(P\)</span>, to have a better conditioned <span class="math">\(P\)</span> in the solution:</p>
+<p>It is also possible to add an objective function to the LMIs, for example <span class="math inline">\(\lambda_{max}(P)\)</span>, the largest eigenvalue of <span class="math inline">\(P\)</span>, to have a better conditioned <span class="math inline">\(P\)</span> in the solution:</p>
 <pre><code>objective = cp.Minimize( cp.lambda_max(P) )
 prob = cp.Problem(objective, [A.T*P+P*A+0.5*P == -cp.SDPVar(2,2), P - 0.1*I == cp.SDPVar(2,2)])
 prob.solve()
@@ -669,20 +780,22 @@ np.linalg.eig( (A.T*P+P*A).value )[0]
 
 array([-0.06318906, -0.4923496 ])</code></pre>
 <h4 id="uncertain-linear-systems">Uncertain Linear Systems</h4>
-Consider the following linear system:
-
-where <span class="math">\(A\in\mathbb{R}^{n\times n}\)</span> is an uncertain matrix such that:
-
-where <span class="math">\(A_i\)</span> for <span class="math">\(i=1,\ldots,L\)</span> are known matrices and <span class="math">\(\alpha_i\)</span> for <span class="math">\(i=1,\ldots,L\)</span> are unknown scalars such that:
-
-This system can also be written as a linear differential inclusion:
-
-where <span class="math">\(A\in\text{conv}(\{A_1,\ldots,A_L\})\)</span> Using the Lyapunov theorem, it can be shown that the uncertain linear system is asymptotically stable if there exists a <span class="math">\(P\)</span> such that:
-
-<p>Note that this condition is stronger than saying all the <span class="math">\(A_i\)</span>'s have to be stable. In addition to that, it is required that all the <span class="math">\(A_i\)</span>'s share the same <span class="math">\(P\)</span>.</p>
-<em>Example:</em> Consider the uncertain linear system () with <span class="math">\(L=2\)</span> and:
-
-<p>The eigenvalues of <span class="math">\(A_1\)</span> and <span class="math">\(A_2\)</span> are on the left side of the complex plane and even equal:</p>
+<p>Consider the following linear system: <span class="math display">\[\begin{equation}
+\dot x=A(\alpha)x, x(0)=x_0
+\end{equation}\]</span> where <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> is an uncertain matrix such that: <span class="math display">\[\begin{equation}
+A(\alpha)=\sum_{i=1}^L \alpha_i A_i
+\end{equation}\]</span> where <span class="math inline">\(A_i\)</span> for <span class="math inline">\(i=1,\ldots,L\)</span> are known matrices and <span class="math inline">\(\alpha_i\)</span> for <span class="math inline">\(i=1,\ldots,L\)</span> are unknown scalars such that: <span class="math display">\[\begin{equation}
+\sum_\alpha_{i=1}^L \alpha_i=1
+\end{equation}\]</span> This system can also be written as a linear differential inclusion: <span class="math display">\[\begin{equation}
+\dot x\in Ax
+\end{equation}\]</span> where <span class="math inline">\(A\in\text{conv}(\{A_1,\ldots,A_L\})\)</span> Using the Lyapunov theorem, it can be shown that the uncertain linear system is asymptotically stable if there exists a <span class="math inline">\(P\)</span> such that: <span class="math display">\[\begin{align}
+P &amp;&gt; 0\nonumber\\
+A_i^\text{T}P+PA_i &amp;&lt; 0, i=1,\ldots,L
+\end{align}\]</span> Note that this condition is stronger than saying all the <span class="math inline">\(A_i\)</span>’s have to be stable. In addition to that, it is required that all the <span class="math inline">\(A_i\)</span>’s share the same <span class="math inline">\(P\)</span>.</p>
+<p><em>Example:</em> Consider the uncertain linear system () with <span class="math inline">\(L=2\)</span> and: <span class="math display">\[\begin{equation}
+A_1=\left[\begin{matrix}1&amp;-2\\2&amp;-2\end{matrix}\right],\
+A_2=\left[\begin{matrix}1&amp;2\\-2&amp;-2\end{matrix}\right]
+\end{equation}\]</span> The eigenvalues of <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> are on the left side of the complex plane and even equal:</p>
 <pre><code>A1 = np.matrix(&#39;1 -2; 2 -2&#39;)
 np.linalg.eig(A1)[0]
 
@@ -701,7 +814,7 @@ np.linalg.eig(A2)[0]
 
 
 array([-0.5+1.32287566j, -0.5-1.32287566j])</code></pre>
-<p>However, an uncertain linear system with <span class="math">\(A\)</span> in the convex hull of <span class="math">\(A_1\)</span> and <span class="math">\(A_2\)</span> is not stable. For example <span class="math">\(A=0.5A_1+0.5A_2\)</span> is not stable:</p>
+<p>However, an uncertain linear system with <span class="math inline">\(A\)</span> in the convex hull of <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> is not stable. For example <span class="math inline">\(A=0.5A_1+0.5A_2\)</span> is not stable:</p>
 <pre><code>np.linalg.eig(0.5*A1+0.5*A2)[0]
 
 
@@ -725,27 +838,32 @@ prob.solve()
 
 &#39;infeasible&#39;</code></pre>
 <h4 id="state-feedback-controller">State Feedback Controller</h4>
-Consider the following linear system:
-
-where <span class="math">\(x\in\mathbb{R}^n\)</span> and <span class="math">\(u\in\mathbb{R}^m\)</span> denote the state and input vectors. The objective is to design a state feedback of the form:
-
-to stabilize the closed loop system:
-
-This system is stable if there exists a <span class="math">\(P\)</span> such that:
-
-<p>The unknown matrices in these inequalities are shown in red. As you see, this is not a LMI but it is a bilinear matrix inequality (BMI). BMI's are hard to solve in general. However, there is a trick for this special BMI to convert it to an LMI.</p>
-We know that the eigenvalues of a matrix and its transpose are the same. Therefore, the closed loop system () is stable if and only if its dual system is stable:
-
-Now, let us write the stability inequalities for the dual system:
-
-This is still a BMI. However, if we define <span class="math">\(Y=KQ\)</span>, we can write the inequalities as:
-
-Now, this is a LMI. After solving the LMI, if it is feasible, the controller gain <span class="math">\(K\)</span> can be computed as:
-
-<p>Another way of converting () to a LMI is to multiply both sides of both inequalities by <span class="math">\(Q=P^{-1}\)</span> and perform the same trick.</p>
-<em>Example:</em> Consider the following linear system:
-
-<p>The objective is to find <span class="math">\(K\)</span> such that with <span class="math">\(u=Kx\)</span> the closed loop system is stable.</p>
+<p>Consider the following linear system: <span class="math display">\[\begin{equation}
+\dot x=Ax+Bu
+\end{equation}\]</span> where <span class="math inline">\(x\in\mathbb{R}^n\)</span> and <span class="math inline">\(u\in\mathbb{R}^m\)</span> denote the state and input vectors. The objective is to design a state feedback of the form: <span class="math display">\[\begin{equation}
+u = Kx
+\end{equation}\]</span> to stabilize the closed loop system: <span class="math display">\[\begin{equation}
+\dot x = (A+BK)x
+\end{equation}\]</span> This system is stable if there exists a <span class="math inline">\(P\)</span> such that: <span class="math display">\[\begin{align}
+{\color{red}P}&gt;0\nonumber\\
+(A+B{\color{red}K})^\text{T}{\color{red}P}+{\color{red}P}(A+B{\color{red}K}) &lt; 0
+\end{align}\]</span> The unknown matrices in these inequalities are shown in red. As you see, this is not a LMI but it is a bilinear matrix inequality (BMI). BMI’s are hard to solve in general. However, there is a trick for this special BMI to convert it to an LMI.</p>
+<p>We know that the eigenvalues of a matrix and its transpose are the same. Therefore, the closed loop system () is stable if and only if its dual system is stable: <span class="math display">\[\begin{equation}
+\dot x = (A+BK)x
+\end{equation}\]</span> Now, let us write the stability inequalities for the dual system: <span class="math display">\[\begin{align}
+{\color{red}Q}&gt;0\nonumber\\
+(A+B{\color{red}K}){\color{red}Q}+{\color{red}Q}(A+B{\color{red}K})^\text{T} &lt; 0
+\end{align}\]</span> This is still a BMI. However, if we define <span class="math inline">\(Y=KQ\)</span>, we can write the inequalities as: <span class="math display">\[\begin{align}
+{\color{red}Q}&gt;0\nonumber\\
+A{\color{red}Q}+{\color{red}Q}A^\text{T}+B{\color{red}Y}+{\color{red}Y}^\text{T}
+B^\text{T} &lt; 0
+\end{align}\]</span> Now, this is a LMI. After solving the LMI, if it is feasible, the controller gain <span class="math inline">\(K\)</span> can be computed as: <span class="math display">\[\begin{equation}
+K = YQ^{-1}
+\end{equation}\]</span> Another way of converting () to a LMI is to multiply both sides of both inequalities by <span class="math inline">\(Q=P^{-1}\)</span> and perform the same trick.</p>
+<p><em>Example:</em> Consider the following linear system: <span class="math display">\[\begin{equation}
+\dot x = \left[\begin{matrix}1&amp;0.1\\0&amp;-2\end{matrix}\right]x+\left[\begin{matrix
+}0\\1\end{matrix}\right]u
+\end{equation}\]</span> The objective is to find <span class="math inline">\(K\)</span> such that with <span class="math inline">\(u=Kx\)</span> the closed loop system is stable.</p>
 <pre><code>A = cp.Parameter(2,2)
 B = cp.Parameter(2,1)
 Q = cp.SDPVar(2)
@@ -776,110 +894,171 @@ np.linalg.eig(Acl)[0]
 
 array([-1.17450955+0.84722018j, -1.17450955-0.84722018j])</code></pre>
 <h3 id="dissipativity">Dissipativity</h3>
-Similar to stability for autonomous systems, there is a concept called dissipativity for dynamic systems with input. Consider the following dynamical system:
-
-<p>where <span class="math">\(x\in\mathbb{R}^n\)</span> is the state, <span class="math">\(u\in\mathbb{R}^m\)</span> is the input and <span class="math">\(z\in\mathbb{R}^p\)</span> is the output vector.</p>
-<em>Definition:</em> The system () is said to be dissipative with storage function <span class="math">\(V\)</span> and supply rate <span class="math">\(W\)</span>, if:
-
-If the storage function and the trajectory of the system are smooth, this inequality can be written as:
-
-Now, consider the following linear system:
-
-<p>with <span class="math">\(x(0)=0\)</span>. It assumed that all the eigenvalues of <span class="math">\(A\)</span> have negative real values. In the followin, we will review a few special cases of dissipativity.</p>
+<p>Similar to stability for autonomous systems, there is a concept called dissipativity for dynamic systems with input. Consider the following dynamical system: <span class="math display">\[\begin{align}
+\dot x=&amp;f(x,w)\nonumber\\
+z=&amp;g(x,w)
+\end{align}\]</span> where <span class="math inline">\(x\in\mathbb{R}^n\)</span> is the state, <span class="math inline">\(u\in\mathbb{R}^m\)</span> is the input and <span class="math inline">\(z\in\mathbb{R}^p\)</span> is the output vector.</p>
+<p><em>Definition:</em> The system () is said to be dissipative with storage function <span class="math inline">\(V\)</span> and supply rate <span class="math inline">\(W\)</span>, if: <span class="math display">\[\begin{equation}
+t_1\leq t_2\Rightarrow V(x(t_1))+\int_{t_1}^{t_2}W(z(\tau),w(\tau))d\tau\geq
+V(x(t_2))
+\end{equation}\]</span> If the storage function and the trajectory of the system are smooth, this inequality can be written as: <span class="math display">\[\begin{equation}
+\nabla_x V(x).\dot x\leq W(z,w)
+\end{equation}\]</span></p>
+<p>Now, consider the following linear system: <span class="math display">\[\begin{align}
+\dot x=&amp;Ax+Bw\nonumber\\
+z=&amp;Cx+Dw
+\end{align}\]</span> with <span class="math inline">\(x(0)=0\)</span>. It assumed that all the eigenvalues of <span class="math inline">\(A\)</span> have negative real values. In the followin, we will review a few special cases of dissipativity.</p>
 <h4 id="qsr-dissipativity">QSR Dissipativity</h4>
 <p>The following statements are equivalent:</p>
 <ul>
-<li>The system is strictly dissipative with the supply rate:
-</li>
-<li>For all <span class="math">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds:
-</li>
-<li>There exists <span class="math">\(P&gt;0\)</span> satisfying the LMI:
-</li>
+<li>The system is strictly dissipative with the supply rate: <span class="math display">\[\begin{equation}
+s(w,z)=\left[\begin{matrix} w\\\\z\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q&amp;S\\\\S^\text{T}&amp; R\end{matrix}\right]
+\left[\begin{matrix} w\\\\z \end{matrix}\right]
+\end{equation}\]</span></li>
+<li>For all <span class="math inline">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} I\\\\T(j\omega)\end{matrix}\right]^\star
+\left[\begin{matrix} Q&amp; S\\\\S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+I\\\\ T(j\omega)\end{matrix}\right] \gt 0
+\end{equation}\]</span></li>
+<li>There exists <span class="math inline">\(P&gt;0\)</span> satisfying the LMI: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\TR P+PA &amp; PB\\\\B^\TR P &amp; 0
+\end{matrix}\right]-\left[\begin{matrix} 0&amp;I\\\\C&amp;D\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q&amp; S\\\\S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+0&amp;I\\\\ C&amp;D\end{matrix}\right] \lt 0
+\end{equation}\]</span></li>
 </ul>
 <h4 id="passivity">Passivity</h4>
 <p>The following statements are equivalent:</p>
 <ul>
-<li>System () is strictly dissipative with the supply rate:
-</li>
-<li>For all <span class="math">\(\omega\in\mathbb{R}\)</span> with <span class="math">\(\det(j\omega I-A)\neq 0\)</span>, there holds:
-</li>
-<li>There exists <span class="math">\(P&gt;0\)</span> satisfying the LMI:
-</li>
-<li>If <span class="math">\(D=0\)</span>, there exists <span class="math">\(P&gt;0\)</span> satisfying:
-</li>
-<li>System () is RLC realizable, i.e. there exists an RLC network with transfer function <span class="math">\(T(j\omega)\)</span>.</li>
-<li>For SISO systems:
-</li>
+<li>System () is strictly dissipative with the supply rate: <span class="math display">\[\begin{equation}
+s(w,z)= w^\text{T} z+z^\text{T} w=2w^\text{T} z
+\end{equation}\]</span></li>
+<li>For all <span class="math inline">\(\omega\in\mathbb{R}\)</span> with <span class="math inline">\(\det(j\omega I-A)\neq 0\)</span>, there holds: <span class="math display">\[\begin{equation}
+T(j\omega)^\star+T(j\omega)&gt;0
+\end{equation}\]</span></li>
+<li>There exists <span class="math inline">\(P&gt;0\)</span> satisfying the LMI: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T}\\\\B^\text{T} P-C &amp;
+D+D^\text{T} \end{matrix}\right] &lt; 0
+\end{equation}\]</span></li>
+<li>If <span class="math inline">\(D=0\)</span>, there exists <span class="math inline">\(P&gt;0\)</span> satisfying: <span class="math display">\[\begin{align}
+A^\text{T}P+PA&lt;0\nonumber\\
+PB=C^\text{T}
+\end{align}\]</span></li>
+<li>System () is RLC realizable, i.e. there exists an RLC network with transfer function <span class="math inline">\(T(j\omega)\)</span>.</li>
+<li>For SISO systems: <span class="math display">\[\begin{equation}
+|\angle G(j\omega)| &lt; 90^\circ, \text{Re}(G(j\omega))&gt;0
+\end{equation}\]</span></li>
 <li>Gain margin of system () is infinite.</li>
 </ul>
 <p>One of the properties of passive systems is that the feedback connection of two passive systems is always stable (the loop phase is less than 180 degrees).</p>
-<h4 id="mathcalh_infty-gain-bounded-l_2rightarrow-bounded-l_2"><span class="math">\(\mathcal{H}_\infty\)</span> Gain (Bounded <span class="math">\(L_2\rightarrow\)</span> Bounded <span class="math">\(L_2\)</span>)</h4>
+<h4 id="mathcalh_infty-gain-bounded-l_2rightarrow-bounded-l_2"><span class="math inline">\(\mathcal{H}_\infty\)</span> Gain (Bounded <span class="math inline">\(L_2\rightarrow\)</span> Bounded <span class="math inline">\(L_2\)</span>)</h4>
 <p>The following statements are equivalent:</p>
 <ul>
-<li>The system is strictly dissipative with the supply rate:
-</li>
-<li>For all <span class="math">\(\omega\in\mathbb{R}\)</span>:
-</li>
-<li>There exists <span class="math">\(P&gt;0\)</span> satisfying the LMI:
-</li>
-<li>There exists <span class="math">\(P&gt;0\)</span> satisfying the LMI:
-</li>
+<li>The system is strictly dissipative with the supply rate: <span class="math display">\[\begin{equation}
+s(w,z)=\gamma^2 w^\text{T} w-z^\text{T} z
+\end{equation}\]</span></li>
+<li>For all <span class="math inline">\(\omega\in\mathbb{R}\)</span>: <span class="math display">\[\begin{equation}
+\|T(j\omega)\|_\infty=\sup_{0&lt;\|w\|_2&lt;\infty}\frac{\|z\|_2}{\|w\|_2} \lt
+\gamma
+\end{equation}\]</span></li>
+<li>There exists <span class="math inline">\(P&gt;0\)</span> satisfying the LMI: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C &amp; PB+C^\text{T}
+D\\\\B^\text{T} P+D^\text{T} C &amp; D^\text{T} D-\gamma^2 I \end{matrix}\right]&lt; 0
+\end{equation}\]</span></li>
+<li>There exists <span class="math inline">\(P&gt;0\)</span> satisfying the LMI: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\\B^\text{T} P  &amp;
+-\gamma^2 I &amp; D^\text{T}\\C&amp;D&amp;-I \end{matrix}\right]&lt; 0
+\end{equation}\]</span></li>
 </ul>
-<h4 id="mathcalh_infty-state-feedback-controller"><span class="math">\(\mathcal{H}_\infty\)</span> State Feedback Controller</h4>
-Consider the following linear system:
-
-where <span class="math">\(u\)</span> is the control input. We would like to design a controller of the form <span class="math">\(u=Kx\)</span> such that for the closed loop system:
-
-The design problem can be formulated as the following matrix inequality:
-
-
-<p>where <span class="math">\(K=YQ^{-1}\)</span></p>
-<strong>Proof:</strong> It can easily be shown that the <span class="math">\(\mathcal{H}_\infty\)</span> norm of the system is less than <span class="math">\(\gamma\)</span> if it is dissipative with the following supply rate:
-
-Using this supply rate, the LMI's can be written as:
-
-
-Now, if we write the same LMI for the closed loop system, we have:
-
-
-Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides of the inequality by:
-
-where <span class="math">\(Q=P^{-1}\)</span>. The result is:
-
-Now, if we define <span class="math">\(Y=KQ\)</span>, we have the following LMI:
-
-This LMI can be rearranged as:
-
-Using the Schur complement, we can now write the LMI as:
-
-<p>This LMI is the same as we were looking for and it ends the proof.</p>
-<h4 id="generalized-mathcalh_2-gain-bounded-l_2rightarrow-bounded-l_infty">Generalized <span class="math">\(\mathcal{H}_2\)</span> Gain (Bounded <span class="math">\(L_2\rightarrow\)</span> Bounded <span class="math">\(L_\infty\)</span>)</h4>
-<p>If <span class="math">\(D=0\)</span> then the following statements are equivalent:</p>
+<h4 id="mathcalh_infty-state-feedback-controller"><span class="math inline">\(\mathcal{H}_\infty\)</span> State Feedback Controller</h4>
+<p>Consider the following linear system: <span class="math display">\[\begin{align}
+\dot x=&amp;Ax+B_ww+B_uu\nonumber\\
+z =&amp;C_zx+D_ww+D_uu
+\end{align}\]</span> where <span class="math inline">\(u\)</span> is the control input. We would like to design a controller of the form <span class="math inline">\(u=Kx\)</span> such that for the closed loop system: <span class="math display">\[\begin{equation}
+\sup_{\|w\|_2\neq 0}\frac{\|z\|_2}{\|w\|_2}&lt;\gamma
+\end{equation}\]</span> The design problem can be formulated as the following matrix inequality: <span class="math display">\[\begin{equation}
+Q&gt;0
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+\left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
+&amp;
+(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\\C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
+D_w^\text{T}-\gamma^2 I \end{matrix}\right]&lt; 0
+\end{equation}\]</span> where <span class="math inline">\(K=YQ^{-1}\)</span></p>
+<p><strong>Proof:</strong> It can easily be shown that the <span class="math inline">\(\mathcal{H}_\infty\)</span> norm of the system is less than <span class="math inline">\(\gamma\)</span> if it is dissipative with the following supply rate: <span class="math display">\[\begin{equation}
+s(w,z)=w^\text{T} w-\frac{1}{\gamma^2}z^\text{T} z
+\end{equation}\]</span> Using this supply rate, the LMI’s can be written as: <span class="math display">\[\begin{equation}
+P&gt;0
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\\B^\text{T} P  &amp; - I &amp;
+D^\text{T}\\C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\end{equation}\]</span> Now, if we write the same LMI for the closed loop system, we have: <span class="math display">\[\begin{equation}
+P&gt;0
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+\left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
+P}+{\color{red} P}(A+B_u{\color{red} K}) &amp; {\color{red} P}B_w &amp;
+(C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  &amp; - I &amp;
+D_w^\text{T}\\C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\end{equation}\]</span> Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides of the inequality by: <span class="math display">\[\begin{equation}
+\left[\begin{matrix}Q &amp; 0&amp; 0\\0&amp;I&amp;0\\0&amp;0&amp; I\end{matrix}\right]
+\end{equation}\]</span> where <span class="math inline">\(Q=P^{-1}\)</span>. The result is: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
++(A+B_u{\color{red} K}){\color{red} Q} &amp; B_w &amp; {\color{red} Q}(C+D_u{\color{red}
+K})^\text{T}\\B_w^\text{T}  &amp; - I &amp; D_w^\text{T}\\(C+D_u{\color{red}
+K}){\color{red} Q}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\end{equation}\]</span> Now, if we define <span class="math inline">\(Y=KQ\)</span>, we have the following LMI: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
+Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} &amp; B_w &amp; {\color{red}
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\\B_w^\text{T}  &amp; - I &amp;
+D_w^\text{T}\\C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
+\end{matrix}\right]&lt; 0
+\end{equation}\]</span> This LMI can be rearranged as: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
+Y}+Y^\text{T}B_u^\text{T} &amp; {\color{red} Q}C^\text{T}+{\color{red}
+Y}^\text{T}D_u^\text{T} &amp; B_w \\C{\color{red} Q}+D_u{\color{red}
+Y}&amp;-\gamma^2I&amp;D_w\\B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
+\end{equation}\]</span> Using the Schur complement, we can now write the LMI as: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
+Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} &amp; {\color{red}
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
+\\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
+\end{matrix}\right]&lt; 0
+\end{equation}\]</span> This LMI is the same as we were looking for and it ends the proof.</p>
+<h4 id="generalized-mathcalh_2-gain-bounded-l_2rightarrow-bounded-l_infty">Generalized <span class="math inline">\(\mathcal{H}_2\)</span> Gain (Bounded <span class="math inline">\(L_2\rightarrow\)</span> Bounded <span class="math inline">\(L_\infty\)</span>)</h4>
+<p>If <span class="math inline">\(D=0\)</span> then the following statements are equivalent:</p>
 <ul>
-<li>System () is strictly dissipative with the supply rate:
-</li>
-<li>For all <span class="math">\(\omega\in\mathbb{R}\)</span>:
-</li>
-<li>There exists <span class="math">\(P\)</span> satisfying the LMIs:
-</li>
+<li>System () is strictly dissipative with the supply rate: <span class="math display">\[\begin{equation}
+s(w,z)=w^\text{T}w
+\end{equation}\]</span></li>
+<li>For all <span class="math inline">\(\omega\in\mathbb{R}\)</span>: <span class="math display">\[\begin{equation}
+\|T(j\omega)\|_{2,\infty}=\sup_{0 &lt; \|w\|_2 &lt;
+\infty}\frac{\|z\|_\infty}{\|w\|_2} &lt; \gamma
+\end{equation}\]</span></li>
+<li>There exists <span class="math inline">\(P\)</span> satisfying the LMIs: <span class="math display">\[\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA&amp;PB\\\\B^\text{T} P&amp; -I\end{matrix}\right]
+\lt 0\nonumber\\
+\left[\begin{matrix} P&amp;C^\text{T}\\\\C&amp;\gamma^2 I\end{matrix}\right] \gt 0
+\end{equation}\]</span></li>
 </ul>
-<h4 id="generalized-mathcalh_2-state-feedback-controller">Generalized <span class="math">\(\mathcal{H}_2\)</span> State Feedback Controller</h4>
-Consider the following linear system:
-
-where <span class="math">\(u\)</span> is the control input. We would like to design a controller of the form <span class="math">\(u=Kx\)</span> such that for the closed loop system:
-
-The design problem can be formulated as the following matrix inequality:
-
-<p>where <span class="math">\(K=YQ^{-1}\)</span></p>
+<h4 id="generalized-mathcalh_2-state-feedback-controller">Generalized <span class="math inline">\(\mathcal{H}_2\)</span> State Feedback Controller</h4>
+<p>Consider the following linear system: <span class="math display">\[\begin{align}
+\dot x=&amp;Ax+B_ww+B_uu\nonumber\\
+z =&amp;C_zx+D_uu
+\end{align}\]</span> where <span class="math inline">\(u\)</span> is the control input. We would like to design a controller of the form <span class="math inline">\(u=Kx\)</span> such that for the closed loop system: <span class="math display">\[\begin{equation}
+\sup_{\|w\|_2\neq 0}\frac{\|z\|_\infty}{\|w\|_2}&lt;\gamma
+\end{equation}\]</span> The design problem can be formulated as the following matrix inequality: <span class="math display">\[\begin{equation}
+  \left[\begin{matrix}
+AQ+QA^\text{T}+B_uY+Y^\text{T}B_u^\text{T}&amp;B_w\\\\B_w^\text{T}&amp;
+-I\end{matrix}\right] \lt 0\nonumber\\
+  \left[\begin{matrix} Q&amp;QC^\text{T}+Y^\text{T}D_u^\text{T}\\\\CQ+D_uY&amp;\gamma^2
+I\end{matrix}\right] \gt 0
+\end{equation}\]</span> where <span class="math inline">\(K=YQ^{-1}\)</span></p>
 <h2 id="references">References</h2>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Boyd, Stephen P. and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.</li>
 <li>Scherer, Carsten and Weiland, Siep. Linear Matrix Inequalities in Control, Delft Center for Systems and Control, 2005.</li>
 <li>Boyd, Stephen P. Linear matrix inequalities in system and control theory. Vol. 15. Siam, 1994.</li>
-<li>Scherer, Carsten, Pascal Gahinet, and Mahmoud Chilali. &quot;Multiobjective output-feedback control via LMI optimization.&quot; Automatic Control, IEEE Transactions on 42.7 (1997): 896-911.</li>
+<li>Scherer, Carsten, Pascal Gahinet, and Mahmoud Chilali. “Multiobjective output-feedback control via LMI optimization.” Automatic Control, IEEE Transactions on 42.7 (1997): 896-911.</li>
 </ol>
-<div class="references">
-
-</div>
 </body>
 </html>
