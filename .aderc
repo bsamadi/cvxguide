@@ -1,4 +1,4 @@
-export ADE_DOCKER_RUN_ARGS="--cap-add=SYS_PTRACE --net=host"
+export ADE_DOCKER_RUN_ARGS="--cap-add=SYS_PTRACE --net=host --privileged --add-host ade:127.0.0.1"
 export ADE_IMAGES="
   registry.gitlab.com/nubodev/ade:python
   registry.gitlab.com/nubodev/vscode:1.44
