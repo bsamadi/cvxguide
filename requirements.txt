@@ -1,5 +1,5 @@
+pylab
 numpy
 cvxopt
 cvxpy
 matplotlib
-pylab
