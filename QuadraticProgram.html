@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quadratic program &#8212; Convex Optimization: A Practical Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"CO": "{\\textbf{\\rm conv}}", "RR": "{{\\mathcal R}}", "RE": "{\\mathbb{R}}", "TR": "{\\text{T}}", "beq": "{\\begin{equation}}", "eeq": "{\\end{equation}}", "bmat": "{\\left[\\begin{array}}", "emat": "{\\end{array}\\right]}", "bsmat": "{\\left[\\begin{smallmatrix}}", "esmat": "{\\end{smallmatrix}\\right]}", "barr": "{\\begin{array}}", "earr": "{\\end{array}}", "bsm": "{\\begin{smallmatrix}}", "esm": "{\\end{smallmatrix}}"}}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Second order cone program" href="SecondOrderConeProgram.html" />
+    <link rel="prev" title="Generalized linear fractional program" href="GeneralizedLinearFractionalProgram.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Convex Optimization: A Practical Guide</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Introduction.html">Introduction</a>
+  </li>
+  <li class="">
+    <a href="ConvexSets.html">Convex Sets</a>
+  </li>
+  <li class="">
+    <a href="ConvexFunctions.html">Convex Functions</a>
+  </li>
+  <li class="active">
+    <a href="ConvexOptimization.html">Convex Optimization</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="LinearProgram.html">Linear program</a>
+    </li>
+    <li class="">
+      <a href="GeneralizedLinearFractionalProgram.html">Generalized linear fractional program</a>
+    </li>
+    <li class="active">
+      <a href="">Quadratic program</a>
+    </li>
+    <li class="">
+      <a href="SecondOrderConeProgram.html">Second order cone program</a>
+    </li>
+    <li class="">
+      <a href="SemidefiniteProgram.html">Semidefinite program</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="ApplicationsControlTheory.html">Applications in Control Theory</a>
+  </li>
+  <li class="">
+    <a href="References.html">References</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/QuadraticProgram.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="quadratic-program">
+<h1>Quadratic program<a class="headerlink" href="#quadratic-program" title="Permalink to this headline">¶</a></h1>
+<p>A quadratic programming (QP) optimization problem is described as:
+\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}Px+q^\text{T}x+r\nonumber\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\
+&amp;Ax = b
+\end{align}
+<span class="math notranslate nohighlight">\(P\)</span> is assumed to be positive semidefinite. The feasible set of QP is a polygon
+and the objective function is a convex quadratic function.</p>
+<p>If the objective function is quadratic and the constraints include quadratic
+constraints, then we have a quadratically constrained quadratic program (QCQP):
+\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}P_0x+q_0^\text{T}x+r_0\nonumber\
+\text{subject to }&amp;\frac{1}{2}x^\text{T}P_ix+q_i^\text{T}x+r_i\leq 0,<br />
+i=1\cdots,m \nonumber\
+&amp;Ax = b
+\end{align}
+where <span class="math notranslate nohighlight">\(P_i\)</span> for <span class="math notranslate nohighlight">\(i=0,\cdots,m\)</span> are positive semidefinite.</p>
+<p><em>Example:</em> Consider the set of linear equations <span class="math notranslate nohighlight">\(Ax=b\)</span> for the case when <span class="math notranslate nohighlight">\(A\)</span> has
+more rows than columns. Finding an <span class="math notranslate nohighlight">\(x\)</span> where the equality is exactly satisfied
+is in general impossible. However, there is a solution for an <span class="math notranslate nohighlight">\(x\)</span> that minimizes
+the cost function <span class="math notranslate nohighlight">\(e^\text{T}e\)</span> where <span class="math notranslate nohighlight">\(e=Ax-b\)</span>. The solution is even analytic
+and it can be written as:
+\begin{equation}
+x^\star = (A^\text{T}A)^{-1}A^\text{T}
+\end{equation}
+However, after adding linear constraints on <span class="math notranslate nohighlight">\(x\)</span>, the optimization problem does
+not have an analytic solution:
+\begin{align}
+\text{minimize }&amp;(Ax-b)^\text{T}(Ax-b)\nonumber\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\
+\end{align}
+As a numerical example, consider:
+\begin{equation}
+A = \bmat{cc} 1 &amp; 1 \ 2 &amp; 1\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\ 3 \ 4\emat
+\end{equation}
+The analytical answer to <span class="math notranslate nohighlight">\(Ax=b\)</span> is computed as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = np.array([[1,1],[2,1],[3,2]])
+b = np.array([[2], [3], [4]])
+xs = np.dot(np.linalg.pinv(A),b)
+print(xs)
+
+[[ 1.        ]
+ [ 0.66666667]]
+</pre></div>
+</div>
+<p>A similar result can be reached by solving the following QP problem:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = co.matrix(A)
+b = co.matrix(b)
+
+x = cp.Variable(2)
+I = np.identity(3)
+objective = cp.Minimize(  cp.quad_form(A*x-b, I) )
+
+p = cp.Problem(objective)
+</pre></div>
+</div>
+<p>The optimal value of the objective function is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = p.solve()
+print(result)
+
+0.333333326323
+</pre></div>
+</div>
+<p>and the optimal solution is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(x.value)
+
+[ 1.00e+00]
+[ 6.67e-01]
+</pre></div>
+</div>
+<p>Now, we can add linear constraints and find the optimal solution by solving the
+QP problem:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x = cp.Variable(2)
+
+objective = cp.Minimize(  b.T*b - 2*b.T*A*x + cp.quad_form(x, A.T*A) )
+
+constraints = [ -0.9 &lt;= x &lt;= 0.9]
+
+p = cp.Problem(objective, constraints)
+</pre></div>
+</div>
+<p>The optimal cost function is equal to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = p.solve()
+print(result)
+
+0.33838157573
+</pre></div>
+</div>
+<p>which is more than what it was without the linear constraints. The optimal
+solution is equal to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(x.value)
+
+[ 9.00e-01]
+[ 8.18e-01]
+</pre></div>
+</div>
+<p><em>Example (Linear Program with a Stochastic Objective Function):</em> Consider a
+random vector <span class="math notranslate nohighlight">\(c\)</span> and the following LP problem:
+\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\
+&amp; Ax = b
+\end{align}
+Assume that <span class="math notranslate nohighlight">\(c\)</span> is a random vector with the normal distribution of
+<span class="math notranslate nohighlight">\(\mathcal{N}(\bar c,\Sigma)\)</span>.
+Also we assume that <span class="math notranslate nohighlight">\(x\)</span>, the unknown vector, is deterministic. With this
+assumptions, the objective function <span class="math notranslate nohighlight">\(c^\text{T}x\)</span> is a normal random variable
+with mean <span class="math notranslate nohighlight">\({\bar c}^\text{T}x\)</span> and variance <span class="math notranslate nohighlight">\(x^\text{T}\Sigma x\)</span>.</p>
+<p>One way to formulate the problem so that it is practically solveable is to set
+the objective function as:
+\begin{equation}
+{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x
+\end{equation}
+where <span class="math notranslate nohighlight">\(\gamma\geq 0\)</span>. This objective function is called the risk-sensitive cost
+and <span class="math notranslate nohighlight">\(\gamma\)</span> is call the risk-aversion parameter. The larger <span class="math notranslate nohighlight">\(\gamma\)</span> is, the
+more the uncertainty of the original objective function is penalized and it thus
+leads to a more certain result. With this approach, the problem is formulated as
+the following deterministic LP:
+\begin{align}
+\text{minimize }&amp;{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x\nonumber\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\
+&amp; Ax = b
+\end{align}
+As a numerical example, let us consider an uncertain version of ref{LP2}:
+\begin{align}
+\bar c=&amp;\bmat{c} 22\ 14.5 \emat \nonumber\
+\Sigma=&amp;\bmat{ccc} 5 &amp; 1\ 1 &amp; 4 \emat\nonumber\
+G =&amp;\bmat{cc} -1 &amp; -1\ -0.5 &amp; 1\ 2 &amp; -1 \emat \nonumber\
+h =&amp;\bmat{c} 1\2\4\emat
+\end{align}</p>
+<p>Now, the optimization can be solved with the following code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sigma = co.matrix([	5, 1,
+				    1, 4,], (2,2))
+cb = co.matrix([1, 1], (2,1))
+
+G = co.matrix([ -1, -0.5,  2,
+                -1,    1, -1], (3,2))
+
+h = co.matrix([ 1,
+                2,
+                4],(3,1))
+gamma = 0.5
+
+x = cp.Variable(2)
+
+objective = cp.Minimize(  cb.T * x + gamma * cp.quad_form(x, Sigma) )
+
+constraints = [ G*x &lt;= h  ]
+
+p = cp.Problem(objective, constraints)
+</pre></div>
+</div>
+<p>The optimal value of the objective function is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = p.solve()
+print(result)
+
+-0.184210521637
+</pre></div>
+</div>
+<p>The optimal solution, in this case, is inside of the feasible set:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(x.value)
+
+[-1.58e-01]
+[-2.11e-01]
+</pre></div>
+</div>
+<p>In the following figure, the feasible set and the contours of the objective
+function are drawn.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xp = np.array([-3, 6])
+# plot the constraints
+plt.plot(xp, -xp-1, xp, 0.5*xp+2, xp, 2*xp-4)
+# Draw the feasible set (filled triangle)
+path = mpl.path.Path([[4, 4], [1, -2], [-2, 1], [4, 4]])            
+patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
+# Add the triangle to the plot
+plt.gca().add_patch(patch)                                          
+plt.xlabel(&#39;x&#39;)
+plt.ylabel(&#39;y&#39;)
+plt.title(&#39;Feasible Set of a Linear Program&#39;)
+plt.xlim(-3,6)
+plt.ylim(-5,5)
+delta = 0.025
+xc = np.arange(-3.0, 6.0, delta)
+yc = np.arange(-5.0, 6.0, delta)
+X, Y = np.meshgrid(xc, yc)
+Z = cb[0]*X + cb[1]*Y + Sigma[0,0]*X*X + 2*Sigma[0,1]*X*Y + Sigma[1,1]*Y*Y
+plt.contour(X, Y, Z)
+X, Y = np.meshgrid(x, y)
+plt.show()
+</pre></div>
+</div>
+<p><img alt="png" src="cvxguide_files/cvxguide_73_0.png" /></p>
+<p><em>Example (Distance between polyhedra):</em> Consider the following two polyhedra:
+\begin{equation}
+\mathcal{P}_1={x| A_1x \preccurlyeq b_1},\ \mathcal{P}_2={x| A_2x
+\preccurlyeq b_2}
+\end{equation}
+The distance between <span class="math notranslate nohighlight">\(\mathcal{P}_1\)</span> and <span class="math notranslate nohighlight">\(\mathcal{P}_2\)</span> is defined as:
+\begin{equation}
+\text{d}(\mathcal{P}_1,\mathcal{P}_2)=\inf{|x_1-x_2|_2 |
+x_1\in\mathcal{P}_1,\ x_2\in\mathcal{P}_2}
+\end{equation}
+This ditance can computed using the following QP problem:
+\begin{align}
+\text{minimize }&amp; |x_1-x_2|_2^2\nonumber\
+\text{subject to }&amp;A_1x \preccurlyeq b_1 \nonumber\
+&amp;A_2x \preccurlyeq b_2
+\end{align}
+As a numerical example, consider the following polygons:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Draw the triangle
+path = mpl.path.Path([[4, 4], [1, -2], [-2, 1], [4, 4]])            
+patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
+# Add the triangle to the plot
+plt.gca().add_patch(patch)
+# Draw the rectangle
+path = mpl.path.Path([[-3, 4], [-2, 4], [-2, 2], [-3, 2], [-3, 4]])            
+patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
+# Add the rectangle to the plot
+plt.gca().add_patch(patch)
+plt.xlabel(&#39;x&#39;)
+plt.ylabel(&#39;y&#39;)
+plt.xlim(-4,6)
+plt.ylim(-3,5)
+plt.show()
+</pre></div>
+</div>
+<p><img alt="png" src="cvxguide_files/cvxguide_75_0.png" /></p>
+<p>The distance between these two polygons is computed with the following QP
+optimization problem:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x1 = cp.Variable(2)
+x2 = cp.Variable(2)
+
+I = np.identity(2)
+
+# Triangle
+A1 = co.matrix([ -1, -0.5,  2,
+                -1,    1, -1], (3,2))
+
+b1 = co.matrix([ 1,
+                2,
+                4],(3,1))
+
+# Rectangle
+A2 = co.matrix([ -1, 1,  0, 0,
+                 0, 0, -1, 1], (4,2))
+
+b2 = co.matrix([ 3,
+                -2,
+                -2,
+                4],(4,1))
+
+objective = cp.Minimize(  cp.quad_form(x1-x2, I) )
+
+constraints = [ A1*x1&lt;= b1, A2*x2&lt;=b2]
+
+p = cp.Problem(objective, constraints)
+</pre></div>
+</div>
+<p>The distance between the two polygons is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result=p.solve()
+print(result)
+
+0.799999994069
+</pre></div>
+</div>
+<p>The correspondin point in the triangle is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(x1.value)
+
+[-1.60e+00]
+[ 1.20e+00]
+</pre></div>
+</div>
+<p>and the corresponding point in the rectangle is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(x2.value)
+
+[-2.00e+00]
+[ 2.00e+00]
+</pre></div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="GeneralizedLinearFractionalProgram.html" title="previous page">Generalized linear fractional program</a>
+    <a class='right-next' id="next-link" href="SecondOrderConeProgram.html" title="next page">Second order cone program</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Behzad Samadi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

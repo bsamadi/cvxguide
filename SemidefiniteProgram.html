@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Semidefinite program &#8212; Convex Optimization: A Practical Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"CO": "{\\textbf{\\rm conv}}", "RR": "{{\\mathcal R}}", "RE": "{\\mathbb{R}}", "TR": "{\\text{T}}", "beq": "{\\begin{equation}}", "eeq": "{\\end{equation}}", "bmat": "{\\left[\\begin{array}}", "emat": "{\\end{array}\\right]}", "bsmat": "{\\left[\\begin{smallmatrix}}", "esmat": "{\\end{smallmatrix}\\right]}", "barr": "{\\begin{array}}", "earr": "{\\end{array}}", "bsm": "{\\begin{smallmatrix}}", "esm": "{\\end{smallmatrix}}"}}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Applications in Control Theory" href="ApplicationsControlTheory.html" />
+    <link rel="prev" title="Second order cone program" href="SecondOrderConeProgram.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Convex Optimization: A Practical Guide</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Introduction.html">Introduction</a>
+  </li>
+  <li class="">
+    <a href="ConvexSets.html">Convex Sets</a>
+  </li>
+  <li class="">
+    <a href="ConvexFunctions.html">Convex Functions</a>
+  </li>
+  <li class="active">
+    <a href="ConvexOptimization.html">Convex Optimization</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="LinearProgram.html">Linear program</a>
+    </li>
+    <li class="">
+      <a href="GeneralizedLinearFractionalProgram.html">Generalized linear fractional program</a>
+    </li>
+    <li class="">
+      <a href="QuadraticProgram.html">Quadratic program</a>
+    </li>
+    <li class="">
+      <a href="SecondOrderConeProgram.html">Second order cone program</a>
+    </li>
+    <li class="active">
+      <a href="">Semidefinite program</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="ApplicationsControlTheory.html">Applications in Control Theory</a>
+  </li>
+  <li class="">
+    <a href="References.html">References</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/SemidefiniteProgram.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="semidefinite-program">
+<h1>Semidefinite program<a class="headerlink" href="#semidefinite-program" title="Permalink to this headline">¶</a></h1>
+<p>Generalized inequalities can be defined based on propoer cones. Till now we have
+seen inequalities for real numbers and elementwise inequalities real vectors.
+The former type of inequality is defined by the propoer cone of nonnegative real
+numbers. The later type is defined by the proper cone of the nonnegative orthant
+(<span class="math notranslate nohighlight">\(\mathbb{R}^n_+\)</span>) in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. One natural extension of the optimization
+problems we have seen so far is to define the inequalities by the proper cone of
+positive semidefinite matrices. For example, consider the following linear
+optimization problem:
+\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\
+\text{subject to}&amp; Fx+g\preccurlyeq_{\mathcal{S}^n_+} 0\nonumber\
+&amp; Ax=b
+\end{align}
+where <span class="math notranslate nohighlight">\(\mathcal{S}^n_+\)</span> is the cone of positive semidefinite matrices in
+<span class="math notranslate nohighlight">\(\mathcal{R}^{n\times n}\)</span>. In other words, the first constraint of the above
+optimization problem says that <span class="math notranslate nohighlight">\(Fx+g\)</span> is positive semidefinite. This is an
+extension of linear programming.</p>
+<p>A semidefinite program (SDP) is defined as:
+\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\
+\text{subject to}&amp; x_1F_1+x_2F_2+\cdots+x_nF_n+G \leq 0\nonumber\
+&amp; Ax=b
+\end{align}
+where <span class="math notranslate nohighlight">\(x =\left[\begin{matrix}x_1&amp;x_2&amp;\cdots&amp;x_n\end{matrix}\right]^\text{T}\)</span> is
+a vector in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(F_i, i=1,\ldots,m\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are symetric matrices
+in <span class="math notranslate nohighlight">\(\mathcal{R}^{m\times m}\)</span>.</p>
+<p>Note that the standard LP problem:
+\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\
+&amp;Ax\preccurlyeq b
+\end{align}
+can be written as the following SDP problem:
+\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\
+&amp;\text{diag}(Ax) \leq b
+\end{align}
+where <span class="math notranslate nohighlight">\(\text{diag}(v)\)</span> for <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span> is a diagonal matrix in
+<span class="math notranslate nohighlight">\(\mathbb{R}^{n\times n}\)</span> with <span class="math notranslate nohighlight">\(v\)</span> as the main diagonal.</p>
+<p>Also the standard SOCP problem:
+\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\
+&amp;|A_ix+b_i|_2 \leq c_i^\text{T}x+d_i,\ i=1,\ldots,m
+\end{align}
+can be written as the following SDP problem:
+\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\
+&amp; \left[\begin{matrix} (c_i^\text{T}x+d_i)I &amp; A_ix+b_i\ A_ix+b_i
+&amp; c_i^\text{T}x+d_i\end{matrix}\right] \geq 0,\ i=1,\ldots,m
+\end{align}</p>
+<p><em>Example (eigenvalue minimization):</em> Consider minimizing the maximum eigenvalue
+of matrix <span class="math notranslate nohighlight">\(A(x)\)</span>:
+\begin{align}
+\text{minimize}&amp; \lambda_\max(A(x))
+\end{align}
+where <span class="math notranslate nohighlight">\(A(x)=A_0+x_1A_1+\cdots+x_nA_n\)</span> where <span class="math notranslate nohighlight">\(A_i\)</span>’s are symmetric matrices. This
+problem can be written as the following SDP problem:
+\begin{align}
+\text{minimize}&amp;t\nonumber\
+&amp; A(x)\leq tI
+\end{align}
+As a numerical example, consider:
+\begin{equation}
+A(x) = \left[\begin{matrix} x_3 &amp; 0 &amp; 0 &amp; x_1+x_2-2\ 0 &amp; x_3 &amp; 0 &amp;
+2x_1+x_2-3\0 &amp; 0 &amp; x_3 &amp; 3x_1+2x_2-4\ x_1+x_2-2 &amp; 2x_1+x_2-3 &amp; 3x_1+2x_2-4 &amp;
+x_3 \end{matrix}\right]
+\end{equation}
+We would like to minimize the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> subject to <span class="math notranslate nohighlight">\(A\)</span> being a
+positive semidefinite matrix. The following code solves this problem:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x1 = cp.Variable()
+x2 = cp.Variable()
+x3 = cp.Variable()
+t = cp.Variable()
+X = cp.SDPVar(4)
+Y = cp.SDPVar(4)
+
+A0 = co.matrix([[0,0,0,-2],[0,0,0,-3],[0,0,0,-4],[-2,-3,-4,0]])
+A1 = co.matrix([[0,0,0,1],[0,0,0,2],[0,0,0,3],[1,2,3,0]])
+A2 = co.matrix([[0,0,0,1],[0,0,0,1],[0,0,0,2],[1,1,2,0]])
+A3 = co.matrix([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
+I = co.matrix(np.identity(4))
+
+objective = cp.Minimize(t)
+
+Ax = A0+A1*x1+A2*x2+A3*x3
+constraints = [ Ax == X, t*I-Ax == Y ]
+p = cp.Problem(objective, constraints)
+</pre></div>
+</div>
+<p>The optimal largest eigenvalue of <span class="math notranslate nohighlight">\(A(x)\)</span> is equal to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result=p.solve()
+print(result)
+
+1.15470050608
+</pre></div>
+</div>
+<p>The optimal solution for <span class="math notranslate nohighlight">\(x\)</span> is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print([x1.value,x2.value,x3.value])
+
+[1.0000000000000004, 0.6666666666666659, 0.5773502530380881]
+</pre></div>
+</div>
+<p>The value of <span class="math notranslate nohighlight">\(A(x)\)</span> for the optimal solution is equal to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(Ax.value)
+
+[ 5.77e-01  0.00e+00  0.00e+00 -3.33e-01]
+[ 0.00e+00  5.77e-01  0.00e+00 -3.33e-01]
+[ 0.00e+00  0.00e+00  5.77e-01  3.33e-01]
+[-3.33e-01 -3.33e-01  3.33e-01  5.77e-01]
+</pre></div>
+</div>
+<p>In this case, eigenvalues of <span class="math notranslate nohighlight">\(A(x)\)</span> are equal to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>EigenValues = np.linalg.eig(Ax.value)[0]
+print(EigenValues)
+
+[ -1.61515377e-08   5.77350253e-01   1.15470052e+00   5.77350253e-01]
+</pre></div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="SecondOrderConeProgram.html" title="previous page">Second order cone program</a>
+    <a class='right-next' id="next-link" href="ApplicationsControlTheory.html" title="next page">Applications in Control Theory</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Behzad Samadi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

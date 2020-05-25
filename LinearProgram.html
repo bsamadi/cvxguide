@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Linear program &#8212; Convex Optimization: A Practical Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"CO": "{\\textbf{\\rm conv}}", "RR": "{{\\mathcal R}}", "RE": "{\\mathbb{R}}", "TR": "{\\text{T}}", "beq": "{\\begin{equation}}", "eeq": "{\\end{equation}}", "bmat": "{\\left[\\begin{array}}", "emat": "{\\end{array}\\right]}", "bsmat": "{\\left[\\begin{smallmatrix}}", "esmat": "{\\end{smallmatrix}\\right]}", "barr": "{\\begin{array}}", "earr": "{\\end{array}}", "bsm": "{\\begin{smallmatrix}}", "esm": "{\\end{smallmatrix}}"}}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generalized linear fractional program" href="GeneralizedLinearFractionalProgram.html" />
+    <link rel="prev" title="Convex Optimization" href="ConvexOptimization.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Convex Optimization: A Practical Guide</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Introduction.html">Introduction</a>
+  </li>
+  <li class="">
+    <a href="ConvexSets.html">Convex Sets</a>
+  </li>
+  <li class="">
+    <a href="ConvexFunctions.html">Convex Functions</a>
+  </li>
+  <li class="active">
+    <a href="ConvexOptimization.html">Convex Optimization</a>
+  <ul class="nav sidenav_l2">
+    <li class="active">
+      <a href="">Linear program</a>
+    </li>
+    <li class="">
+      <a href="GeneralizedLinearFractionalProgram.html">Generalized linear fractional program</a>
+    </li>
+    <li class="">
+      <a href="QuadraticProgram.html">Quadratic program</a>
+    </li>
+    <li class="">
+      <a href="SecondOrderConeProgram.html">Second order cone program</a>
+    </li>
+    <li class="">
+      <a href="SemidefiniteProgram.html">Semidefinite program</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="ApplicationsControlTheory.html">Applications in Control Theory</a>
+  </li>
+  <li class="">
+    <a href="References.html">References</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/LinearProgram.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-program">
+<h1>Linear program<a class="headerlink" href="#linear-program" title="Permalink to this headline">¶</a></h1>
+<p>Linear programming (LP) is one of the best known forms of convex optimization. A
+LP problem can be written as:
+\begin{align}\label{LP}
+\text{minimize }&amp;c^\text{T}x\nonumber\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m
+\end{align}
+where <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(a_i\)</span> for <span class="math notranslate nohighlight">\(i=1,\ldots,m\)</span> belong to <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. In
+general, there is no analytical solution for a LP
+problem. A numerical algorithm is therefore required to solve the problem. The
+earliest algorithms for solving LP problems were the one developed by
+Kantorovich in 1940 \cite{Kantorovich40} and the simplex method proposed by
+George Dantzig in 1947 \cite{Dantzig91}. In 1978, the Russian mathematician L.
+G. Khachian developed a polynomial-time algorithm for solving linear programsthe
+Russian mathematician L. G. Khachian developed a polynomial-time algorithm for
+solving LP problems. This algorithm was an interior method, which was later
+improved by Karmarkar \cite{Karmarkar84}.</p>
+<p>If some of the entries of <span class="math notranslate nohighlight">\(x\)</span> are required to be integers, we have a Mixed
+Integer Linear Programming (MILP) program. A MILP problem is in general
+difficult to solve (non-convex and NP-complete). However, in practice, the
+global optimum can be found for many useful MILP problems.</p>
+<p>In general, the feasible set of a linear programming is a polyhedron. The
+objective function defines a family of parallel hyperplanes. The optimal value
+for the objective function is the lowest value corresponding to a hyperplane
+that has a non-empty intersection with the feasible set polyhedron. The
+intersection can be a vertice or edge or any higher dimensional faces.
+Therefore, the optimal value of the objective function is unique but the optimal
+solution, <span class="math notranslate nohighlight">\(x^\star\)</span>, is not.</p>
+<p><em>Example:</em> Consider the following LP problem (LP1):</p>
+<p>\begin{align}
+\text{maximize: }   &amp; x + y\nonumber\
+\text{Subject to: } &amp; x + y \geq -1 \
+\text{}             &amp; \frac{x}{2}-y \geq -2\nonumber\
+\text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}</p>
+<p>In order to solve this LP problem in Python, we need to import the required
+modules:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+from pylab import *
+import matplotlib as mpl
+import cvxopt as co
+import cvxpy as cp
+%pylab --no-import-all inline
+
+Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+<p>The next step is to define the optimization variables:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x = cp.Variable(1)
+y = cp.Variable(1)
+</pre></div>
+</div>
+<p>The constraints are then added:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>constraints = [     x+y &gt;= -1.,
+		        0.5*x-y &gt;= -2.,
+                  2.*x-y &lt;= 4.]
+</pre></div>
+</div>
+<p>Then, the objective function and the optimization problem are defined as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>objective = cp.Maximize(x+y)
+p = cp.Problem(objective, constraints)
+</pre></div>
+</div>
+<p>The solution of the LP problem is computed with the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = p.solve()
+print(round(result,5))
+
+8.0
+</pre></div>
+</div>
+<p>The optimal solution is now given by:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x_star = x.value
+print(round(x_star,5))
+
+4.0
+
+
+
+y_star = y.value
+print(round(y_star,5))
+
+4.0
+</pre></div>
+</div>
+<p>The feasible set of the LP problem (ref{LP1}) is shown in Figure ref{LPfeas},
+which is drawn using the following commands:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xp = np.array([-3, 6])
+# plot the constraints
+plt.plot(xp, -xp-1, xp, 0.5*xp+2, xp, 2*xp-4) 
+# Draw the lines
+plt.plot(xp, -xp+4, xp, -xp+8)
+# Draw the feasible set (filled triangle)
+path = mpl.path.Path([[4, 4], [1, -2], [-2, 1], [4, 4]])            
+patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
+# Add the triangle to the plot
+plt.gca().add_patch(patch)                                          
+plt.xlabel(&#39;x&#39;)
+plt.ylabel(&#39;y&#39;)
+plt.title(&#39;Feasible Set of a Linear Program&#39;)
+plt.xlim(-3,6)
+plt.ylim(-5,5)
+plt.text(2, -4.5, &quot;x+y=-1&quot;)
+plt.text(3.5, -0.75, &quot;x+y=4&quot;)
+plt.text(4.5, 2.25, &quot;x+y=8&quot;)
+plt.show()
+</pre></div>
+</div>
+<p><img alt="png" src="cvxguide_files/cvxguide_31_0.png" /></p>
+<p>Now, to solve the following LP problem (LP2):</p>
+<p>\begin{align}
+\text{minimize: }   &amp; x + y\nonumber\
+\text{Subject to: } &amp; x + y \geq -1 \
+\text{}             &amp; \frac{x}{2}-y \leq -2\nonumber\
+\text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}</p>
+<p>we change the objective function in the code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>objective = cp.Minimize(x+y)
+p = cp.Problem(objective, constraints)
+
+
+result = p.solve()
+print(round(result,5))
+
+-1.0
+</pre></div>
+</div>
+<p>The optimal solution is now given by:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x_star = x.value
+print(round(x_star,5))
+
+0.49742
+
+
+
+y_star = y.value
+print(round(y_star,5))
+
+-1.49742
+</pre></div>
+</div>
+<p>In this case the optimzal value of the objective function is unique. However, it
+can be seen in Figure ref{LPfeas} that any point on the line connecting the two
+points (-2,1) and (1,-2) including the point (0.49742,-1.49742) can be the
+optimal solution. Therefore, the LP problem ref{LP2} has infinite optimal
+solutions. The code, however, returns just one of the optimal solutions.</p>
+<p><em>Example:</em> Finding the Chebyshev center of a polyhedron is an example of
+optimization problems that can be solved using LP \cite{cvx}. However, the
+original description of the problem is not in LP form. Consider the following
+polyhedron:
+\begin{equation}
+\mathcal{P} = {x | a_i^Tx \leq b_i, i=1,…,m }
+\end{equation}
+The Chebyshev center of <span class="math notranslate nohighlight">\(\mathcal{P}\)</span> is the center of the largest ball in
+<span class="math notranslate nohighlight">\(\mathcal{P}\)</span>:
+\begin{equation}
+\mathcal{B}={x||x-x_c|\leq r}
+\end{equation}
+In order for <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> to be inside <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>, we need to have
+<span class="math notranslate nohighlight">\(a_i^Tx\leq b_i\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> and all <span class="math notranslate nohighlight">\(i\)</span> from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(m\)</span>. For
+each <span class="math notranslate nohighlight">\(i\)</span>, the point with the largest value of <span class="math notranslate nohighlight">\(a_i^Tx\)</span> is:
+<span class="math notranslate nohighlight">\($x^\star=x_c+\frac{r}{\sqrt{a_i^Ta_i}}a_i=x_c+\frac{r}{\|a_i\|_2}a_i\)</span>$
+Therefore, if we have:
+<span class="math notranslate nohighlight">\($a_i^Tx_c+r\|a_i\|_2\leq b_i\)</span>$
+for all <span class="math notranslate nohighlight">\(i=1,..,m\)</span> then <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is inside <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>. Now, we can write
+the problem as the following LP problem (LP3):
+\begin{align}
+\text{maximize: }   &amp; r\nonumber\
+\text{Subject to: } &amp; a_i^Tx_c + r|a_i|_2 \leq b_i,\ i=1,..,m
+\end{align}
+As a numerical example, consider a polyhedron <span class="math notranslate nohighlight">\(\mathcal{P}\)</span> where:
+\begin{align}
+a_1 =&amp;[-1,-1]^T,\ b_1=1\nonumber\
+a_2 =&amp;[-1/2,1]^T,\ b_2=2\nonumber\
+a_3 =&amp;[2,-1]^T,\ b_3=4\nonumber
+\end{align}
+This is a triangle. The Chebyshev center of this triangle is computed as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>r = cp.Variable(1)
+xc = cp.Variable(2)
+
+a1 = co.matrix([-1,-1], (2,1))
+a2 = co.matrix([-0.5,1], (2,1))
+a3 = co.matrix([2,-1], (2,1))
+
+b1 = 1
+b2 = 2
+b3 = 4
+
+constraints = [ a1.T*xc + np.linalg.norm(a1, 2)*r &lt;= b1,
+				a2.T*xc + np.linalg.norm(a2, 2)*r &lt;= b2,
+				a3.T*xc + np.linalg.norm(a3, 2)*r &lt;= b3 ]
+
+objective = cp.Maximize(r)
+
+p = cp.Problem(objective, constraints)
+result = p.solve()
+</pre></div>
+</div>
+<p>The radius of the ball is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print r.value
+
+1.52896116777
+</pre></div>
+</div>
+<p>and the Chebyshev center is located at:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print xc.value
+
+[ 5.81e-01]
+[ 5.81e-01]
+</pre></div>
+</div>
+<p>The triangle and the largest circle that it can include are depicted in Figure
+ref{Cheb} using the following commands:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xp = np.linspace(-3, 5, 256)
+theta = np.linspace(0,2*np.pi,100)
+
+# plot the constraints
+plt.plot( xp, -xp*a1[0]/a1[1] + b1/a1[1])
+plt.plot( xp, -xp*a2[0]/a2[1] + b2/a2[1])
+plt.plot( xp, -xp*a3[0]/a3[1] + b3/a3[1])
+
+
+# plot the solution
+plt.plot( xc.value[0] + r.value*cos(theta), xc.value[1] + r.value*sin(theta) )
+plt.plot( xc.value[0], xc.value[1], &#39;x&#39;, markersize=10 )
+
+plt.title(&#39;Chebyshev Center&#39;)
+plt.xlabel(&#39;x1&#39;)
+plt.ylabel(&#39;x2&#39;)
+plt.axis([-3, 5, -3, 5])
+plt.show()
+</pre></div>
+</div>
+<p><img alt="png" src="cvxguide_files/cvxguide_46_0.png" /></p>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ConvexOptimization.html" title="previous page">Convex Optimization</a>
+    <a class='right-next' id="next-link" href="GeneralizedLinearFractionalProgram.html" title="next page">Generalized linear fractional program</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Behzad Samadi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

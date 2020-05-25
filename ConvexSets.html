@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Convex Sets &#8212; Convex Optimization: A Practical Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"CO": "{\\textbf{\\rm conv}}", "RR": "{{\\mathcal R}}", "RE": "{\\mathbb{R}}", "TR": "{\\text{T}}", "beq": "{\\begin{equation}}", "eeq": "{\\end{equation}}", "bmat": "{\\left[\\begin{array}}", "emat": "{\\end{array}\\right]}", "bsmat": "{\\left[\\begin{smallmatrix}}", "esmat": "{\\end{smallmatrix}\\right]}", "barr": "{\\begin{array}}", "earr": "{\\end{array}}", "bsm": "{\\begin{smallmatrix}}", "esm": "{\\end{smallmatrix}}"}}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Convex Functions" href="ConvexFunctions.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Convex Optimization: A Practical Guide</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="Introduction.html">Introduction</a>
+  </li>
+  <li class="active">
+    <a href="">Convex Sets</a>
+  </li>
+  <li class="">
+    <a href="ConvexFunctions.html">Convex Functions</a>
+  </li>
+  <li class="">
+    <a href="ConvexOptimization.html">Convex Optimization</a>
+  </li>
+  <li class="">
+    <a href="ApplicationsControlTheory.html">Applications in Control Theory</a>
+  </li>
+  <li class="">
+    <a href="References.html">References</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/ConvexSets.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convex-sets">
+<h1>Convex Sets<a class="headerlink" href="#convex-sets" title="Permalink to this headline">¶</a></h1>
+<p><em>Definition. Convex combination:</em> Given <span class="math notranslate nohighlight">\(m\)</span> points in <span class="math notranslate nohighlight">\(\RR^n\)</span> denoted by <span class="math notranslate nohighlight">\(x_i\)</span>
+for <span class="math notranslate nohighlight">\(i=1,\ldots,m\)</span>, <span class="math notranslate nohighlight">\(x\)</span> is a convex combination of the <span class="math notranslate nohighlight">\(m\)</span> points if it can be
+written as:
+\begin{equation}
+x = \sum_{i=1}^m \lambda_ix_i
+\end{equation}
+where <span class="math notranslate nohighlight">\(\lambda_i\geq 0\)</span> and
+\begin{equation}
+\sum_{i=1}^m\lambda_i=1
+\end{equation}</p>
+<p><em>Definition. Convex set:</em> A set <span class="math notranslate nohighlight">\(C\subseteq\RR^n\)</span> is convex if the convex
+combination of any two points in <span class="math notranslate nohighlight">\(C\)</span> belongs to <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p><em>Definition. Convex hull:</em> The convex hull of a set <span class="math notranslate nohighlight">\(S\)</span>, denoted by
+<span class="math notranslate nohighlight">\(\text{conv}(S)\)</span>, is the set of all convex combinations of points in <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p><em>Definition. Affine combination:</em> <span class="math notranslate nohighlight">\(x\)</span> is an affine combination of <span class="math notranslate nohighlight">\(x_1\)</span> and
+<span class="math notranslate nohighlight">\(x_2\)</span> if it can be written as:
+\begin{equation}
+x=\lambda_1x_1+\lambda_2x_2
+\end{equation}</p>
+<p><em>Definition. Affine set:</em> A set <span class="math notranslate nohighlight">\(C\subseteq\RR^n\)</span> is affine if the affine
+combination of any two points in <span class="math notranslate nohighlight">\(C\)</span> belongs to <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p><em>Definition. Cone (nonnegative) combination:</em> Cone combination of two points
+<span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> is a point <span class="math notranslate nohighlight">\(x\)</span> that can be written as:
+\begin{equation}
+x=\theta_1x_1+\theta_2x_2
+\end{equation}
+with <span class="math notranslate nohighlight">\(\theta_1\geq 0\)</span> and <span class="math notranslate nohighlight">\(\theta_2\geq 0\)</span>.</p>
+<p><em>Definition. Convex cone:</em> A set <span class="math notranslate nohighlight">\(S\)</span> is a convex cone, if it contains all convex
+combinations of points in the set.</p>
+<p><em>Definition. Hyperplane:</em> A hyperplane is a set of the form
+<span class="math notranslate nohighlight">\(\{x|a^\text{T}x=b\}\)</span> with <span class="math notranslate nohighlight">\(a\neq 0\)</span>.</p>
+<p><em>Definition. Halfspace:</em> A halfspace is a set of the form <span class="math notranslate nohighlight">\(\{x|a^\text{T}x\leq
+b\}\)</span> with <span class="math notranslate nohighlight">\(a\neq 0\)</span>.</p>
+<p><em>Definition. Polyhedron:</em> A polyhedron is the intersection of finite number of
+hyperplanes and halfspaces. A polyhedron can be written as:
+\begin{equation}
+\mathcal{P}={x| Ax \preceq b, Cx=d }
+\end{equation}
+where <span class="math notranslate nohighlight">\(\preceq\)</span> denotes componentwise inequality.</p>
+<p><em>Definition. Euclidean ball:</em> A ball with center <span class="math notranslate nohighlight">\(x_c\)</span> and radius <span class="math notranslate nohighlight">\(r\)</span> is defined
+as:
+\begin{equation}
+B(x_c,r)={x| |x-x_c|_2\leq r}={x| x=x_c+ru, |u|_2\leq r}
+\end{equation}</p>
+<p><em>Definition. Ellipsoid:</em> An ellipsoid is defined as:
+\begin{equation}
+{x | (x-x_c)^\text{T}P^{-1}(x-x_c)\leq 1}
+\end{equation}
+where <span class="math notranslate nohighlight">\(P\)</span> is a positive definite matrix. It can also be defined as:
+\begin{equation}
+{x| x=x_c+Au, |u|_2\leq r}
+\end{equation}</p>
+</div>
+<div class="section" id="generalized-inequalities">
+<h1>Generalized inequalities<a class="headerlink" href="#generalized-inequalities" title="Permalink to this headline">¶</a></h1>
+<p><em>Definition. Proper code:</em> A cone is proper if it is closed (contains its
+boundary), solid (has nonempty interior) and pointed (contains no lines).</p>
+<p>The nonnegative orthant of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(\{x|x\in\mathbb{R}^n,x_i\geq 0,
+i=1,\ldots,n \}\)</span> is a proper cone. Also the cone of positive semidefinite
+matrices in <span class="math notranslate nohighlight">\(\mathbb{R}^{n\times n}\)</span> is a proper cone.</p>
+<p><em>Definition. Generalized inequality:</em> A generalized inequality is defined by a
+proper cone <span class="math notranslate nohighlight">\(K\)</span>:
+\begin{equation}
+x\preceq_K y \Leftrightarrow y-x\in K
+\end{equation}
+\begin{equation}
+x\prec_K y \Leftrightarrow y-x\in \text{interior}(K)
+\end{equation}</p>
+<p>In this context, we deal with the following inequalities:</p>
+<ul class="simple">
+<li><p>The inequality on real numbers is defined based on the proper cone of
+nonnegative real numbers <span class="math notranslate nohighlight">\(K=\mathbb{R}_+\)</span>.</p></li>
+<li><p>The componentwise inequality on real vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> is defined
+based on the nonnegative orthant <span class="math notranslate nohighlight">\(K=\mathbb{R}^n_+\)</span>.</p></li>
+<li><p>The matrix inequality is defined based on the proper cone of positive
+semidefinite matrices <span class="math notranslate nohighlight">\(K=S^n_+\)</span>.</p></li>
+</ul>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="ConvexFunctions.html" title="next page">Convex Functions</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Behzad Samadi<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
