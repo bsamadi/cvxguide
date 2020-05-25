@@ -1,0 +1,29 @@
+# Book settings
+title: "Convex Optimization: A Practical Guide"
+author: "Behzad Samadi"
+logo: logo.png
+
+latex:
+  latex_documents:
+    targetname: cvxguide.tex
+
+sphinx:
+  extra_extensions          : ""
+  config                    :
+    mathjax_config          :
+      TeX                   :
+        Macros              :
+          "CO"              : "{\\textbf{\\rm conv}}"
+          "RR"              : "{{\\mathcal R}}"
+          "RE"              : "{\\mathbb{R}}"
+          "TR"              : "{\\text{T}}"
+          "beq"             : "{\\begin{equation}}"
+          "eeq"             : "{\\end{equation}}"
+          "bmat"            : "{\\left[\\begin{array}}"
+          "emat"            : "{\\end{array}\\right]}"
+          "bsmat"           : "{\\left[\\begin{smallmatrix}}"
+          "esmat"           : "{\\end{smallmatrix}\\right]}"
+          "barr"            : "{\\begin{array}}"
+          "earr"            : "{\\end{array}}"
+          "bsm"             : "{\\begin{smallmatrix}}"
+          "esm"             : "{\\end{smallmatrix}}"
