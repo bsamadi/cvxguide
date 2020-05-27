@@ -122,11 +122,13 @@ solution is equal to:
 
 *Example (Linear Program with a Stochastic Objective Function):* Consider a
 random vector $c$ and the following LP problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }& Gx \preccurlyeq h \nonumber\\
                   & Ax = b
-\end{align}
+\end{align}$$
+
 Assume that $c$ is a random vector with the normal distribution of
 $\mathcal{N}(\bar c,\Sigma)$.
 Also we assume that $x$, the unknown vector, is deterministic. With this
@@ -143,18 +145,21 @@ and $\gamma$ is call the risk-aversion parameter. The larger $\gamma$ is, the
 more the uncertainty of the original objective function is penalized and it thus
 leads to a more certain result. With this approach, the problem is formulated as
 the following deterministic LP:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x\nonumber\\
 \text{subject to }& Gx \preccurlyeq h \nonumber\\
                   & Ax = b
-\end{align}
+\end{align}$$
+
 As a numerical example, let us consider an uncertain version of ref{LP2}:
-\begin{align}
+
+$$\begin{align}
 \bar c=&\bmat{c} 22\\ 14.5 \emat \nonumber\\
 \Sigma=&\bmat{ccc} 5 & 1\\ 1 & 4 \emat\nonumber\\
 G =&\bmat{cc} -1 & -1\\ -0.5 & 1\\ 2 & -1 \emat \nonumber\\
 h =&\bmat{c} 1\\2\\4\emat
-\end{align}
+\end{align}$$
 
 Now, the optimization can be solved with the following code:
 
@@ -239,11 +244,13 @@ The distance between $\mathcal{P}_1$ and $\mathcal{P}_2$ is defined as:
 x_1\in\mathcal{P}_1,\ x_2\in\mathcal{P}_2\}
 \end{equation}
 This ditance can computed using the following QP problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }& \|x_1-x_2\|_2^2\nonumber\\
 \text{subject to }&A_1x \preccurlyeq b_1 \nonumber\\
                   &A_2x \preccurlyeq b_2
-\end{align}
+\end{align}$$
+
 As a numerical example, consider the following polygons:
 
 
