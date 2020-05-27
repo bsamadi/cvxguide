@@ -45,7 +45,7 @@ $$\begin{equation}A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 
 
 $$\begin{equation}\bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat\end{equation}$$
 
-$$\begin{equation}\begin{bmatrix} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{bmatrix}\end{equation}$$
+$$\begin{equation}\begin{bmatrix} 1^\TR & \RR \\ \RE & 1\\ 3 & 2 \end{bmatrix}\end{equation}$$
 
 The analytical answer to $Ax=b$ is computed as:
 
