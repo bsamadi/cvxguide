@@ -1,22 +1,26 @@
 # Quadratic program
 
 A quadratic programming (QP) optimization problem is described as:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&\frac{1}{2}x^\text{T}Px+q^\text{T}x+r\nonumber\\
 \text{subject to }&Gx \preccurlyeq h \nonumber\\
                   &Ax = b
-\end{align}
+\end{align}$$
+
 $P$ is assumed to be positive semidefinite. The feasible set of QP is a polygon
 and the objective function is a convex quadratic function.
 
 If the objective function is quadratic and the constraints include quadratic
 constraints, then we have a quadratically constrained quadratic program (QCQP):
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&\frac{1}{2}x^\text{T}P_0x+q_0^\text{T}x+r_0\nonumber\\
 \text{subject to }&\frac{1}{2}x^\text{T}P_ix+q_i^\text{T}x+r_i\leq 0,\
 i=1\cdots,m \nonumber\\
                   &Ax = b
-\end{align}
+\end{align}$$
+
 where $P_i$ for $i=0,\cdots,m$ are positive semidefinite.
 
 *Example:* Consider the set of linear equations $Ax=b$ for the case when $A$ has
@@ -29,14 +33,18 @@ x^\star = (A^\text{T}A)^{-1}A^\text{T}
 \end{equation}
 However, after adding linear constraints on $x$, the optimization problem does
 not have an analytic solution:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&(Ax-b)^\text{T}(Ax-b)\nonumber\\
 \text{subject to }&Gx \preccurlyeq h \nonumber\\
-\end{align}
+\end{align}$$
+
 As a numerical example, consider:
-\begin{equation}
+
+$$\begin{equation}
 A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat
-\end{equation}
+\end{equation}$$
+
 The analytical answer to $Ax=b$ is computed as:
 
 

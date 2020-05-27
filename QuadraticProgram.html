@@ -174,23 +174,25 @@
                 
   <div class="section" id="quadratic-program">
 <h1>Quadratic program<a class="headerlink" href="#quadratic-program" title="Permalink to this headline">¶</a></h1>
-<p>A quadratic programming (QP) optimization problem is described as:
-\begin{align}
-\text{minimize }&amp;\frac{1}{2}x^\text{T}Px+q^\text{T}x+r\nonumber\
-\text{subject to }&amp;Gx \preccurlyeq h \nonumber\
-&amp;Ax = b
-\end{align}
-<span class="math notranslate nohighlight">\(P\)</span> is assumed to be positive semidefinite. The feasible set of QP is a polygon
+<p>A quadratic programming (QP) optimization problem is described as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}Px+q^\text{T}x+r\nonumber\\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\\
+                  &amp;Ax = b
+\end{align}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(P\)</span> is assumed to be positive semidefinite. The feasible set of QP is a polygon
 and the objective function is a convex quadratic function.</p>
 <p>If the objective function is quadratic and the constraints include quadratic
-constraints, then we have a quadratically constrained quadratic program (QCQP):
-\begin{align}
-\text{minimize }&amp;\frac{1}{2}x^\text{T}P_0x+q_0^\text{T}x+r_0\nonumber\
-\text{subject to }&amp;\frac{1}{2}x^\text{T}P_ix+q_i^\text{T}x+r_i\leq 0,<br />
-i=1\cdots,m \nonumber\
-&amp;Ax = b
-\end{align}
-where <span class="math notranslate nohighlight">\(P_i\)</span> for <span class="math notranslate nohighlight">\(i=0,\cdots,m\)</span> are positive semidefinite.</p>
+constraints, then we have a quadratically constrained quadratic program (QCQP):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;\frac{1}{2}x^\text{T}P_0x+q_0^\text{T}x+r_0\nonumber\\
+\text{subject to }&amp;\frac{1}{2}x^\text{T}P_ix+q_i^\text{T}x+r_i\leq 0,\
+i=1\cdots,m \nonumber\\
+                  &amp;Ax = b
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(P_i\)</span> for <span class="math notranslate nohighlight">\(i=0,\cdots,m\)</span> are positive semidefinite.</p>
 <p><em>Example:</em> Consider the set of linear equations <span class="math notranslate nohighlight">\(Ax=b\)</span> for the case when <span class="math notranslate nohighlight">\(A\)</span> has
 more rows than columns. Finding an <span class="math notranslate nohighlight">\(x\)</span> where the equality is exactly satisfied
 is in general impossible. However, there is a solution for an <span class="math notranslate nohighlight">\(x\)</span> that minimizes
@@ -200,16 +202,18 @@ and it can be written as:
 x^\star = (A^\text{T}A)^{-1}A^\text{T}
 \end{equation}
 However, after adding linear constraints on <span class="math notranslate nohighlight">\(x\)</span>, the optimization problem does
-not have an analytic solution:
-\begin{align}
-\text{minimize }&amp;(Ax-b)^\text{T}(Ax-b)\nonumber\
-\text{subject to }&amp;Gx \preccurlyeq h \nonumber\
-\end{align}
-As a numerical example, consider:
-\begin{equation}
-A = \bmat{cc} 1 &amp; 1 \ 2 &amp; 1\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\ 3 \ 4\emat
-\end{equation}
-The analytical answer to <span class="math notranslate nohighlight">\(Ax=b\)</span> is computed as:</p>
+not have an analytic solution:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;(Ax-b)^\text{T}(Ax-b)\nonumber\\
+\text{subject to }&amp;Gx \preccurlyeq h \nonumber\\
+\end{align}\end{split}\]</div>
+<p>As a numerical example, consider:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+A = \bmat{cc} 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat
+\end{equation}\end{split}\]</div>
+<p>The analytical answer to <span class="math notranslate nohighlight">\(Ax=b\)</span> is computed as:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = np.array([[1,1],[2,1],[3,2]])
 b = np.array([[2], [3], [4]])
 xs = np.dot(np.linalg.pinv(A),b)
