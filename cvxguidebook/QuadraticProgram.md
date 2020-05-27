@@ -41,7 +41,7 @@ $$\begin{align}
 
 As a numerical example, consider:
 
-$$A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat$$
+$$\begin{equation}A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat\end{equation}$$
 
 $$\begin{equation}\left[\begin{array}{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{array}\right]\end{equation}$$
 
