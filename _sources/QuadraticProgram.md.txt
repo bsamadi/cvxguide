@@ -43,9 +43,9 @@ As a numerical example, consider:
 
 $$\begin{equation}A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat\end{equation}$$
 
-$$\begin{equation}\left[\begin{array}{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{array}\right]\end{equation}$$
+$$\begin{equation}\bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat\end{equation}$$
 
-$$\begin{equation}\bgein{matrix} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{matrix}\end{equation}$$
+$$\begin{equation}\bgein{bmatrix} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{bmatrix}\end{equation}$$
 
 The analytical answer to $Ax=b$ is computed as:
 
