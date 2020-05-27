@@ -275,13 +275,14 @@ solution is equal to:</p>
 </pre></div>
 </div>
 <p><em>Example (Linear Program with a Stochastic Objective Function):</em> Consider a
-random vector <span class="math notranslate nohighlight">\(c\)</span> and the following LP problem:
-\begin{align}
-\text{minimize }&amp;c^\text{T}x\nonumber\
-\text{subject to }&amp; Gx \preccurlyeq h \nonumber\
-&amp; Ax = b
-\end{align}
-Assume that <span class="math notranslate nohighlight">\(c\)</span> is a random vector with the normal distribution of
+random vector <span class="math notranslate nohighlight">\(c\)</span> and the following LP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\\
+                  &amp; Ax = b
+\end{align}\end{split}\]</div>
+<p>Assume that <span class="math notranslate nohighlight">\(c\)</span> is a random vector with the normal distribution of
 <span class="math notranslate nohighlight">\(\mathcal{N}(\bar c,\Sigma)\)</span>.
 Also we assume that <span class="math notranslate nohighlight">\(x\)</span>, the unknown vector, is deterministic. With this
 assumptions, the objective function <span class="math notranslate nohighlight">\(c^\text{T}x\)</span> is a normal random variable
@@ -295,19 +296,21 @@ where <span class="math notranslate nohighlight">\(\gamma\geq 0\)</span>. This o
 and <span class="math notranslate nohighlight">\(\gamma\)</span> is call the risk-aversion parameter. The larger <span class="math notranslate nohighlight">\(\gamma\)</span> is, the
 more the uncertainty of the original objective function is penalized and it thus
 leads to a more certain result. With this approach, the problem is formulated as
-the following deterministic LP:
-\begin{align}
-\text{minimize }&amp;{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x\nonumber\
-\text{subject to }&amp; Gx \preccurlyeq h \nonumber\
-&amp; Ax = b
-\end{align}
-As a numerical example, let us consider an uncertain version of ref{LP2}:
-\begin{align}
-\bar c=&amp;\bmat{c} 22\ 14.5 \emat \nonumber\
-\Sigma=&amp;\bmat{ccc} 5 &amp; 1\ 1 &amp; 4 \emat\nonumber\
-G =&amp;\bmat{cc} -1 &amp; -1\ -0.5 &amp; 1\ 2 &amp; -1 \emat \nonumber\
-h =&amp;\bmat{c} 1\2\4\emat
-\end{align}</p>
+the following deterministic LP:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;{\bar c}^\text{T}x+\gamma x^\text{T}\Sigma x\nonumber\\
+\text{subject to }&amp; Gx \preccurlyeq h \nonumber\\
+                  &amp; Ax = b
+\end{align}\end{split}\]</div>
+<p>As a numerical example, let us consider an uncertain version of ref{LP2}:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\bar c=&amp;\bmat{c} 22\\ 14.5 \emat \nonumber\\
+\Sigma=&amp;\bmat{ccc} 5 &amp; 1\\ 1 &amp; 4 \emat\nonumber\\
+G =&amp;\bmat{cc} -1 &amp; -1\\ -0.5 &amp; 1\\ 2 &amp; -1 \emat \nonumber\\
+h =&amp;\bmat{c} 1\\2\\4\emat
+\end{align}\end{split}\]</div>
 <p>Now, the optimization can be solved with the following code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sigma = co.matrix([	5, 1,
 				    1, 4,], (2,2))
@@ -380,13 +383,14 @@ The distance between <span class="math notranslate nohighlight">\(\mathcal{P}_1\
 \text{d}(\mathcal{P}_1,\mathcal{P}_2)=\inf{|x_1-x_2|_2 |
 x_1\in\mathcal{P}_1,\ x_2\in\mathcal{P}_2}
 \end{equation}
-This ditance can computed using the following QP problem:
-\begin{align}
-\text{minimize }&amp; |x_1-x_2|_2^2\nonumber\
-\text{subject to }&amp;A_1x \preccurlyeq b_1 \nonumber\
-&amp;A_2x \preccurlyeq b_2
-\end{align}
-As a numerical example, consider the following polygons:</p>
+This ditance can computed using the following QP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp; \|x_1-x_2\|_2^2\nonumber\\
+\text{subject to }&amp;A_1x \preccurlyeq b_1 \nonumber\\
+                  &amp;A_2x \preccurlyeq b_2
+\end{align}\end{split}\]</div>
+<p>As a numerical example, consider the following polygons:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Draw the triangle
 path = mpl.path.Path([[4, 4], [1, -2], [-2, 1], [4, 4]])            
 patch = mpl.patches.PathPatch(path, facecolor=&#39;green&#39;)               
