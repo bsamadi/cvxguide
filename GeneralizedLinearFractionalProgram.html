@@ -174,58 +174,64 @@
                 
   <div class="section" id="generalized-linear-fractional-program">
 <h1>Generalized linear fractional program<a class="headerlink" href="#generalized-linear-fractional-program" title="Permalink to this headline">¶</a></h1>
-<p>A linear fractional program is defined as (LFP):
-\begin{align}
-\text{minimize }&amp;f_0(x)\nonumber\
-\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\
-&amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
-\end{align}
-with <span class="math notranslate nohighlight">\(f_0(x)=\frac{c^\text{T}x+d}{e^\text{T}x+f}\)</span> and
+<p>A linear fractional program is defined as (LFP):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;f_0(x)\nonumber\\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(f_0(x)=\frac{c^\text{T}x+d}{e^\text{T}x+f}\)</span> and
 <span class="math notranslate nohighlight">\(\text{dom}f_0(x)=\{x|e^\text{T}x+f &gt; 0\}\)</span>. The problem (ref{LFP}) can be
-rewritten as:
-\begin{align}
-\text{minimize }&amp;\frac{c^\text{T}x+d}{e^\text{T}x+f}\nonumber\
-\text{subject to }&amp;e^\text{T}x+f &gt; 0\nonumber\
-&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\
-&amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
-\end{align}
-is a quasilinear (both quasiconvex and quasiconcave) optimization problem. To
-solve the problem using the bisection method, we need to write it as:
-\begin{align}
-\text{minimize }&amp;t\nonumber\
-\text{subject to }&amp;c^\text{T}x+d\leq t(e^\text{T}x+f)\nonumber\
-&amp;e^\text{T}x+f &gt; 0\nonumber\
-&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\
-&amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
-\end{align}
-For a fixed <span class="math notranslate nohighlight">\(t\)</span>, the above problem is a LP feasibility problem. Therefore, the
+rewritten as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;\frac{c^\text{T}x+d}{e^\text{T}x+f}\nonumber\\
+\text{subject to }&amp;e^\text{T}x+f &gt; 0\nonumber\\
+                  &amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\end{split}\]</div>
+<p>is a quasilinear (both quasiconvex and quasiconcave) optimization problem. To
+solve the problem using the bisection method, we need to write it as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;t\nonumber\\
+\text{subject to }&amp;c^\text{T}x+d\leq t(e^\text{T}x+f)\nonumber\\
+                  &amp;e^\text{T}x+f &gt; 0\nonumber\\
+                  &amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\end{split}\]</div>
+<p>For a fixed <span class="math notranslate nohighlight">\(t\)</span>, the above problem is a LP feasibility problem. Therefore, the
 bisection method can be used to find the smallest possible <span class="math notranslate nohighlight">\(t\)</span> within acceptable
 accuracy.</p>
-<p>Another approach is introduce auxiliary variables <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>:
-\begin{align}
-y =&amp; \frac{x}{e^\text{T}x+f}\nonumber\
+<p>Another approach is introduce auxiliary variables <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+y =&amp; \frac{x}{e^\text{T}x+f}\nonumber\\
 z =&amp; \frac{1}{e^\text{T}x+f}
-\end{align}
-Then the optimization problem (ref{LFP}) can be written as the following LP
-problem:
-\begin{align}
-\text{minimize }&amp;c^\text{T}y+dz\nonumber\
-\text{subject to }&amp;z &gt; 0\nonumber\
-&amp;e^\text{T}y+fz=1\nonumber\
-&amp;a_i^\text{T}y\leq b_iz,\ i=1,\ldots,m\nonumber\
-&amp;h_i^\text{T}y = g_iz,\ i=1,\ldots,p
-\end{align}
-Therefore, linear fractional programs can be converted to convex optimization
+\end{align}\end{split}\]</div>
+<p>Then the optimization problem (ref{LFP}) can be written as the following LP
+problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}y+dz\nonumber\\
+\text{subject to }&amp;z &gt; 0\nonumber\\
+                  &amp;e^\text{T}y+fz=1\nonumber\\
+                  &amp;a_i^\text{T}y\leq b_iz,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}y = g_iz,\ i=1,\ldots,p
+\end{align}\end{split}\]</div>
+<p>Therefore, linear fractional programs can be converted to convex optimization
 problems.</p>
 <p>A closely related class of optimization problems is the generalized linear
-fraction problems formulated as (GLFP):
-\begin{align}
-\text{minimize }&amp;f_0(x)\nonumber\
-\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\
-&amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
-\end{align}
-where:
-\begin{equation}
+fraction problems formulated as (GLFP):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;f_0(x)\nonumber\\
+\text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m\nonumber\\
+                  &amp;h_i^\text{T}x = g_i,\ i=1,\ldots,p
+\end{align}\end{split}\]</div>
+<p>where:</p>
+<p>\begin{equation}
 f_0(x)=\max_{i=1,\ldots,r} \frac{c_i^\text{T}x+d_i}{e_i^\text{T}x+f_i}
 \end{equation}
 and the domain of <span class="math notranslate nohighlight">\(f_0(x)\)</span> is defined as:
