@@ -3,6 +3,9 @@ title: "Convex Optimization: A Practical Guide"
 author: "Behzad Samadi"
 logo: logo.png
 
+execute:
+  execute_notebooks: auto
+  
 latex:
   latex_documents:
     targetname: cvxguide.tex
