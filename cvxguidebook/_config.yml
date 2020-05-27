@@ -13,6 +13,7 @@ sphinx:
     mathjax_config          :
       TeX                   :
         Macros              :
+          "sign"            : "\\mathop{\\rm sgn}\nolimits"
           "CO"              : "{\\textbf{\\rm conv}}"
           "RR"              : "{{\\mathcal R}}"
           "RE"              : "{\\mathbb{R}}"
