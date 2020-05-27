@@ -176,10 +176,10 @@
 <h1>Linear program<a class="headerlink" href="#linear-program" title="Permalink to this headline">¶</a></h1>
 <p>Linear programming (LP) is one of the best known forms of convex optimization. A
 LP problem can be written as:
-\begin{align}\label{LP}
-\text{minimize }&amp;c^\text{T}x\nonumber\
+<span class="math notranslate nohighlight">\($\begin{align}\label{LP}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
 \text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m
-\end{align}
+\end{align}\)</span>$
 where <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(a_i\)</span> for <span class="math notranslate nohighlight">\(i=1,\ldots,m\)</span> belong to <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. In
 general, there is no analytical solution for a LP
 problem. A numerical algorithm is therefore required to solve the problem. The
@@ -202,12 +202,13 @@ intersection can be a vertice or edge or any higher dimensional faces.
 Therefore, the optimal value of the objective function is unique but the optimal
 solution, <span class="math notranslate nohighlight">\(x^\star\)</span>, is not.</p>
 <p><em>Example:</em> Consider the following LP problem (LP1):</p>
-<p>\begin{align}
-\text{maximize: }   &amp; x + y\nonumber\
-\text{Subject to: } &amp; x + y \geq -1 \
-\text{}             &amp; \frac{x}{2}-y \geq -2\nonumber\
-\text{}             &amp; 2x-y  \leq -4\nonumber
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+ \text{maximize: }   &amp; x + y\nonumber\\
+ \text{Subject to: } &amp; x + y \geq -1 \\
+ \text{}             &amp; \frac{x}{2}-y \geq -2\nonumber\\
+ \text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}\end{split}\]</div>
 <p>In order to solve this LP problem in Python, we need to import the required
 modules:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
@@ -282,12 +283,13 @@ plt.show()
 </div>
 <p><img alt="png" src="cvxguide_files/cvxguide_31_0.png" /></p>
 <p>Now, to solve the following LP problem (LP2):</p>
-<p>\begin{align}
-\text{minimize: }   &amp; x + y\nonumber\
-\text{Subject to: } &amp; x + y \geq -1 \
-\text{}             &amp; \frac{x}{2}-y \leq -2\nonumber\
-\text{}             &amp; 2x-y  \leq -4\nonumber
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+ \text{minimize: }   &amp; x + y\nonumber\\
+ \text{Subject to: } &amp; x + y \geq -1 \\
+ \text{}             &amp; \frac{x}{2}-y \leq -2\nonumber\\
+ \text{}             &amp; 2x-y  \leq -4\nonumber
+\end{align}\end{split}\]</div>
 <p>we change the objective function in the code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>objective = cp.Minimize(x+y)
 p = cp.Problem(objective, constraints)
@@ -338,16 +340,16 @@ Therefore, if we have:
 <span class="math notranslate nohighlight">\($a_i^Tx_c+r\|a_i\|_2\leq b_i\)</span>$
 for all <span class="math notranslate nohighlight">\(i=1,..,m\)</span> then <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is inside <span class="math notranslate nohighlight">\(\mathcal{P}\)</span>. Now, we can write
 the problem as the following LP problem (LP3):
-\begin{align}
-\text{maximize: }   &amp; r\nonumber\
-\text{Subject to: } &amp; a_i^Tx_c + r|a_i|_2 \leq b_i,\ i=1,..,m
-\end{align}
+<span class="math notranslate nohighlight">\($\begin{align}
+ \text{maximize: }   &amp; r\nonumber\\
+ \text{Subject to: } &amp; a_i^Tx_c + r\|a_i\|_2 \leq b_i,\ i=1,..,m
+\end{align}\)</span>$
 As a numerical example, consider a polyhedron <span class="math notranslate nohighlight">\(\mathcal{P}\)</span> where:
-\begin{align}
-a_1 =&amp;[-1,-1]^T,\ b_1=1\nonumber\
-a_2 =&amp;[-1/2,1]^T,\ b_2=2\nonumber\
+<span class="math notranslate nohighlight">\($\begin{align}
+a_1 =&amp;[-1,-1]^T,\ b_1=1\nonumber\\
+a_2 =&amp;[-1/2,1]^T,\ b_2=2\nonumber\\
 a_3 =&amp;[2,-1]^T,\ b_3=4\nonumber
-\end{align}
+\end{align}\)</span>$
 This is a triangle. The Chebyshev center of this triangle is computed as:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>r = cp.Variable(1)
 xc = cp.Variable(2)

@@ -2,10 +2,10 @@
 
 Linear programming (LP) is one of the best known forms of convex optimization. A
 LP problem can be written as:
-\begin{align}\label{LP}
+$$\begin{align}\label{LP}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }&a_i^\text{T}x\leq b_i,\ i=1,\ldots,m
-\end{align}
+\end{align}$$
 where $x$, $c$ and $a_i$ for $i=1,\ldots,m$ belong to $\mathbb{R}^n$. In
 general, there is no analytical solution for a LP
 problem. A numerical algorithm is therefore required to solve the problem. The
@@ -32,12 +32,12 @@ solution, $x^\star$, is not.
 
 *Example:* Consider the following LP problem (LP1):
 
-\begin{align}
+$$\begin{align}
  \text{maximize: }   & x + y\nonumber\\
  \text{Subject to: } & x + y \geq -1 \\
  \text{}             & \frac{x}{2}-y \geq -2\nonumber\\
  \text{}             & 2x-y  \leq -4\nonumber
-\end{align}
+\end{align}$$
 
 In order to solve this LP problem in Python, we need to import the required
 modules:
@@ -127,12 +127,12 @@ which is drawn using the following commands:
 
 Now, to solve the following LP problem (LP2):
 
-\begin{align}
+$$\begin{align}
  \text{minimize: }   & x + y\nonumber\\
  \text{Subject to: } & x + y \geq -1 \\
  \text{}             & \frac{x}{2}-y \leq -2\nonumber\\
  \text{}             & 2x-y  \leq -4\nonumber
-\end{align}
+\end{align}$$
 
 we change the objective function in the code:
 
@@ -189,16 +189,16 @@ Therefore, if we have:
 $$a_i^Tx_c+r\|a_i\|_2\leq b_i$$
 for all $i=1,..,m$ then $\mathcal{B}$ is inside $\mathcal{P}$. Now, we can write
 the problem as the following LP problem (LP3):
-\begin{align}
+$$\begin{align}
  \text{maximize: }   & r\nonumber\\
  \text{Subject to: } & a_i^Tx_c + r\|a_i\|_2 \leq b_i,\ i=1,..,m
-\end{align}
+\end{align}$$
 As a numerical example, consider a polyhedron $\mathcal{P}$ where:
-\begin{align}
+$$\begin{align}
 a_1 =&[-1,-1]^T,\ b_1=1\nonumber\\
 a_2 =&[-1/2,1]^T,\ b_2=2\nonumber\\
 a_3 =&[2,-1]^T,\ b_3=4\nonumber
-\end{align}
+\end{align}$$
 This is a triangle. The Chebyshev center of this triangle is computed as:
 
 
