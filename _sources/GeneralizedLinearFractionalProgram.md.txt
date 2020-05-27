@@ -70,8 +70,9 @@ where:
 f_0(x)=\max_{i=1,\ldots,r} \frac{c_i^\text{T}x+d_i}{e_i^\text{T}x+f_i}
 \end{equation}
 and the domain of $f_0(x)$ is defined as:
-\begin{equation}
+
+$$\begin{equation}
 \text{dom}f_0(x)=\{x|e_i^\text{T}x+f_i > 0, \text{for }i=1,\ldots,r\}
-\end{equation}
+\end{equation}$$
 
 
