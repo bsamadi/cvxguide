@@ -3,6 +3,12 @@ title: "Convex Optimization: A Practical Guide"
 author: "Behzad Samadi"
 logo: logo.png
 
+# Information about where the book exists on the web
+repository:
+  url                       : https://github.com/bsamadi/cvxguide  # Online location of your book
+  book_path                 : cvxguidebook  # Optional path to your book, relative to the repository root
+  branch                    : master  # Which branch of the repository should be used when creating links (optional)
+
 execute:
   execute_notebooks: auto
   
