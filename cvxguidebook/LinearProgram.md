@@ -2,10 +2,12 @@
 
 Linear programming (LP) is one of the best known forms of convex optimization. A
 LP problem can be written as:
+
 $$\begin{align}\label{LP}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }&a_i^\text{T}x\leq b_i,\ i=1,\ldots,m
 \end{align}$$
+
 where $x$, $c$ and $a_i$ for $i=1,\ldots,m$ belong to $\mathbb{R}^n$. In
 general, there is no analytical solution for a LP
 problem. A numerical algorithm is therefore required to solve the problem. The
@@ -189,16 +191,20 @@ Therefore, if we have:
 $$a_i^Tx_c+r\|a_i\|_2\leq b_i$$
 for all $i=1,..,m$ then $\mathcal{B}$ is inside $\mathcal{P}$. Now, we can write
 the problem as the following LP problem (LP3):
+
 $$\begin{align}
  \text{maximize: }   & r\nonumber\\
  \text{Subject to: } & a_i^Tx_c + r\|a_i\|_2 \leq b_i,\ i=1,..,m
 \end{align}$$
+
 As a numerical example, consider a polyhedron $\mathcal{P}$ where:
+
 $$\begin{align}
 a_1 =&[-1,-1]^T,\ b_1=1\nonumber\\
 a_2 =&[-1/2,1]^T,\ b_2=2\nonumber\\
 a_3 =&[2,-1]^T,\ b_3=4\nonumber
 \end{align}$$
+
 This is a triangle. The Chebyshev center of this triangle is computed as:
 
 
