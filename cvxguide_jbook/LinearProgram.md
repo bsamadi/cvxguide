@@ -124,7 +124,7 @@ which is drawn using the following commands:
     plt.show()
 
 
-![png](cvxguide_files/cvxguide_31_0.png)
+![png](cvxguide_31_0.png)
 
 
 Now, to solve the following LP problem (LP2):
@@ -270,6 +270,6 @@ ref{Cheb} using the following commands:
     plt.show()
 
 
-![png](cvxguide_files/cvxguide_46_0.png)
+![png](cvxguide_46_0.png)
 
 
