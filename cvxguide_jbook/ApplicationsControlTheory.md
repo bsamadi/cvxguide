@@ -271,10 +271,10 @@ $P$.
 
 *Example:* Consider the uncertain linear system () with $L=2$ and:
 
-\begin{equation}
+&&\begin{equation}
 A_1=\left[\begin{matrix}1&-2\\2&-2\end{matrix}\right],\
 A_2=\left[\begin{matrix}1&2\\-2&-2\end{matrix}\right]
-\end{equation}
+\end{equation}&&
 
 The eigenvalues of $A_1$ and $A_2$ are on the left side of the complex plane and
 even equal:
@@ -404,10 +404,10 @@ inequalities by $Q=P^{-1}$ and perform the same trick.
 
 *Example:* Consider the following linear system:
 
-\begin{equation}
+$$\begin{equation}
 \dot x = \left[\begin{matrix}1&0.1\\0&-2\end{matrix}\right]x+\left[\begin{matrix
 }0\\1\end{matrix}\right]u
-\end{equation}
+\end{equation}$$
 
 The objective is to find $K$ such that with $u=Kx$ the closed loop system is
 stable.
@@ -594,12 +594,12 @@ The design problem can be formulated as the following matrix inequality:
 \begin{equation}
 Q>0
 \end{equation}
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &
 (C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\\C_zQ+D_uY+D_wB_w^\text{T} & D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 where $K=YQ^{-1}$
 
 **Proof:** It can easily be shown that the $\mathcal{H}_\infty$ norm of  the
@@ -616,62 +616,62 @@ Using this supply rate, the LMI's can be written as:
 P>0
 \end{equation}
 
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  & - I &
 D^\text{T}\\C&D&-\gamma^2I \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 
 Now, if we write the same LMI for the closed loop system, we have:
 
 \begin{equation}
 P>0
 \end{equation}
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) & {\color{red} P}B_w &
 (C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  & - I &
 D_w^\text{T}\\C+D_u{\color{red} K}&D_w&-\gamma^2I \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 
 Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:
 
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix}Q & 0& 0\\0&I&0\\0&0& I\end{matrix}\right]
-\end{equation}
+\end{equation}$$
 
 where $Q=P^{-1}$. The result is:
 
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
 +(A+B_u{\color{red} K}){\color{red} Q} & B_w & {\color{red} Q}(C+D_u{\color{red}
 K})^\text{T}\\B_w^\text{T}  & - I & D_w^\text{T}\\(C+D_u{\color{red}
 K}){\color{red} Q}&D_w&-\gamma^2I \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 
 Now, if we define $Y=KQ$, we have the following LMI:
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} & B_w & {\color{red}
 Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\\B_w^\text{T}  & - I &
 D_w^\text{T}\\C{\color{red} Q}+D_u{\color{red} Y}&D_w&-\gamma^2I
 \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 This LMI can be rearranged as:
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} & {\color{red} Q}C^\text{T}+{\color{red}
 Y}^\text{T}D_u^\text{T} & B_w \\C{\color{red} Q}+D_u{\color{red}
 Y}&-\gamma^2I&D_w\\B_w^\text{T} & D_w^\text{T} & - I \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 Using the Schur complement, we can now write the LMI as:
-\begin{equation}
+$$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} & {\color{red}
 Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
 \\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]< 0
-\end{equation}
+\end{equation}$$
 This LMI is the same as we were looking for and it ends the proof.
 
 #### Generalized $\mathcal{H}_2$ Gain (Bounded $L_2\rightarrow$ Bounded $L_\infty$)
@@ -697,10 +697,10 @@ If $D=0$ then the following statements are equivalent:
 #### Generalized $\mathcal{H}_2$ State Feedback Controller
 
 Consider the following linear system:
-\begin{align}
+$$\begin{align}
 \dot x=&Ax+B_ww+B_uu\nonumber\\
 z =&C_zx+D_uu
-\end{align}
+\end{align}$$
 where $u$ is the control input. We would like to design a controller of the form
 $u=Kx$ such that for the closed loop system:
 \begin{equation}
