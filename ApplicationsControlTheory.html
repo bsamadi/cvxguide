@@ -430,10 +430,10 @@ A_i^\text{T}P+PA_i &amp;&lt; 0, i=1,\ldots,L
 stable. In addition to that, it is required that all the <span class="math notranslate nohighlight">\(A_i\)</span>’s share the same
 <span class="math notranslate nohighlight">\(P\)</span>.</p>
 <p><em>Example:</em> Consider the uncertain linear system () with <span class="math notranslate nohighlight">\(L=2\)</span> and:</p>
-<p>\begin{equation}
+<p>&amp;&amp;\begin{equation}
 A_1=\left[\begin{matrix}1&amp;-2\2&amp;-2\end{matrix}\right],<br />
 A_2=\left[\begin{matrix}1&amp;2-2&amp;-2\end{matrix}\right]
-\end{equation}</p>
+\end{equation}&amp;&amp;</p>
 <p>The eigenvalues of <span class="math notranslate nohighlight">\(A_1\)</span> and <span class="math notranslate nohighlight">\(A_2\)</span> are on the left side of the complex plane and
 even equal:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A1 = np.matrix(&#39;1 -2; 2 -2&#39;)
@@ -538,10 +538,11 @@ K = YQ^{-1}
 <p>Another way of converting () to a LMI is to multiply both sides of both
 inequalities by <span class="math notranslate nohighlight">\(Q=P^{-1}\)</span> and perform the same trick.</p>
 <p><em>Example:</em> Consider the following linear system:</p>
-<p>\begin{equation}
-\dot x = \left[\begin{matrix}1&amp;0.1\0&amp;-2\end{matrix}\right]x+\left[\begin{matrix
-}0\1\end{matrix}\right]u
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\dot x = \left[\begin{matrix}1&amp;0.1\\0&amp;-2\end{matrix}\right]x+\left[\begin{matrix
+}0\\1\end{matrix}\right]u
+\end{equation}\end{split}\]</div>
 <p>The objective is to find <span class="math notranslate nohighlight">\(K\)</span> such that with <span class="math notranslate nohighlight">\(u=Kx\)</span> the closed loop system is
 stable.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = cp.Parameter(2,2)
@@ -712,12 +713,12 @@ z =&amp;C_zx+D_ww+D_uu
 <p>\begin{equation}
 Q&gt;0
 \end{equation}
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &amp;
-(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
+(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\\C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]&lt; 0
-\end{equation}
+\end{equation}\)</span>$
 where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
 <p><strong>Proof:</strong> It can easily be shown that the <span class="math notranslate nohighlight">\(\mathcal{H}_\infty\)</span> norm of  the
 system is less than <span class="math notranslate nohighlight">\(\gamma\)</span> if it is dissipative with the following supply
@@ -729,55 +730,58 @@ s(w,z)=w^\text{T} w-\frac{1}{\gamma^2}z^\text{T} z
 <p>\begin{equation}
 P&gt;0
 \end{equation}</p>
-<p>\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\B^\text{T} P  &amp; - I &amp;
-D^\text{T}\C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\\B^\text{T} P  &amp; - I &amp;
+D^\text{T}\\C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\end{equation}\end{split}\]</div>
 <p>Now, if we write the same LMI for the closed loop system, we have:</p>
 <p>\begin{equation}
 P&gt;0
 \end{equation}
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) &amp; {\color{red} P}B_w &amp;
-(C+D_u{\color{red} K})^\text{T}\B_w^\text{T} {\color{red} P}  &amp; - I &amp;
-D_w^\text{T}\C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
-\end{equation}</p>
+(C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  &amp; - I &amp;
+D_w^\text{T}\\C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\end{equation}\)</span>$</p>
 <p>Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:</p>
-<p>\begin{equation}
-\left[\begin{matrix}Q &amp; 0&amp; 0\0&amp;I&amp;0\0&amp;0&amp; I\end{matrix}\right]
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+\left[\begin{matrix}Q &amp; 0&amp; 0\\0&amp;I&amp;0\\0&amp;0&amp; I\end{matrix}\right]
+\end{equation}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Q=P^{-1}\)</span>. The result is:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
 +(A+B_u{\color{red} K}){\color{red} Q} &amp; B_w &amp; {\color{red} Q}(C+D_u{\color{red}
-K})^\text{T}\B_w^\text{T}  &amp; - I &amp; D_w^\text{T}\(C+D_u{\color{red}
+K})^\text{T}\\B_w^\text{T}  &amp; - I &amp; D_w^\text{T}\\(C+D_u{\color{red}
 K}){\color{red} Q}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
-\end{equation}</p>
+\end{equation}\end{split}\]</div>
 <p>Now, if we define <span class="math notranslate nohighlight">\(Y=KQ\)</span>, we have the following LMI:
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} &amp; B_w &amp; {\color{red}
-Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\B_w^\text{T}  &amp; - I &amp;
-D_w^\text{T}\C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\\B_w^\text{T}  &amp; - I &amp;
+D_w^\text{T}\\C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
 \end{matrix}\right]&lt; 0
-\end{equation}
+\end{equation}\)</span>$
 This LMI can be rearranged as:
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} &amp; {\color{red} Q}C^\text{T}+{\color{red}
-Y}^\text{T}D_u^\text{T} &amp; B_w \C{\color{red} Q}+D_u{\color{red}
-Y}&amp;-\gamma^2I&amp;D_w\B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
-\end{equation}
+Y}^\text{T}D_u^\text{T} &amp; B_w \\C{\color{red} Q}+D_u{\color{red}
+Y}&amp;-\gamma^2I&amp;D_w\\B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
+\end{equation}\)</span>$
 Using the Schur complement, we can now write the LMI as:
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} &amp; {\color{red}
 Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
-\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
+\\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]&lt; 0
-\end{equation}
+\end{equation}\)</span>$
 This LMI is the same as we were looking for and it ends the proof.</p>
 </div>
 <div class="section" id="generalized-mathcal-h-2-gain-bounded-l-2-rightarrow-bounded-l-infty">
@@ -804,10 +808,10 @@ s(w,z)=w^\text{T}w
 <div class="section" id="generalized-mathcal-h-2-state-feedback-controller">
 <h3>Generalized <span class="math notranslate nohighlight">\(\mathcal{H}_2\)</span> State Feedback Controller<a class="headerlink" href="#generalized-mathcal-h-2-state-feedback-controller" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following linear system:
-\begin{align}
-\dot x=&amp;Ax+B_ww+B_uu\nonumber\
+<span class="math notranslate nohighlight">\($\begin{align}
+\dot x=&amp;Ax+B_ww+B_uu\nonumber\\
 z =&amp;C_zx+D_uu
-\end{align}
+\end{align}\)</span>$
 where <span class="math notranslate nohighlight">\(u\)</span> is the control input. We would like to design a controller of the form
 <span class="math notranslate nohighlight">\(u=Kx\)</span> such that for the closed loop system:
 \begin{equation}
