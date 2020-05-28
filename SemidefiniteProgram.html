@@ -181,66 +181,74 @@ numbers. The later type is defined by the proper cone of the nonnegative orthant
 (<span class="math notranslate nohighlight">\(\mathbb{R}^n_+\)</span>) in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. One natural extension of the optimization
 problems we have seen so far is to define the inequalities by the proper cone of
 positive semidefinite matrices. For example, consider the following linear
-optimization problem:
-\begin{align}
-\text{minimize}  &amp; c^\text{T}x\nonumber\
-\text{subject to}&amp; Fx+g\preccurlyeq_{\mathcal{S}^n_+} 0\nonumber\
-&amp; Ax=b
-\end{align}
-where <span class="math notranslate nohighlight">\(\mathcal{S}^n_+\)</span> is the cone of positive semidefinite matrices in
+optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\\
+\text{subject to}&amp; Fx+g\preccurlyeq_{\mathcal{S}^n_+} 0\nonumber\\
+                 &amp; Ax=b
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{S}^n_+\)</span> is the cone of positive semidefinite matrices in
 <span class="math notranslate nohighlight">\(\mathcal{R}^{n\times n}\)</span>. In other words, the first constraint of the above
 optimization problem says that <span class="math notranslate nohighlight">\(Fx+g\)</span> is positive semidefinite. This is an
 extension of linear programming.</p>
-<p>A semidefinite program (SDP) is defined as:
-\begin{align}
-\text{minimize}  &amp; c^\text{T}x\nonumber\
-\text{subject to}&amp; x_1F_1+x_2F_2+\cdots+x_nF_n+G \leq 0\nonumber\
-&amp; Ax=b
-\end{align}
-where <span class="math notranslate nohighlight">\(x =\left[\begin{matrix}x_1&amp;x_2&amp;\cdots&amp;x_n\end{matrix}\right]^\text{T}\)</span> is
+<p>A semidefinite program (SDP) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}  &amp; c^\text{T}x\nonumber\\
+\text{subject to}&amp; x_1F_1+x_2F_2+\cdots+x_nF_n+G \leq 0\nonumber\\
+                 &amp; Ax=b
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x =\left[\begin{matrix}x_1&amp;x_2&amp;\cdots&amp;x_n\end{matrix}\right]^\text{T}\)</span> is
 a vector in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(F_i, i=1,\ldots,m\)</span> and <span class="math notranslate nohighlight">\(G\)</span> are symetric matrices
 in <span class="math notranslate nohighlight">\(\mathcal{R}^{m\times m}\)</span>.</p>
-<p>Note that the standard LP problem:
-\begin{align}
-\text{minimize}&amp;c^\text{T}x\nonumber\
-&amp;Ax\preccurlyeq b
-\end{align}
-can be written as the following SDP problem:
-\begin{align}
-\text{minimize}&amp;c^\text{T}x\nonumber\
-&amp;\text{diag}(Ax) \leq b
-\end{align}
-where <span class="math notranslate nohighlight">\(\text{diag}(v)\)</span> for <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span> is a diagonal matrix in
+<p>Note that the standard LP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;Ax\preccurlyeq b
+\end{align}\end{split}\]</div>
+<p>can be written as the following SDP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;\text{diag}(Ax) \leq b
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{diag}(v)\)</span> for <span class="math notranslate nohighlight">\(v\in\mathbb{R}^n\)</span> is a diagonal matrix in
 <span class="math notranslate nohighlight">\(\mathbb{R}^{n\times n}\)</span> with <span class="math notranslate nohighlight">\(v\)</span> as the main diagonal.</p>
-<p>Also the standard SOCP problem:
-\begin{align}
-\text{minimize}&amp;c^\text{T}x\nonumber\
-&amp;|A_ix+b_i|_2 \leq c_i^\text{T}x+d_i,\ i=1,\ldots,m
-\end{align}
-can be written as the following SDP problem:
-\begin{align}
-\text{minimize}&amp;c^\text{T}x\nonumber\
-&amp; \left[\begin{matrix} (c_i^\text{T}x+d_i)I &amp; A_ix+b_i\ A_ix+b_i
+<p>Also the standard SOCP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp;\|A_ix+b_i\|_2 \leq c_i^\text{T}x+d_i,\ i=1,\ldots,m
+\end{align}\end{split}\]</div>
+<p>can be written as the following SDP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}&amp;c^\text{T}x\nonumber\\
+               &amp; \left[\begin{matrix} (c_i^\text{T}x+d_i)I &amp; A_ix+b_i\\ A_ix+b_i
 &amp; c_i^\text{T}x+d_i\end{matrix}\right] \geq 0,\ i=1,\ldots,m
-\end{align}</p>
+\end{align}\end{split}\]</div>
 <p><em>Example (eigenvalue minimization):</em> Consider minimizing the maximum eigenvalue
-of matrix <span class="math notranslate nohighlight">\(A(x)\)</span>:
-\begin{align}
+of matrix <span class="math notranslate nohighlight">\(A(x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{align}
 \text{minimize}&amp; \lambda_\max(A(x))
-\end{align}
-where <span class="math notranslate nohighlight">\(A(x)=A_0+x_1A_1+\cdots+x_nA_n\)</span> where <span class="math notranslate nohighlight">\(A_i\)</span>’s are symmetric matrices. This
-problem can be written as the following SDP problem:
-\begin{align}
-\text{minimize}&amp;t\nonumber\
-&amp; A(x)\leq tI
-\end{align}
-As a numerical example, consider:
-\begin{equation}
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A(x)=A_0+x_1A_1+\cdots+x_nA_n\)</span> where <span class="math notranslate nohighlight">\(A_i\)</span>’s are symmetric matrices. This
+problem can be written as the following SDP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize}&amp;t\nonumber\\
+               &amp; A(x)\leq tI
+\end{align}\end{split}\]</div>
+<p>As a numerical example, consider:</p>
+<p>\begin{equation}
 A(x) = \left[\begin{matrix} x_3 &amp; 0 &amp; 0 &amp; x_1+x_2-2\ 0 &amp; x_3 &amp; 0 &amp;
 2x_1+x_2-3\0 &amp; 0 &amp; x_3 &amp; 3x_1+2x_2-4\ x_1+x_2-2 &amp; 2x_1+x_2-3 &amp; 3x_1+2x_2-4 &amp;
 x_3 \end{matrix}\right]
-\end{equation}
-We would like to minimize the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> subject to <span class="math notranslate nohighlight">\(A\)</span> being a
+\end{equation}</p>
+<p>We would like to minimize the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> subject to <span class="math notranslate nohighlight">\(A\)</span> being a
 positive semidefinite matrix. The following code solves this problem:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x1 = cp.Variable()
 x2 = cp.Variable()
