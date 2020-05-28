@@ -247,7 +247,7 @@ where $A_i$ for $i=1,\ldots,L$ are known matrices and $\alpha_i$ for
 $i=1,\ldots,L$ are unknown scalars such that:
 
 \begin{equation}
-\sum_\alpha_{i=1}^L \alpha_i=1
+\sum_{i=1}^L \alpha_i=1
 \end{equation}
 
 This system can also be written as a linear differential inclusion:
