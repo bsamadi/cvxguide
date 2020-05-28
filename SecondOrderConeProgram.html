@@ -268,10 +268,11 @@ problem:</p>
                 &amp; -t_i \leq x_i \leq t_i, i=1,\ldots,n
 \end{align}\end{split}\]</div>
 <p>As a numerical example, consider:</p>
-<p>\begin{equation}
-A = \bmat{cc} 1 &amp; 1 \ 2 &amp; 1\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\ 3 \ 4\emat,\ \gamma
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+A = \bmat{cc} 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat,\ \gamma
 = 0.5
-\end{equation}</p>
+\end{equation}\end{split}\]</div>
 <p>The optimization problem can be solved using the following code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x = cp.Variable(2)
 t = cp.Variable(1)

@@ -112,10 +112,10 @@ $$\begin{align}
 
 As a numerical example, consider:
 
-\begin{equation}
+$$\begin{equation}
 A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat,\ \gamma
 = 0.5
-\end{equation}
+\end{equation}$$
 
 The optimization problem can be solved using the following code:
 
