@@ -51,11 +51,11 @@ then $x^\star$ is a stable equilibrium point. Moreover if there exists a
 continuous function $Q(x)$ such that:
 
 $$\begin{align}
-Q(x^\star)=0,\nonumber\\
-Q(x)>0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
-t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))+\int_{t_1}^{t_2}
+&&Q(x^\star)=0,\nonumber\\
+&&Q(x)>0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
+&&t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))+\int_{t_1}^{t_2}
 Q(\phi(\tau,x_0))d\tau\nonumber\\
-\|x\|\rightarrow\infty \Rightarrow V(x)\rightarrow\infty
+&&\|x\|\rightarrow\infty \Rightarrow V(x)\rightarrow\infty
 \end{align}$$
 
 then $x^\star$ is an asymptotically stable equilibrium point.
