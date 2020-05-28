@@ -226,9 +226,7 @@ not have an analytic solution:</p>
 \end{align}\end{split}\]</div>
 <p>As a numerical example, consider:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}A = \begin{bmatrix} 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \end{bmatrix},\ b=\begin{bmatrix} 2\\ 3 \\ 4\end{bmatrix}\end{equation}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}\bmat 1^\TR &amp; \RR \\ \RE &amp; 1\\ 3 &amp; 2 \emat\end{equation}\end{split}\]</div>
+\[\begin{split}\begin{equation}A = \bmat 1 &amp; 1 \\ 2 &amp; 1\\ 3 &amp; 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat\end{equation}\end{split}\]</div>
 <p>The analytical answer to <span class="math notranslate nohighlight">\(Ax=b\)</span> is computed as:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = np.array([[1,1],[2,1],[3,2]])
 b = np.array([[2], [3], [4]])
