@@ -243,11 +243,12 @@ problem can be written as the following SDP problem:</p>
                &amp; A(x)\leq tI
 \end{align}\end{split}\]</div>
 <p>As a numerical example, consider:</p>
-<p>\begin{equation}
-A(x) = \left[\begin{matrix} x_3 &amp; 0 &amp; 0 &amp; x_1+x_2-2\ 0 &amp; x_3 &amp; 0 &amp;
-2x_1+x_2-3\0 &amp; 0 &amp; x_3 &amp; 3x_1+2x_2-4\ x_1+x_2-2 &amp; 2x_1+x_2-3 &amp; 3x_1+2x_2-4 &amp;
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+A(x) = \left[\begin{matrix} x_3 &amp; 0 &amp; 0 &amp; x_1+x_2-2\\ 0 &amp; x_3 &amp; 0 &amp;
+2x_1+x_2-3\\0 &amp; 0 &amp; x_3 &amp; 3x_1+2x_2-4\\ x_1+x_2-2 &amp; 2x_1+x_2-3 &amp; 3x_1+2x_2-4 &amp;
 x_3 \end{matrix}\right]
-\end{equation}</p>
+\end{equation}\end{split}\]</div>
 <p>We would like to minimize the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> subject to <span class="math notranslate nohighlight">\(A\)</span> being a
 positive semidefinite matrix. The following code solves this problem:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x1 = cp.Variable()
