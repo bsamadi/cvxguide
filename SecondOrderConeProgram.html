@@ -174,43 +174,47 @@
                 
   <div class="section" id="second-order-cone-program">
 <h1>Second order cone program<a class="headerlink" href="#second-order-cone-program" title="Permalink to this headline">¶</a></h1>
-<p>A second order cone program (SOCP) is defined as:
-\begin{align}
-\text{minimize }&amp; f^\text{T}x\nonumber\
-\text{subject to }&amp;|A_ix+b_i|_2\leq c_i^\text{T}x+d_i,<br />
-i=1,\ldots,m\nonumber\
-&amp;Fx = g
-\end{align}
-Note that:</p>
+<p>A second order cone program (SOCP) is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp; f^\text{T}x\nonumber\\
+\text{subject to }&amp;\|A_ix+b_i\|_2\leq c_i^\text{T}x+d_i,\
+i=1,\ldots,m\nonumber\\
+                  &amp;Fx = g
+\end{align}\end{split}\]</div>
+<p>Note that:</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(c_i=0\)</span> for <span class="math notranslate nohighlight">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a QP.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(A_i=0\)</span> for <span class="math notranslate nohighlight">\(i=1,\ldots,m\)</span>, the SOCP is equivalent to a LP.</p></li>
 </ul>
-<p><em>Example (robust linear program):</em> Consider the following LP problem:
-\begin{align}
-\text{minimize }&amp;c^\text{T}x\nonumber\
+<p><em>Example (robust linear program):</em> Consider the following LP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
 \text{subject to }&amp; a_i^\text{T}x \leq b_i,\ i=1,\ldots,m
-\end{align}
-where the parameters are assumed to be uncertain. For simplicity, let us assume
+\end{align}\end{split}\]</div>
+<p>where the parameters are assumed to be uncertain. For simplicity, let us assume
 that <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(b_i\)</span> are known and <span class="math notranslate nohighlight">\(a_i\)</span> are uncertain and belong to given
-ellipsoids:
-\begin{equation}
+ellipsoids:</p>
+<p>\begin{equation}
 a_i \in \mathcal{E}_i = {\bar a_i+P_iu|\ |u|_2\leq 1}
-\end{equation}
-For each constraint <span class="math notranslate nohighlight">\(a_i^\text{T}x\leq b_i\)</span>, it is sufficient that the suprimum
+\end{equation}</p>
+<p>For each constraint <span class="math notranslate nohighlight">\(a_i^\text{T}x\leq b_i\)</span>, it is sufficient that the suprimum
 value of <span class="math notranslate nohighlight">\(a_i^\text{T}x\)</span> be less than or equal to <span class="math notranslate nohighlight">\(b_i\)</span>. The supremum value can
-be written as:
-\begin{align}
-\sup{a_i^\text{T}x|a_i\in\mathcal{E}_i } =&amp; \bar a_i^\text{T}x+\sup{
-u^\text{T}P_i^\text{T}x |\ |u|_2\leq 1}\nonumber\
-&amp;\bar a_i^\text{T}x+|P_i^\text{T}x|_2
-\end{align}
-Therefore, the robust LP problem can be written as the following SOCP problem:
-\begin{align}
-\text{minimize }&amp;c^\text{T}x\nonumber\
-\text{subject to }&amp; \bar a_i^\text{T}x+|P_i^\text{T}x|_2 \leq b_i,<br />
+be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\sup\{a_i^\text{T}x|a_i\in\mathcal{E}_i \} =&amp; \bar a_i^\text{T}x+\sup\{
+u^\text{T}P_i^\text{T}x |\ \|u\|_2\leq 1\}\nonumber\\
+&amp;\bar a_i^\text{T}x+\|P_i^\text{T}x\|_2
+\end{align}\end{split}\]</div>
+<p>Therefore, the robust LP problem can be written as the following SOCP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; \bar a_i^\text{T}x+\|P_i^\text{T}x\|_2 \leq b_i,\
 i=1,\ldots,m
-\end{align}</p>
+\end{align}\end{split}\]</div>
 <p><em>Example (stochastic linear program):</em> The same robust LP problem can be
 addressed in a stochastic framework. In this framework, <span class="math notranslate nohighlight">\(a_i\)</span> are assumed to be
 independent normal random vectors with the distribution <span class="math notranslate nohighlight">\(\mathcal{N}(\bar a_i,
@@ -220,51 +224,55 @@ should be satisfied with a probability more than <span class="math notranslate n
 variable with mean <span class="math notranslate nohighlight">\(\bar u=\bar a_i^\text{T}x\)</span> and variance
 <span class="math notranslate nohighlight">\(\sigma=x^\text{T}\Sigma_ix\)</span>. The probability of <span class="math notranslate nohighlight">\(a_i^\text{T}x\)</span> being less than
 <span class="math notranslate nohighlight">\(b_i\)</span> is <span class="math notranslate nohighlight">\(\Phi((b_i-\bar u)/\sigma)\)</span> where <span class="math notranslate nohighlight">\(\Phi(z)\)</span> is the cumulative
-distribution function of a zero mean unit variance Gaussian random variable:
-\begin{equation}
+distribution function of a zero mean unit variance Gaussian random variable:</p>
+<p>\begin{equation}
 \Phi(z)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^ze^{-t^2/2}dt
-\end{equation}
-Therefore, for the probability of <span class="math notranslate nohighlight">\(a_i^\text{T}x\leq b_i\)</span> be larger than <span class="math notranslate nohighlight">\(\eta\)</span>,
-we should have:
-\begin{equation}
+\end{equation}</p>
+<p>Therefore, for the probability of <span class="math notranslate nohighlight">\(a_i^\text{T}x\leq b_i\)</span> be larger than <span class="math notranslate nohighlight">\(\eta\)</span>,
+we should have:</p>
+<p>\begin{equation}
 \Phi\left(\frac{b_i-\bar u}{\sigma}\right)\geq \eta
-\end{equation}
-This is equivalent to:
-\begin{align}
-\bar a_i^\text{T}x+\Phi^{-1}(\eta)\sigma\leq b_i \nonumber\
-\bar a_i^\text{T}x+\Phi^{-1}(\eta)|\Sigma^{1/2}x|_2 \leq b_i
-\end{align}
-Therefore, the stochastic LP problem:
-\begin{align}
-\text{minimize }&amp;c^\text{T}x\nonumber\
+\end{equation}</p>
+<p>This is equivalent to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\bar a_i^\text{T}x+\Phi^{-1}(\eta)\sigma\leq b_i \nonumber\\
+\bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq b_i
+\end{align}\end{split}\]</div>
+<p>Therefore, the stochastic LP problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
 \text{subject to }&amp; \text{prob} (a_i^\text{T}x \leq b_i)\geq \eta,\ i=1,\ldots,m
-\end{align}
-can be reformulated as the following SOCP:
-\begin{align}
-\text{minimize }&amp;c^\text{T}x\nonumber\
-\text{subject to }&amp; \bar a_i^\text{T}x+\Phi^{-1}(\eta)|\Sigma^{1/2}x|_2 \leq
+\end{align}\end{split}\]</div>
+<p>can be reformulated as the following SOCP:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp;c^\text{T}x\nonumber\\
+\text{subject to }&amp; \bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq
 b_i,\ i=1,\ldots,m
-\end{align}</p>
+\end{align}\end{split}\]</div>
 <p><em>Example:</em> Consider the equation <span class="math notranslate nohighlight">\(Ax=b\)</span> where <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>,
 <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(b\in\mathbb{R}^m\)</span>. It is assumed that <span class="math notranslate nohighlight">\(m&gt;n\)</span>.
-Let us consider the following optimization problem:
-\begin{equation}
+Let us consider the following optimization problem:</p>
+<p>\begin{equation}
 \text{minimize }|Ax-b|_2+\gamma|x|_1
-\end{equation}
-The objective function is a weighted sum of the 2-norm of equation error and the
+\end{equation}</p>
+<p>The objective function is a weighted sum of the 2-norm of equation error and the
 1-norm of <span class="math notranslate nohighlight">\(x\)</span>. The optimization problem can be written as the following SOCP
-problem:
-\begin{align}
-\text{minimize }&amp; t\nonumber\
-&amp; |Ax-b|<em>2+\gamma \sum</em>{i=1}^n t_i\leq t\nonumber\
-&amp; -t_i \leq x_i \leq t_i, i=1,\ldots,n
-\end{align}
-As a numerical example, consider:
-\begin{equation}
+problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+\text{minimize }&amp; t\nonumber\\
+                &amp; \|Ax-b\|_2+\gamma \sum_{i=1}^n t_i\leq t\nonumber\\
+                &amp; -t_i \leq x_i \leq t_i, i=1,\ldots,n
+\end{align}\end{split}\]</div>
+<p>As a numerical example, consider:</p>
+<p>\begin{equation}
 A = \bmat{cc} 1 &amp; 1 \ 2 &amp; 1\ 3 &amp; 2 \emat,\ b=\bmat{c} 2\ 3 \ 4\emat,\ \gamma
 = 0.5
-\end{equation}
-The optimization problem can be solved using the following code:</p>
+\end{equation}</p>
+<p>The optimization problem can be solved using the following code:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>x = cp.Variable(2)
 t = cp.Variable(1)
 t1 = cp.Variable(1)

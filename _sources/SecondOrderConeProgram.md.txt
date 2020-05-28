@@ -1,42 +1,51 @@
 # Second order cone program
 
 A second order cone program (SOCP) is defined as:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }& f^\text{T}x\nonumber\\
 \text{subject to }&\|A_ix+b_i\|_2\leq c_i^\text{T}x+d_i,\
 i=1,\ldots,m\nonumber\\
                   &Fx = g
-\end{align}
+\end{align}$$
+
 Note that:
 
 - If $c_i=0$ for $i=1,\ldots,m$, the SOCP is equivalent to a QP.
 - If $A_i=0$ for $i=1,\ldots,m$, the SOCP is equivalent to a LP.
 
 *Example (robust linear program):* Consider the following LP problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }& a_i^\text{T}x \leq b_i,\ i=1,\ldots,m
-\end{align}
+\end{align}$$
+
 where the parameters are assumed to be uncertain. For simplicity, let us assume
 that $c$ and $b_i$ are known and $a_i$ are uncertain and belong to given
 ellipsoids:
+
 \begin{equation}
 a_i \in \mathcal{E}_i = \{\bar a_i+P_iu|\ \|u\|_2\leq 1\}
 \end{equation}
+
 For each constraint $a_i^\text{T}x\leq b_i$, it is sufficient that the suprimum
 value of $a_i^\text{T}x$ be less than or equal to $b_i$. The supremum value can
 be written as:
-\begin{align}
+
+$$\begin{align}
 \sup\{a_i^\text{T}x|a_i\in\mathcal{E}_i \} =& \bar a_i^\text{T}x+\sup\{
 u^\text{T}P_i^\text{T}x |\ \|u\|_2\leq 1\}\nonumber\\
 &\bar a_i^\text{T}x+\|P_i^\text{T}x\|_2
-\end{align}
+\end{align}$$
+
 Therefore, the robust LP problem can be written as the following SOCP problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }& \bar a_i^\text{T}x+\|P_i^\text{T}x\|_2 \leq b_i,\
 i=1,\ldots,m
-\end{align}
+\end{align}$$
 
 *Example (stochastic linear program):* The same robust LP problem can be
 addressed in a stochastic framework. In this framework, $a_i$ are assumed to be
@@ -49,51 +58,65 @@ variable with mean $\bar u=\bar a_i^\text{T}x$ and variance
 $\sigma=x^\text{T}\Sigma_ix$. The probability of $a_i^\text{T}x$ being less than
 $b_i$ is $\Phi((b_i-\bar u)/\sigma)$ where $\Phi(z)$ is the cumulative
 distribution function of a zero mean unit variance Gaussian random variable:
+
 \begin{equation}
 \Phi(z)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^ze^{-t^2/2}dt
 \end{equation}
+
 Therefore, for the probability of $a_i^\text{T}x\leq b_i$ be larger than $\eta$,
 we should have:
+
 \begin{equation}
 \Phi\left(\frac{b_i-\bar u}{\sigma}\right)\geq \eta
 \end{equation}
+
 This is equivalent to:
-\begin{align}
+
+$$\begin{align}
 \bar a_i^\text{T}x+\Phi^{-1}(\eta)\sigma\leq b_i \nonumber\\
 \bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq b_i
-\end{align}
+\end{align}$$
+
 Therefore, the stochastic LP problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }& \text{prob} (a_i^\text{T}x \leq b_i)\geq \eta,\ i=1,\ldots,m
-\end{align}
+\end{align}$$
+
 can be reformulated as the following SOCP:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }&c^\text{T}x\nonumber\\
 \text{subject to }& \bar a_i^\text{T}x+\Phi^{-1}(\eta)\|\Sigma^{1/2}x\|_2 \leq
 b_i,\ i=1,\ldots,m
-\end{align}
-
+\end{align}$$
 
 *Example:* Consider the equation $Ax=b$ where $x\in\mathbb{R}^n$,
 $A\in\mathbb{R}^{m\times n}$ and $b\in\mathbb{R}^m$. It is assumed that $m>n$.
 Let us consider the following optimization problem:
+
 \begin{equation}
 \text{minimize }\|Ax-b\|_2+\gamma\|x\|_1
 \end{equation}
+
 The objective function is a weighted sum of the 2-norm of equation error and the
 1-norm of $x$. The optimization problem can be written as the following SOCP
 problem:
-\begin{align}
+
+$$\begin{align}
 \text{minimize }& t\nonumber\\
                 & \|Ax-b\|_2+\gamma \sum_{i=1}^n t_i\leq t\nonumber\\
                 & -t_i \leq x_i \leq t_i, i=1,\ldots,n
-\end{align}
+\end{align}$$
+
 As a numerical example, consider:
+
 \begin{equation}
 A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat,\ \gamma
 = 0.5
 \end{equation}
+
 The optimization problem can be solved using the following code:
 
 
