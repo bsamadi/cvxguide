@@ -93,9 +93,9 @@ A^\text{T}P+PA<0
 
 *Example:* Consider a linear system with:
 
-\begin{equation}
+$$\begin{equation}
 A=\left[\begin{matrix}0&1\\-1&-2\end{matrix}\right]
-\end{equation}
+\end{equation}$$
 
 The eigenvalues of $A$ are negative:
 

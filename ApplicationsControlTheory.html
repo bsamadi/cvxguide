@@ -284,9 +284,10 @@ P&gt;0\nonumber\\
 A^\text{T}P+PA&lt;0
 \end{align}\end{split}\]</div>
 <p><em>Example:</em> Consider a linear system with:</p>
-<p>\begin{equation}
-A=\left[\begin{matrix}0&amp;1-1&amp;-2\end{matrix}\right]
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+A=\left[\begin{matrix}0&amp;1\\-1&amp;-2\end{matrix}\right]
+\end{equation}\end{split}\]</div>
 <p>The eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are negative:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = np.matrix(&#39;0 1; -1 -2&#39;)
 np.linalg.eig(A)[0]
