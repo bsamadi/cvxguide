@@ -239,9 +239,9 @@ Consider the following linear system:
 
 where $A\in\mathbb{R}^{n\times n}$ is an uncertain matrix such that:
 
-\begin{equation}
+$$\begin{equation}
 A(\alpha)=\sum_{i=1}^L \alpha_i A_i
-\end{equation}
+\end{equation}$$
 
 where $A_i$ for $i=1,\ldots,L$ are known matrices and $\alpha_i$ for
 $i=1,\ldots,L$ are unknown scalars such that:
