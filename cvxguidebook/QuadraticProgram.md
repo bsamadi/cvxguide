@@ -59,9 +59,7 @@ $$\begin{align}
 
 As a numerical example, consider:
 
-$$\begin{equation}A = \begin{bmatrix} 1 & 1 \\ 2 & 1\\ 3 & 2 \end{bmatrix},\ b=\begin{bmatrix} 2\\ 3 \\ 4\end{bmatrix}\end{equation}$$
-
-$$\begin{equation}\bmat 1^\TR & \RR \\ \RE & 1\\ 3 & 2 \emat\end{equation}$$
+$$\begin{equation}A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat\end{equation}$$
 
 The analytical answer to $Ax=b$ is computed as:
 
