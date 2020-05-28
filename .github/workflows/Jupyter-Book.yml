@@ -36,10 +36,10 @@ jobs:
         run: pip install -U "jupyter-book>=0.7.0b"
         
       - name: Build
-        run: jupyter-book build cvxguidebook/
+        run: jupyter-book build cvxguide_jbook/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cvxguidebook/_build/html
+          publish_dir: ./cvxguide_jbook/_build/html
