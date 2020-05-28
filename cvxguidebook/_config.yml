@@ -32,7 +32,7 @@ sphinx:
           "TR"              : "{\\text{T}}"
           "beq"             : "\\begin{equation}"
           "eeq"             : "\\end{equation}"
-          "bmat"            : "{\\begin{bmatrix}}"
+          "bmat"            : "\\begin{bmatrix}"
           "emat"            : "\\end{bmatrix}"
           "bsmat"           : "\\left[\\begin{smallmatrix}"
           "esmat"           : "\\end{smallmatrix}\\right]"
