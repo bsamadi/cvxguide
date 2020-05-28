@@ -8,13 +8,16 @@ optimization in control theory.
 ### Stability
 
 Consider the following autonomous system:
+
 \begin{equation}
 \dot x = f(x),\ x(0)=x_0
 \end{equation}
+
 with $x\in\mathbb{R}^n$ and $t\geq 0$. A solution of this system with initial
 condition $x(0)=x_0$ is denoted by $\phi(t,x_0)$.
 
 $x^\star$ is an equilibrium point of this system if:
+
 \begin{equation}
 \forall t \geq 0, \phi(t,x^\star)=x^\star
 \end{equation}
@@ -37,13 +40,16 @@ attractive.
 
 *Theorem [3]:* If there exists a continuous function $V(x)$ defined in a forward
 invariant set $\mathcal{X}$ of the autonomous system (*) such that:
-\begin{align}
+
+$$\begin{align}
 V(x^\star)=0,\nonumber\\
 V(x) > 0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
 t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))
-\end{align}
+\end{align}$$
+
 then $x^\star$ is a stable equilibrium point. Moreover if there exists a
 continuous function $Q(x)$ such that:
+
 \begin{equation}
 Q(x^\star)=0,\nonumber\\
 Q(x)>0,\ \forall x\in\mathcal{X} \text{ such that } x\neq x^\star\nonumber\\
@@ -51,37 +57,46 @@ t_1\leq t_2\Rightarrow V(\phi(t_1,x_0)) \geq V(\phi(t_2,x_0))+\int_{t_1}^{t_2}
 Q(\phi(\tau,x_0))d\tau\nonumber\\
 \|x\|\rightarrow\infty \Rightarrow V(x)\rightarrow\infty
 \end{equation}
+
 then $x^\star$ is an asymptotically stable equilibrium point.
 
 #### Linear Systems
 
 Consider the linear system:
+
 \begin{equation}
 \dot x=Ax, x(0)=x_0
 \end{equation}
+
 where $x\in\mathbb{R}^n$. The only equilibrium point of this system is
 $x^\star=0$. Consider the following candidate Lyapunov function:
+
 \begin{equation}
 V(x)=x^\text{T}Px
 \end{equation}
+
 where $P\in\mathbb{n\times n}$ is a positive definite matrix and therefore
 $V(x)>0$ for $x\neq 0$. The linear system () is stable if there exists a $P$:
+
 \begin{equation}
 \dot V(x) = (Ax)^\text{T}Px+x^\text{T}PAx < 0
 \end{equation}
+
 In case of linear systems, the existence of a Lyapunov function is a necessary
 and sufficient condition for stability. The Lyapunov conditions can be written
 as the following linear matrix inequalities:
-\begin{align}
+
+$$\begin{align}
 P>0\nonumber\\
 A^\text{T}P+PA<0
-\end{align}
-
+\end{align}$$
 
 *Example:* Consider a linear system with:
+
 \begin{equation}
 A=\left[\begin{matrix}0&1\\-1&-2\end{matrix}\right]
 \end{equation}
+
 The eigenvalues of $A$ are negative:
 
 
@@ -128,16 +143,20 @@ of the above LMIs is:
     
 
 However, this is the trivial answer of these LMIs:
-\begin{align}
+
+$$\begin{align}
 P\geq 0\nonumber\\
 A^\text{T}P+PA\leq 0
-\end{align}
+\end{align}$$
+
 In order to find a feasible answer for strict inequalities using non-strict
 inequalities, we can rewrite the inequalities as:
-\begin{align}
+
+$$\begin{align}
 P-\epsilon I\geq 0\nonumber\\
 A^\text{T}P+PA+\alpha P\leq 0
-\end{align}
+\end{align}$$
+
 Let us now solve the following LMIs to find a valid Lyapunov function for the
 linear system:
 
@@ -213,38 +232,50 @@ We can verify the inequalities by computing the eigenvalues:
 #### Uncertain Linear Systems
 
 Consider the following linear system:
+
 \begin{equation}
 \dot x=A(\alpha)x, x(0)=x_0
 \end{equation}
+
 where $A\in\mathbb{R}^{n\times n}$ is an uncertain matrix such that:
+
 \begin{equation}
 A(\alpha)=\sum_{i=1}^L \alpha_i A_i
 \end{equation}
+
 where $A_i$ for $i=1,\ldots,L$ are known matrices and $\alpha_i$ for
 $i=1,\ldots,L$ are unknown scalars such that:
+
 \begin{equation}
 \sum_\alpha_{i=1}^L \alpha_i=1
 \end{equation}
+
 This system can also be written as a linear differential inclusion:
+
 \begin{equation}
 \dot x\in Ax
 \end{equation}
+
 where $A\in\text{conv}(\{A_1,\ldots,A_L\})$
 Using the Lyapunov theorem, it can be shown that the uncertain linear system is
 asymptotically stable if there exists a $P$ such that:
-\begin{align}
+
+$$\begin{align}
 P &> 0\nonumber\\
 A_i^\text{T}P+PA_i &< 0, i=1,\ldots,L
-\end{align}
+\end{align}$$
+
 Note that this condition is stronger than saying all the $A_i$'s have to be
 stable. In addition to that, it is required that all the $A_i$'s share the same
 $P$.
 
 *Example:* Consider the uncertain linear system () with $L=2$ and:
+
 \begin{equation}
 A_1=\left[\begin{matrix}1&-2\\2&-2\end{matrix}\right],\
 A_2=\left[\begin{matrix}1&2\\-2&-2\end{matrix}\right]
 \end{equation}
+
 The eigenvalues of $A_1$ and $A_2$ are on the left side of the complex plane and
 even equal:
 
@@ -307,23 +338,31 @@ That is a proof for the following LMIs to be infeasible:
 #### State Feedback Controller
 
 Consider the following linear system:
+
 \begin{equation}
 \dot x=Ax+Bu
 \end{equation}
+
 where $x\in\mathbb{R}^n$ and $u\in\mathbb{R}^m$ denote the state and input
 vectors. The objective is to design a state feedback of the form:
+
 \begin{equation}
 u = Kx
 \end{equation}
+
 to stabilize the closed loop system:
+
 \begin{equation}
 \dot x = (A+BK)x
 \end{equation}
+
 This system is stable if there exists a $P$ such that:
-\begin{align}
+
+$$\begin{align}
 {\color{red}P}>0\nonumber\\
 (A+B{\color{red}K})^\text{T}{\color{red}P}+{\color{red}P}(A+B{\color{red}K}) < 0
-\end{align}
+\end{align}$$
+
 The unknown matrices in these inequalities are shown in red. As you see, this is
 not a LMI but it is a bilinear matrix inequality (BMI). BMI's are hard to solve
 in general. However, there is a trick for this special BMI to convert it to an
@@ -332,34 +371,44 @@ LMI.
 We know that the eigenvalues of a matrix and its transpose are the same.
 Therefore, the closed loop system () is stable if and only if its dual system is
 stable:
+
 \begin{equation}
 \dot x = (A+BK)x
 \end{equation}
+
 Now, let us write the stability inequalities for the dual system:
-\begin{align}
+
+$$\begin{align}
 {\color{red}Q}>0\nonumber\\
 (A+B{\color{red}K}){\color{red}Q}+{\color{red}Q}(A+B{\color{red}K})^\text{T} < 0
-\end{align}
+\end{align}$$
+
 This is still a BMI. However, if we define $Y=KQ$, we can write the inequalities
 as:
-\begin{align}
+
+$$\begin{align}
 {\color{red}Q}>0\nonumber\\
 A{\color{red}Q}+{\color{red}Q}A^\text{T}+B{\color{red}Y}+{\color{red}Y}^\text{T}
 B^\text{T} < 0
-\end{align}
+\end{align}$$
+
 Now, this is a LMI. After solving the LMI, if it is feasible, the controller
 gain $K$ can be computed as:
+
 \begin{equation}
 K = YQ^{-1}
 \end{equation}
+
 Another way of converting () to a LMI is to multiply both sides of both
 inequalities by $Q=P^{-1}$ and perform the same trick.
 
 *Example:* Consider the following linear system:
+
 \begin{equation}
 \dot x = \left[\begin{matrix}1&0.1\\0&-2\end{matrix}\right]x+\left[\begin{matrix
 }0\\1\end{matrix}\right]u
 \end{equation}
+
 The objective is to find $K$ such that with $u=Kx$ the closed loop system is
 stable.
 
@@ -410,30 +459,37 @@ The closed loop system is stable:
 Similar to stability for autonomous systems, there is a concept called
 dissipativity for dynamic systems with input. Consider the following dynamical
 system:
-\begin{align}
+
+$$\begin{align}
 \dot x=&f(x,w)\nonumber\\
 z=&g(x,w)
-\end{align}
+\end{align}$$
+
 where $x\in\mathbb{R}^n$ is the state, $u\in\mathbb{R}^m$ is the input and
 $z\in\mathbb{R}^p$ is the output vector.
 
 *Definition:* The system () is said to be dissipative with storage function $V$
 and supply rate $W$, if:
+
 \begin{equation}
 t_1\leq t_2\Rightarrow V(x(t_1))+\int_{t_1}^{t_2}W(z(\tau),w(\tau))d\tau\geq
 V(x(t_2))
 \end{equation}
+
 If the storage function and the trajectory of the system are smooth, this
 inequality can be written as:
+
 \begin{equation}
 \nabla_x V(x).\dot x\leq W(z,w)
 \end{equation}
 
 Now, consider the following linear system:
-\begin{align}
+
+$$\begin{align}
 \dot x=&Ax+Bw\nonumber\\
 z=&Cx+Dw
-\end{align}
+\end{align}$$
+
 with $x(0)=0$. It assumed that all the eigenvalues of $A$ have negative real
 values. In the followin, we will review a few special cases of dissipativity.
 
@@ -479,10 +535,10 @@ The following statements are equivalent:
 D+D^\text{T} \end{matrix}\right] < 0
   \end{equation}
 - If $D=0$, there exists $P>0$ satisfying:
-  \begin{align}
+  $$\begin{align}
   A^\text{T}P+PA<0\nonumber\\
   PB=C^\text{T}
-  \end{align}
+  \end{align}$$
 - System () is RLC realizable, i.e. there exists an RLC network with transfer
 function $T(j\omega)$.
 - For SISO systems:
@@ -521,16 +577,20 @@ D\\\\B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
 #### $\mathcal{H}_\infty$ State Feedback Controller
 
 Consider the following linear system:
-\begin{align}
+
+$$\begin{align}
 \dot x=&Ax+B_ww+B_uu\nonumber\\
 z =&C_zx+D_ww+D_uu
-\end{align}
+\end{align}$$
+
 where $u$ is the control input. We would like to design a controller of the form
 $u=Kx$ such that for the closed loop system:
 \begin{equation}
 \sup_{\|w\|_2\neq 0}\frac{\|z\|_2}{\|w\|_2}<\gamma
 \end{equation}
+
 The design problem can be formulated as the following matrix inequality:
+
 \begin{equation}
 Q>0
 \end{equation}
@@ -545,18 +605,24 @@ where $K=YQ^{-1}$
 **Proof:** It can easily be shown that the $\mathcal{H}_\infty$ norm of  the
 system is less than $\gamma$ if it is dissipative with the following supply
 rate:
+
 \begin{equation}
 s(w,z)=w^\text{T} w-\frac{1}{\gamma^2}z^\text{T} z
 \end{equation}
+
 Using this supply rate, the LMI's can be written as:
+
 \begin{equation}
 P>0
 \end{equation}
+
 \begin{equation}
 \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  & - I &
 D^\text{T}\\C&D&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}
+
 Now, if we write the same LMI for the closed loop system, we have:
+
 \begin{equation}
 P>0
 \end{equation}
@@ -566,18 +632,23 @@ P}+{\color{red} P}(A+B_u{\color{red} K}) & {\color{red} P}B_w &
 (C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  & - I &
 D_w^\text{T}\\C+D_u{\color{red} K}&D_w&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}
+
 Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:
+
 \begin{equation}
 \left[\begin{matrix}Q & 0& 0\\0&I&0\\0&0& I\end{matrix}\right]
 \end{equation}
+
 where $Q=P^{-1}$. The result is:
+
 \begin{equation}
 \left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
 +(A+B_u{\color{red} K}){\color{red} Q} & B_w & {\color{red} Q}(C+D_u{\color{red}
 K})^\text{T}\\B_w^\text{T}  & - I & D_w^\text{T}\\(C+D_u{\color{red}
 K}){\color{red} Q}&D_w&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}
+
 Now, if we define $Y=KQ$, we have the following LMI:
 \begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
