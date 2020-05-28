@@ -59,7 +59,7 @@ $$\begin{align}
 
 As a numerical example, consider:
 
-$$\begin{equation}A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat\end{equation}$$
+$$\begin{equation}A = \bmat{cc} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat{c} 2\\ 3 \\ 4\emat\end{equation}$$
 
 The analytical answer to $Ax=b$ is computed as:
 
