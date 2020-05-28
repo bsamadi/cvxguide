@@ -246,7 +246,7 @@ function are drawn.
     plt.show()
 
 
-![png](cvxguide_files/cvxguide_73_0.png)
+![png](cvxguide_73_0.png)
 
 
 *Example (Distance between polyhedra):* Consider the following two polyhedra:
@@ -287,7 +287,7 @@ As a numerical example, consider the following polygons:
     plt.show()
 
 
-![png](cvxguide_files/cvxguide_75_0.png)
+![png](cvxguide_75_0.png)
 
 
 The distance between these two polygons is computed with the following QP
