@@ -81,11 +81,11 @@ $$\begin{align}
 
 As a numerical example, consider:
 
-\begin{equation}
+$$\begin{equation}
 A(x) = \left[\begin{matrix} x_3 & 0 & 0 & x_1+x_2-2\\ 0 & x_3 & 0 &
 2x_1+x_2-3\\0 & 0 & x_3 & 3x_1+2x_2-4\\ x_1+x_2-2 & 2x_1+x_2-3 & 3x_1+2x_2-4 &
 x_3 \end{matrix}\right]
-\end{equation}
+\end{equation}$$
 
 We would like to minimize the largest eigenvalue of $A$ subject to $A$ being a
 positive semidefinite matrix. The following code solves this problem:
