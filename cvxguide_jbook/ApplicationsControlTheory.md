@@ -494,8 +494,8 @@ The following statements are equivalent:
 - The system is strictly dissipative with the supply rate:
   \begin{equation}
   s(w,z)=\bmat w \\\\ z\emat^\text{T}
-\left[\begin{matrix} Q&S\\\\S^\text{T}& R\end{matrix}\right]
-\left[\begin{matrix} w\\\\z \end{matrix}\right]
+\bmat Q & S \\\\ S^\text{T} & R \emat
+\bmat w \\\\ z \emat
   \end{equation}
 - For all $\omega\in\mathbb{R}\cup\{\infty\}$ there holds:
   \begin{equation}
