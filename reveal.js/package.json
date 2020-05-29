@@ -1,46 +1,98 @@
 {
   "name": "reveal.js",
-  "version": "2.6.1",
+  "version": "4.0.1",
   "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
+  "homepage": "https://revealjs.com",
   "subdomain": "revealjs",
+  "main": "dist/reveal.js",
+  "module": "dist/reveal.esm.js",
+  "license": "MIT",
   "scripts": {
-    "test": "grunt test",
-    "start": ""
+    "test": "gulp test",
+    "start": "gulp serve",
+    "build": "gulp build"
   },
   "author": {
     "name": "Hakim El Hattab",
     "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "web": "https://hakim.se"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/hakimel/reveal.js.git"
   },
   "engines": {
-    "node": "~0.8.0"
+    "node": ">=10.0.0"
   },
-  "dependencies": {
-    "underscore": "~1.5.1",
-    "express": "~2.5.9",
-    "mustache": "~4.0.1",
-    "socket.io": "~0.9.13"
-  },
+  "keywords": [
+    "reveal",
+    "slides",
+    "presentation"
+  ],
   "devDependencies": {
-    "grunt-contrib-qunit": "~0.2.2",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-cssmin": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-sass": "~0.5.0",
-    "grunt-contrib-connect": "~0.4.1",
-    "grunt-zip": "~0.7.0",
-    "grunt": "~0.4.0"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-html-import-to-string": "0.0.1",
+    "colors": "^1.4.0",
+    "core-js": "^3.6.5",
+    "glob": "^7.1.6",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-sass": "^4.0.2",
+    "gulp-tap": "^2.0.0",
+    "gulp-zip": "^5.0.1",
+    "highlight.js": "^10.0.3",
+    "marked": "^1.1.0",
+    "node-qunit-puppeteer": "^2.0.1",
+    "qunit": "^2.10.0",
+    "rollup": "^2.10.9",
+    "rollup-plugin-terser": "^5.3.0",
+    "yargs": "^15.1.0"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/hakimel/reveal.js/blob/master/LICENSE"
+  "browserslist": "> 0.5%, IE 11, not dead",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
+    },
+    "globals": {
+      "module": false,
+      "console": false,
+      "unescape": false,
+      "define": false,
+      "exports": false
+    },
+    "rules": {
+      "curly": 0,
+      "eqeqeq": 2,
+      "wrap-iife": [
+        2,
+        "any"
+      ],
+      "no-use-before-define": [
+        2,
+        {
+          "functions": false
+        }
+      ],
+      "new-cap": 2,
+      "no-caller": 2,
+      "dot-notation": 0,
+      "no-eq-null": 2,
+      "no-unused-expressions": 0
     }
-  ]
+  }
 }
