@@ -611,13 +611,15 @@ values. In the followin, we will review a few special cases of dissipativity.</p
 <div class="section" id="qsr-dissipativity">
 <h3>QSR Dissipativity<a class="headerlink" href="#qsr-dissipativity" title="Permalink to this headline">¶</a></h3>
 <p>The following statements are equivalent:</p>
-<ul class="simple">
-<li><p>The system is strictly dissipative with the supply rate:
-\begin{equation}
-s(w,z)=\bmat w \ z\emat^\text{T}
-\bmat Q &amp; S \ S^\text{T} &amp; R \emat
-\bmat w \ z \emat
-\end{equation}</p></li>
+<ul>
+<li><p>The system is strictly dissipative with the supply rate:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  s(w,z)=\bmat w \\ z\emat^\text{T}
+\bmat Q &amp; S \\ S^\text{T} &amp; R \emat
+\bmat w \\ z \emat
+  \end{equation}\end{split}\]</div>
+</li>
 <li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds:
 \begin{equation}
 \left[\begin{matrix} I\T(j\omega)\end{matrix}\right]^\star

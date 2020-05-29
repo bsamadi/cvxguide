@@ -492,11 +492,13 @@ values. In the followin, we will review a few special cases of dissipativity.
 The following statements are equivalent:
 
 - The system is strictly dissipative with the supply rate:
-  \begin{equation}
-  s(w,z)=\bmat w \\\\ z\emat^\text{T}
-\bmat Q & S \\\\ S^\text{T} & R \emat
-\bmat w \\\\ z \emat
-  \end{equation}
+  
+  $$\begin{equation}
+  s(w,z)=\bmat w \\ z\emat^\text{T}
+\bmat Q & S \\ S^\text{T} & R \emat
+\bmat w \\ z \emat
+  \end{equation}$$
+  
 - For all $\omega\in\mathbb{R}\cup\{\infty\}$ there holds:
   \begin{equation}
   \left[\begin{matrix} I\\\\T(j\omega)\end{matrix}\right]^\star
