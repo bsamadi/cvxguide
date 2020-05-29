@@ -5,7 +5,7 @@ problems. It is beyond the scope of this text to cover all of them. However, in
 the following, you will see an introduction about applications of convex
 optimization in control theory.
 
-### Stability
+## Stability
 
 Consider the following autonomous system:
 
@@ -60,7 +60,7 @@ Q(\phi(\tau,x_0))d\tau&\nonumber\\
 
 then $x^\star$ is an asymptotically stable equilibrium point.
 
-#### Linear Systems
+### Linear Systems
 
 Consider the linear system:
 
@@ -229,7 +229,7 @@ We can verify the inequalities by computing the eigenvalues:
 
 
 
-#### Uncertain Linear Systems
+### Uncertain Linear Systems
 
 Consider the following linear system:
 
@@ -332,7 +332,7 @@ That is a proof for the following LMIs to be infeasible:
 
 
 
-#### State Feedback Controller
+### State Feedback Controller
 
 Consider the following linear system:
 
@@ -448,7 +448,7 @@ The closed loop system is stable:
 
 
 
-### Dissipativity
+## Dissipativity
 
 Similar to stability for autonomous systems, there is a concept called
 dissipativity for dynamic systems with input. Consider the following dynamical
@@ -487,7 +487,7 @@ z=&Cx+Dw
 with $x(0)=0$. It assumed that all the eigenvalues of $A$ have negative real
 values. In the followin, we will review a few special cases of dissipativity.
 
-#### QSR Dissipativity
+### QSR Dissipativity
 
 The following statements are equivalent:
 
@@ -511,7 +511,7 @@ I\\\\ T(j\omega)\end{matrix}\right] \gt 0
 0&I\\\\ C&D\end{matrix}\right] \lt 0
   \end{equation}
 
-#### Passivity
+### Passivity
 
 The following statements are equivalent:
 
@@ -544,7 +544,7 @@ function $T(j\omega)$.
 One of the properties of passive systems is that the feedback connection of two
 passive systems is always stable (the loop phase is less than 180 degrees).
 
-#### $\mathcal{H}_\infty$ Gain (Bounded $L_2\rightarrow$ Bounded $L_2$)
+### $\mathcal{H}_\infty$ Gain (Bounded $L_2\rightarrow$ Bounded $L_2$)
 
 The following statements are equivalent:
 
@@ -568,7 +568,7 @@ D\\\\B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
 -\gamma^2 I & D^\text{T}\\C&D&-I \end{matrix}\right]< 0
   \end{equation}
 
-#### $\mathcal{H}_\infty$ State Feedback Controller
+### $\mathcal{H}_\infty$ State Feedback Controller
 
 Consider the following linear system:
 
@@ -668,7 +668,7 @@ Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
 \end{equation}$$
 This LMI is the same as we were looking for and it ends the proof.
 
-#### Generalized $\mathcal{H}_2$ Gain (Bounded $L_2\rightarrow$ Bounded $L_\infty$)
+### Generalized $\mathcal{H}_2$ Gain (Bounded $L_2\rightarrow$ Bounded $L_\infty$)
 
 If $D=0$ then the following statements are equivalent:
 
@@ -688,7 +688,7 @@ If $D=0$ then the following statements are equivalent:
   \left[\begin{matrix} P&C^\text{T}\\\\C&\gamma^2 I\end{matrix}\right] \gt 0
   \end{equation}
 
-#### Generalized $\mathcal{H}_2$ State Feedback Controller
+### Generalized $\mathcal{H}_2$ State Feedback Controller
 
 Consider the following linear system:
 $$\begin{align}
