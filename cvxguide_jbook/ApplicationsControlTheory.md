@@ -493,7 +493,7 @@ The following statements are equivalent:
 
 - The system is strictly dissipative with the supply rate:
   \begin{equation}
-  s(w,z)=\left[\begin{matrix} w\\\\z\end{matrix}\right]^\text{T}
+  s(w,z)=\bmat w \\\\ z\emat^\text{T}
 \left[\begin{matrix} Q&S\\\\S^\text{T}& R\end{matrix}\right]
 \left[\begin{matrix} w\\\\z \end{matrix}\right]
   \end{equation}
