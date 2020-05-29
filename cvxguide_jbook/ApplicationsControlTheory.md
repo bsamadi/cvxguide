@@ -271,10 +271,7 @@ $P$.
 
 *Example:* Consider the uncertain linear system () with $L=2$ and:
 
-&&\begin{equation}
-A_1=\bmat 1 & -2 \\ 2 & -2\emat,\ 
-A_2=\bmat 1 & 2 \\ -2 & -2\emat
-\end{equation}&&
+$$\beq A_1=\bmat 1 & -2 \\ 2 & -2\emat,\ A_2=\bmat 1 & 2 \\ -2 & -2\emat\eeq$$
 
 The eigenvalues of $A_1$ and $A_2$ are on the left side of the complex plane and
 even equal:
@@ -404,10 +401,7 @@ inequalities by $Q=P^{-1}$ and perform the same trick.
 
 *Example:* Consider the following linear system:
 
-$$\begin{equation}
-\dot x = \left[\begin{matrix}1&0.1\\0&-2\end{matrix}\right]x+\left[\begin{matrix
-}0\\1\end{matrix}\right]u
-\end{equation}$$
+$$\beq \dot x = \bmat 1 & 0.1 \\ 0 & -2 \emat x+\bmat 0 \\ 1 \emat u \eeq$$
 
 The objective is to find $K$ such that with $u=Kx$ the closed loop system is
 stable.
