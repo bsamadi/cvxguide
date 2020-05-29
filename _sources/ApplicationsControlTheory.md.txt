@@ -272,8 +272,8 @@ $P$.
 *Example:* Consider the uncertain linear system () with $L=2$ and:
 
 &&\begin{equation}
-A_1=\left[\begin{matrix}1&-2\\2&-2\end{matrix}\right],\
-A_2=\left[\begin{matrix}1&2\\-2&-2\end{matrix}\right]
+A_1=\left[\begin{matrix}1 & -2 \\ 2 & -2\end{matrix}\right],\
+A_2=\left[\begin{matrix}1 & 2 \\ -2 & -2\end{matrix}\right]
 \end{equation}&&
 
 The eigenvalues of $A_1$ and $A_2$ are on the left side of the complex plane and
