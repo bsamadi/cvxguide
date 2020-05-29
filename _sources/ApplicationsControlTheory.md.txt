@@ -271,7 +271,7 @@ $P$.
 
 *Example:* Consider the uncertain linear system () with $L=2$ and:
 
-&&A_1=\bmat 1 & -2 \\ 2 & -2\emat,\ A_2=\bmat 1 & 2 \\ -2 & -2\emat&&
+&&\beq A_1=\bmat 1 & -2 \\ 2 & -2\emat,\ A_2=\bmat 1 & 2 \\ -2 & -2\emat\eeq&&
 
 The eigenvalues of $A_1$ and $A_2$ are on the left side of the complex plane and
 even equal:
