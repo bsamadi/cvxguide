@@ -401,10 +401,7 @@ inequalities by $Q=P^{-1}$ and perform the same trick.
 
 *Example:* Consider the following linear system:
 
-$$\begin{equation}
-\dot x = \left[\begin{matrix}1&0.1\\0&-2\end{matrix}\right]x+\left[\begin{matrix
-}0\\1\end{matrix}\right]u
-\end{equation}$$
+$$\beq \dot x = \bmat 1 & 0.1 \\ 0 & -2 \emat x+\bmat 0 \\ 1 \emat u \eeq$$
 
 The objective is to find $K$ such that with $u=Kx$ the closed loop system is
 stable.
