@@ -45,7 +45,7 @@ jobs:
              cp -R cvxguide_files/* ./cvxguide_jbook/_build/html/slides/cvxguide_files
              wget https://github.com/hakimel/reveal.js/archive/master.tar.gz
              tar -xzvf master.tar.gz
-             mv -R reveal.js-master/* ./cvxguide_jbook/_build/html/slides/reveal.js
+             cp -R reveal.js-master/* ./cvxguide_jbook/_build/html/slides/reveal.js
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
