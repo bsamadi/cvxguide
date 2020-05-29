@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Behzad Samadi">
+  <meta name="dcterms.date" content="2014-02-17">
+  <title>Convex Optimization: A Practical Guide</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  	.reveal h1 { font-size: 2.5em; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Convex Optimization: A Practical Guide</h1>
+  <p class="author">Behzad Samadi</p>
+  <p class="date">February 17, 2014</p>
+</section>
+
+<section id="convex-optimization-a-practical-guide" class="slide level2">
+<h2>Convex Optimization: A Practical Guide</h2>
+<p>Behzad Samadi</p>
+<p><a href="http://www.mechatronics3d.com">www.Mechatronics3D.com</a></p>
+<p>February 17, 2014</p>
+<p><span class="math inline">\(\DeclareMathOperator{\sign}{sgn} \newcommand{\CO}{\textbf{\rm conv}} \newcommand{\RR}{{\mathcal R}} \newcommand{\RE}{\mathbb{R}} \newcommand{\TR}{\text{T}} \newcommand{\beq}{\begin{equation}} \newcommand{\eeq}{\end{equation}} \newcommand{\bmat}{\left[\begin{array}} \newcommand{\emat}{\end{array}\right]} \newcommand{\bsmat}{\left[\begin{smallmatrix}} \newcommand{\esmat}{\end{smallmatrix}\right]} \newcommand{\barr}{\begin{array}} \newcommand{\earr}{\end{array}} \newcommand{\bsm}{\begin{smallmatrix}} \newcommand{\esm}{\end{smallmatrix}}\)</span></p>
+</section>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ol type="1">
+<li><p>Introduction</p></li>
+<li><p>Convex sets</p></li>
+<li><p>Convex functions</p></li>
+<li><p>Convex optimization</p>
+<ul>
+<li><p>Linear program</p></li>
+<li><p>Quadratic program</p></li>
+<li><p>Second order cone program</p></li>
+<li><p>Semidefinite program</p></li>
+</ul></li>
+<li><p>Applications</p>
+<ul>
+<li><p>Stability</p></li>
+<li><p>Dissipativity</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="disclaimer" class="slide level2">
+<h2>Disclaimer:</h2>
+<p>In this presentation, the definitions are taken from the <a href="http://www.stanford.edu/~boyd/cvxbook/">Convex Optimization book by Stephen Boyd and Lieven Vandenberghe</a> unless otherwise stated. The reader is referred to the book for a detailed review of the theory of convex optimization and applications.</p>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1">
+<h1>Introduction</h1>
+
+</section>
+<section id="what-is-convex-optimization" class="slide level2">
+<h2>What is convex optimization?</h2>
+<p><span class="math inline">\(\begin{align} \text{minimize}&amp;f(x)\nonumber \newline \text{subject to}&amp; x\in C \end{align}\)</span></p>
+<p>where <span class="math inline">\(f\)</span> is a convex function and <span class="math inline">\(C\)</span> is a convex set.</p>
+</section>
+<section id="why-is-it-important" class="slide level2">
+<h2>Why is it important?</h2>
+<ul>
+<li><p>Convex optimization problems:</p>
+<ul>
+<li><p>can be solved numerically with great efficiency</p></li>
+<li><p>have extensive useful theory</p></li>
+<li><p>occur often in engineering problems</p></li>
+<li><p>often go unrecognised</p></li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="convex-sets" class="title-slide slide level1">
+<h1>Convex Sets</h1>
+
+</section>
+<section id="convex-combination" class="slide level2">
+<h2>Convex combination</h2>
+<p>Given <span class="math inline">\(m\)</span> points in <span class="math inline">\(\RR^n\)</span> denoted by <span class="math inline">\(x_i\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span>, <span class="math inline">\(x\)</span> is convex combination of the <span class="math inline">\(m\)</span> points if it can be written as:</p>
+<p><span class="math inline">\(\begin{equation} x = \sum_{i=1}^m \lambda_ix_i \end{equation}\)</span></p>
+<p>where <span class="math inline">\(\lambda_i\geq 0\)</span> and</p>
+<p><span class="math inline">\(\begin{equation} \sum_{i=1}^m\lambda_i=1 \end{equation}\)</span></p>
+</section>
+<section id="convex-set" class="slide level2">
+<h2>Convex Set</h2>
+<p><strong>Convex set:</strong> A set <span class="math inline">\(C\subseteq\RR^n\)</span> is convex if the convex combination of any two points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
+<p><strong>Convex hull:</strong> The convex hull of a set <span class="math inline">\(S\)</span>, denoted by <span class="math inline">\(\text{conv}(S)\)</span>, is the set of all convex combinations of points in <span class="math inline">\(S\)</span>.</p>
+</section>
+<section id="affine-set" class="slide level2">
+<h2>Affine Set</h2>
+<p><strong>Affine combination:</strong> <span class="math inline">\(x\)</span> is an affine combination of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> if it can be written as:</p>
+<p><strong>Affine set:</strong> A set <span class="math inline">\(C\subseteq\RR^n\)</span> is affine if the affine combination of any two points in <span class="math inline">\(C\)</span> belongs to <span class="math inline">\(C\)</span>.</p>
+</section>
+<section id="convex-cone" class="slide level2">
+<h2>Convex Cone</h2>
+<p><strong>Cone (nonnegative) combination:</strong> Cone combination of two points <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> is a point <span class="math inline">\(x\)</span> that can be written as:</p>
+<p>with <span class="math inline">\(\theta_1\geq 0\)</span> and <span class="math inline">\(\theta_2\geq 0\)</span>.</p>
+<p><strong>Convex cone:</strong> A set <span class="math inline">\(S\)</span> is a convex cone, if it contains all convex combinations of points in the set.</p>
+</section>
+<section id="polyhedron" class="slide level2">
+<h2>Polyhedron</h2>
+<p><strong>Hyperplane:</strong> A hyperplane is a set of the form <span class="math inline">\(\{x|a^\text{T}x=b\}\)</span> with <span class="math inline">\(a\neq 0\)</span>.</p>
+<p><strong>Halfspace:</strong> A halfspace is a set of the form <span class="math inline">\(\{x|a^\text{T}x\leq b\}\)</span> with <span class="math inline">\(a\neq 0\)</span>.</p>
+<p><strong>Polyhedron:</strong> A polyhedron is the intersection of finite number of hyperplanes and halfspaces. A polyhedron can be written as:</p>
+<p>where <span class="math inline">\(\preceq\)</span> denotes componentwise inequality.</p>
+</section>
+<section id="ellipsoid" class="slide level2">
+<h2>Ellipsoid</h2>
+<p><strong>Euclidean ball:</strong> A ball with center <span class="math inline">\(x_c\)</span> and radius <span class="math inline">\(r\)</span> is defined as:</p>
+<p><span class="math inline">\(\begin{equation} B(x_c,r)=\{x| \|x-x_c\|_2\leq r\}=\{x| x=x_c+ru, \|u\|_2\leq r\} \end{equation}\)</span></p>
+<p><strong>Ellipsoid:</strong> An ellipsoid is defined as: <span class="math inline">\(\begin{equation} \{x | (x-x_c)^\text{T}P^{-1}(x-x_c)\leq 1\} \end{equation}\)</span> where <span class="math inline">\(P\)</span> is a positive definite matrix. It can also be defined as: <span class="math inline">\(\begin{equation} \{x| x=x_c+Au, \|u\|_2\leq r\} \end{equation}\)</span></p>
+</section>
+<section id="proper-cone" class="slide level2">
+<h2>Proper Cone</h2>
+<ul>
+<li><p><strong>Proper cone:</strong> A cone is proper if it is:</p>
+<ul>
+<li><p><strong>closed</strong> (contains its boundary)</p></li>
+<li><p><strong>solid</strong> (has nonempty interior)</p></li>
+<li><p><strong>pointed</strong> (contains no lines)</p></li>
+</ul></li>
+<li><p>The nonnegative orthant of <span class="math inline">\(\mathbb{R}^n\)</span>, <span class="math inline">\(\{x|x\in\mathbb{R}^n,x_i\geq 0, i=1,\ldots,n \}\)</span> is a proper cone.</p></li>
+<li><p>Also the cone of positive semidefinite matrices in <span class="math inline">\(\mathbb{R}^{n\times n}\)</span> is a proper cone.</p></li>
+</ul>
+</section>
+<section id="generalized-inequality" class="slide level2">
+<h2>Generalized Inequality</h2>
+<p>A <strong>generalized inequality</strong> is defined by a proper cone <span class="math inline">\(K\)</span>:</p>
+<p><span class="math inline">\(\begin{equation} x\preceq_K y \Leftrightarrow y-x\in K \end{equation}\)</span></p>
+<p><span class="math inline">\(\begin{equation} x\prec_K y \Leftrightarrow y-x\in \text{interior}(K) \end{equation}\)</span></p>
+</section>
+<section id="generalized-inequality-1" class="slide level2">
+<h2>Generalized Inequality</h2>
+<p>In this context, we deal with the following inequalities:</p>
+<ol type="1">
+<li><p>The <strong>inequality on real numbers</strong> is defined based on the proper cone of nonnegative real numbers <span class="math inline">\(K=\mathbb{R}_+\)</span>.</p></li>
+<li><p>The <strong>componentwise inequality</strong> on real vectors in <span class="math inline">\(\mathbb{R}^n\)</span> is defined based on the nonnegative orthant <span class="math inline">\(K=\mathbb{R}^n_+\)</span>.</p></li>
+<li><p>The <strong>matrix inequality</strong> is defined based on the proper cone of positive semidefinite matrices <span class="math inline">\(K=S^n_+\)</span>.</p></li>
+</ol>
+</section></section>
+<section>
+<section id="convex-function" class="title-slide slide level1">
+<h1>Convex Function</h1>
+
+</section>
+<section id="convex-function-1" class="slide level2">
+<h2>Convex Function</h2>
+<p><strong>Definition:</strong> A function <span class="math inline">\(f:X_D \rightarrow X_R\)</span> with <span class="math inline">\(X_D\subseteq\RR^n\)</span> and <span class="math inline">\(X_R\subseteq\RR\)</span> is a convex function if for any <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in <span class="math inline">\(X_D\)</span> and <span class="math inline">\(\lambda_1 \geq 0\)</span>, <span class="math inline">\(\lambda_2 \geq 0\)</span> such that <span class="math inline">\(\lambda_1+\lambda_2=1\)</span>, we have: <span class="math inline">\(\begin{equation} f(\lambda_1x_1+\lambda_2x_2)\leq \lambda_1f(x_1)+\lambda_2f(x_2) \end{equation}\)</span></p>
+</section></section>
+<section>
+<section id="convex-optimization" class="title-slide slide level1">
+<h1>Convex Optimization</h1>
+
+</section>
+<section id="convex-optimization-1" class="slide level2">
+<h2>Convex Optimization</h2>
+<p>A mathematical optimization is convex if the objective is a convex function and the feasible set is a convex set. The standard form of a convex optimization problem is: <span class="math inline">\(\begin{align} \text{minimize } &amp; f_0(x) \nonumber\newline \text{subject to } &amp; f_i(x) \leq 0,\ i=1,\ldots,m\nonumber\newline &amp; h_i(x) = 0,\ i=1,\ldots,p \end{align}\)</span></p>
+<p>where <span class="math inline">\(f_i\)</span>’s are convex and <span class="math inline">\(h_i\)</span>’s are affine functions.</p>
+</section>
+<section id="linear-program" class="slide level2">
+<h2>Linear Program</h2>
+<p>Linear programming (LP) is one of the best known forms of convex optimization.</p>
+<p><span class="math inline">\(\begin{align}\label{LP} \text{minimize }&amp;c^\text{T}x\nonumber\newline \text{subject to }&amp;a_i^\text{T}x\leq b_i,\ i=1,\ldots,m \end{align}\)</span></p>
+<p>where <span class="math inline">\(x\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(a_i\)</span> for <span class="math inline">\(i=1,\ldots,m\)</span> belong to <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+</section>
+<section id="linear-program-1" class="slide level2">
+<h2>Linear Program</h2>
+<ul>
+<li><p>In general, no analytical solution</p></li>
+<li><p>Numerical algorithms</p></li>
+<li><p>Early algorithm, the one developed by Kantorovich in 1940 <span class="citation" data-cites="Kantorovich40">[1]</span><br />
+</p></li>
+<li><p>The simplex method proposed by George Dantzig in 1947 <span class="citation" data-cites="Dantzig91">[2]</span></p></li>
+<li><p>The Russian mathematician L. G. Khachian developed a polynomial-time algorithm in 1979 <span class="citation" data-cites="Khachian79">[3]</span></p></li>
+<li><p>The algorithm was an interior method, which was later improved by Karmarkar in 1984 <span class="citation" data-cites="Karmarkar84">[4]</span></p></li>
+</ul>
+</section>
+<section id="mixed-integer-linear-program" class="slide level2">
+<h2>Mixed Integer Linear Program</h2>
+<ul>
+<li><p>If some of the entries of <span class="math inline">\(x\)</span> are required to be integers, we have a Mixed Integer Linear Programming (MILP) program.</p></li>
+<li><p>A MILP problem is in general difficult to solve (non-convex and NP-complete).</p></li>
+<li><p>In practice, the global optimum can be found for many useful MILP problems.</p></li>
+</ul>
+</section>
+<section id="linear-program-2" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-i">Example I</h3>
+<p><span class="math inline">\(\begin{align} \text{maximize: } &amp; x + y\nonumber\\ \text{Subject to: } &amp; x + y \geq -1 \\ \text{} &amp; \frac{x}{2}-y \geq -2\nonumber\\ \text{} &amp; 2x-y \leq -4\nonumber \end{align}\)</span></p>
+</section>
+<section id="linear-program-3" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-i-1">Example I</h3>
+<pre><code>    import numpy as np
+    from pylab import *
+    import matplotlib as mpl
+    import cvxopt as co
+    import cvxpy as cp
+
+    x = cp.Variable(1)
+    y = cp.Variable(1)
+
+    constraints = [     x+y &gt;= -1.,
+                    0.5*x-y &gt;= -2.,
+                      2.*x-y &lt;= 4.]
+
+    objective = cp.Maximize(x+y)
+    p = cp.Problem(objective, constraints)</code></pre>
+</section>
+<section id="linear-program-4" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-i-2">Example I</h3>
+<p>The solution of the LP problem is computed with the following command:</p>
+<pre><code>    result = p.solve()
+    print(round(result,5))
+    8.0</code></pre>
+<p>The optimal solution is now given by:</p>
+<pre><code>    x_star = x.value
+    print(round(x_star,5))
+    4.0
+    
+    y_star = y.value
+    print(round(y_star,5))
+    4.0</code></pre>
+</section>
+<section id="linear-program-5" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-ii">Example II</h3>
+<p><span class="math inline">\(\begin{align} \text{minimize: } &amp; x + y\nonumber\\ \text{Subject to: } &amp; x + y \geq -1 \\ \text{} &amp; \frac{x}{2}-y \leq -2\nonumber\\ \text{} &amp; 2x-y \leq -4\nonumber \end{align}\)</span></p>
+</section>
+<section id="linear-program-6" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-ii-1">Example II</h3>
+<pre><code>    objective = cp.Minimize(x+y)
+    p = cp.Problem(objective, constraints)
+
+    result = p.solve()
+    print(round(result,5))
+    -1.0</code></pre>
+</section>
+<section id="linear-program-7" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-ii-2">Example II</h3>
+<p>The optimal solution is now given by:</p>
+<pre><code>    x_star = x.value
+    print(round(x_star,5))
+    0.49742
+
+    y_star = y.value
+    print(round(y_star,5))
+    -1.49742</code></pre>
+</section>
+<section id="linear-program-8" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-ii-3">Example II</h3>
+<ul>
+<li><p>The optimal value of the objective function is unique.</p></li>
+<li><p>Any point on the line connecting the two points (-2,1) and (1,-2) is the optimal solution.</p></li>
+<li><p>This LP problem has infinite optimal solutions.</p></li>
+<li><p>The code, however, returns just one of the optimal solutions.</p></li>
+</ul>
+</section>
+<section id="linear-program-9" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-iii-chebyshev-center">Example III: Chebyshev Center</h3>
+<p>Consider the following polyhedron:</p>
+<p><span class="math inline">\(\begin{equation} \mathcal{P} = \{x | a_i^Tx \leq b_i, i=1,...,m \} \end{equation}\)</span></p>
+<p>The Chebyshev center of <span class="math inline">\(\mathcal{P}\)</span> is the center of the largest ball in <span class="math inline">\(\mathcal{P}\)</span>:</p>
+<p><span class="math inline">\(\begin{equation} \mathcal{B}=\{x|\|x-x_c\|\leq r\} \end{equation}\)</span></p>
+</section>
+<section id="linear-program-10" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-iii-chebyshev-center-1">Example III: Chebyshev Center</h3>
+<ul>
+<li><p>For <span class="math inline">\(\mathcal{B}\)</span> to be inside <span class="math inline">\(\mathcal{P}\)</span>, we need to have:</p>
+<p><span class="math inline">\(a_i^Tx\leq b_i,\ i=1,\ldots,m\)</span> for all <span class="math inline">\(x\)</span> in <span class="math inline">\(\mathcal{B}\)</span></p></li>
+<li><p>For each <span class="math inline">\(i\)</span>, the point with the largest value of <span class="math inline">\(a_i^Tx\)</span> is: <span class="math inline">\(x^\star=x_c+\frac{r}{\sqrt{a_i^Ta_i}}a_i=x_c+\frac{r}{\|a_i\|_2}a_i\)</span></p></li>
+<li><p>Therefore:</p>
+<p><span class="math inline">\(a_i^Tx_c+r\|a_i\|_2\leq b_i, i=1,..,m\ \Rightarrow \mathcal{B}\)</span> is inside <span class="math inline">\(\mathcal{P}\)</span></p></li>
+</ul>
+</section>
+<section id="linear-program-11" class="slide level2">
+<h2>Linear Program</h2>
+<h3 id="example-iii-chebyshev-center-2">Example III: Chebyshev Center</h3>
+<p>Now, we can write the problem as the following LP problem (LP3):</p>
+<p><span class="math inline">\(\begin{align} \text{maximize: } &amp; r\nonumber\\ \text{Subject to: } &amp; a_i^Tx_c + r\|a_i\|_2 \leq b_i,\ i=1,..,m \end{align}\)</span></p>
+</section>
+<section id="references" class="slide level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references" role="doc-bibliography">
+<div id="ref-Kantorovich40">
+<p>[1] L.V. Kantorovich, “A new method of solving of some classes of extremal problems,” <em>Doklady Akademii Sci USSR</em>, vol. 28, 1940, pp. 211–214.</p>
+</div>
+<div id="ref-Dantzig91">
+<p>[2] G.B. Dantzig, “History of mathematical programming: A collection of personal reminiscences,” Lenstra, J.K., Kan, A.H.G.R., and Schrijver, A., Eds., Elsevier Science Publishers, 1991.</p>
+</div>
+<div id="ref-Khachian79">
+<p>[3] L.G. Khachian, “A polynomial algorithm for linear programming,” <em>Doklady Akademii Nauk</em>, 1979, pp. 1093–1096.</p>
+</div>
+<div id="ref-Karmarkar84">
+<p>[4] N. Karmarkar, “A new polynomial-time algorithm for linear programming,” <em>Combinatorica</em>, vol. 4, 1984, pp. 373–395.</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/math/math.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
