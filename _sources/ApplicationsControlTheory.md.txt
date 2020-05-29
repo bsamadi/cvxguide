@@ -585,10 +585,10 @@ D\\ B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
 
 - There exists $P>0$ satisfying the LMI:
 
-  \begin{equation}
-  \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  &
--\gamma^2 I & D^\text{T}\\C&D&-I \end{matrix}\right]< 0
-  \end{equation}
+  $$\begin{equation}
+  \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T} \\ B^\text{T} P  &
+-\gamma^2 I & D^\text{T} \\ C&D&-I \end{matrix}\right]< 0
+  \end{equation}$$
 
 ### $\mathcal{H}_\infty$ State Feedback Controller
 
@@ -712,17 +712,15 @@ If $D=0$ then the following statements are equivalent:
 
 - For all $\omega\in\mathbb{R}$:
 
-  \begin{equation}
-  \|T(j\omega)\|_{2,\infty}=\sup_{0 < \|w\|_2 <
-\infty}\frac{\|z\|_\infty}{\|w\|_2} < \gamma
-  \end{equation}
+  $$\begin{equation}
+  \|T(j\omega)\|_{2,\infty}=\sup_{0 < \|w\|_2 < \infty} \frac{\|z\|_\infty}{\|w\|_2} < \gamma
+  \end{equation}$$
 
 - There exists $P$ satisfying the LMIs:
 
   $$\begin{align}
-  \left[\begin{matrix} A^\text{T} P+PA&PB \\ B^\text{T} P& -I\end{matrix}\right]
-\lt 0\nonumber\\
-  \left[\begin{matrix} P&C^\text{T} \\ C&\gamma^2 I\end{matrix}\right] \gt 0
+  \left[\begin{matrix} A^\text{T} P+PA & PB \\ B^\text{T} P & -I \end{matrix}\right] \lt 0\nonumber\\
+  \left[\begin{matrix} P & C^\text{T} \\ C & \gamma^2 I \end{matrix}\right] \gt 0
   \end{align}$$
 
 ### Generalized $\mathcal{H}_2$ State Feedback Controller
