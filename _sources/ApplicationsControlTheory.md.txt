@@ -508,6 +508,7 @@ I \\ T(j\omega)\end{matrix}\right] \gt 0
   \end{equation}$$
 
 - There exists $P>0$ satisfying the LMI:
+
   $$\begin{equation}
   \left[\begin{matrix} A^\TR P+PA & PB \\ B^\TR P & 0
 \end{matrix}\right]-\left[\begin{matrix} 0&I \\ C&D\end{matrix}\right]^\text{T}
@@ -520,29 +521,39 @@ I \\ T(j\omega)\end{matrix}\right] \gt 0
 The following statements are equivalent:
 
 - System () is strictly dissipative with the supply rate:
+
   \begin{equation}
   s(w,z)= w^\text{T} z+z^\text{T} w=2w^\text{T} z
   \end{equation}
+
 - For all $\omega\in\mathbb{R}$ with $\det(j\omega I-A)\neq 0$, there holds:
+
   \begin{equation}
   T(j\omega)^\star+T(j\omega)>0
   \end{equation}
+
 - There exists $P>0$ satisfying the LMI:
+
   $$\begin{equation}
   \left[\begin{matrix} A^\text{T} P+PA & PB-C^\text{T} \\ B^\text{T} P-C &
 D+D^\text{T} \end{matrix}\right] < 0
   \end{equation}$$
+
 - If $D=0$, there exists $P>0$ satisfying:
+
   $$\begin{align}
   A^\text{T}P+PA<0 \nonumber\\
   PB=C^\text{T}
   \end{align}$$
+
 - System () is RLC realizable, i.e. there exists an RLC network with transfer
 function $T(j\omega)$.
 - For SISO systems:
+
   \begin{equation}
   |\angle G(j\omega)| < 90^\circ, \text{Re}(G(j\omega))>0
   \end{equation}
+
 - Gain margin of system () is infinite.
 
 One of the properties of passive systems is that the feedback connection of two
@@ -553,20 +564,27 @@ passive systems is always stable (the loop phase is less than 180 degrees).
 The following statements are equivalent:
 
 - The system is strictly dissipative with the supply rate:
+
   \begin{equation}
   s(w,z)=\gamma^2 w^\text{T} w-z^\text{T} z
   \end{equation}
+
 - For all $\omega\in\mathbb{R}$:
+
   \begin{equation}
   \|T(j\omega)\|_\infty=\sup_{0<\|w\|_2<\infty}\frac{\|z\|_2}{\|w\|_2} \lt
 \gamma
   \end{equation}
+
 - There exists $P>0$ satisfying the LMI:
+
   $$\begin{equation}
   \left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C & PB+C^\text{T}
 D\\ B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
   \end{equation}$$
+
 - There exists $P>0$ satisfying the LMI:
+
   \begin{equation}
   \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  &
 -\gamma^2 I & D^\text{T}\\C&D&-I \end{matrix}\right]< 0
@@ -583,6 +601,7 @@ z =&C_zx+D_ww+D_uu
 
 where $u$ is the control input. We would like to design a controller of the form
 $u=Kx$ such that for the closed loop system:
+
 \begin{equation}
 \sup_{\|w\|_2\neq 0}\frac{\|z\|_2}{\|w\|_2}<\gamma
 \end{equation}
@@ -592,12 +611,14 @@ The design problem can be formulated as the following matrix inequality:
 \begin{equation}
 Q>0
 \end{equation}
+
 $$\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &
 (C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T} \\ C_zQ+D_uY+D_wB_w^\text{T} & D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]< 0
 \end{equation}$$
+
 where $K=YQ^{-1}$
 
 **Proof:** It can easily be shown that the $\mathcal{H}_\infty$ norm of  the
@@ -624,6 +645,7 @@ Now, if we write the same LMI for the closed loop system, we have:
 \begin{equation}
 P>0
 \end{equation}
+
 $$\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) & {\color{red} P}B_w &
@@ -648,6 +670,7 @@ K}){\color{red} Q}&D_w&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}$$
 
 Now, if we define $Y=KQ$, we have the following LMI:
+
 $$\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} & B_w & {\color{red}
@@ -655,14 +678,18 @@ Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T} \\ B_w^\text{T}  & - I &
 D_w^\text{T} \\ C{\color{red} Q}+D_u{\color{red} Y}&D_w&-\gamma^2I
 \end{matrix}\right]< 0
 \end{equation}$$
+
 This LMI can be rearranged as:
+
 $$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} & {\color{red} Q}C^\text{T}+{\color{red}
 Y}^\text{T}D_u^\text{T} & B_w \\ C{\color{red} Q}+D_u{\color{red}
 Y}&-\gamma^2I&D_w \\ B_w^\text{T} & D_w^\text{T} & - I \end{matrix}\right]< 0
 \end{equation}$$
+
 Using the Schur complement, we can now write the LMI as:
+
 $$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} & {\color{red}
@@ -670,6 +697,7 @@ Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
 \\ C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]< 0
 \end{equation}$$
+
 This LMI is the same as we were looking for and it ends the proof.
 
 ### Generalized $\mathcal{H}_2$ Gain (Bounded $L_2\rightarrow$ Bounded $L_\infty$)
@@ -677,15 +705,20 @@ This LMI is the same as we were looking for and it ends the proof.
 If $D=0$ then the following statements are equivalent:
 
 - System () is strictly dissipative with the supply rate:
+
   \begin{equation}
   s(w,z)=w^\text{T}w
   \end{equation}
+
 - For all $\omega\in\mathbb{R}$:
+
   \begin{equation}
   \|T(j\omega)\|_{2,\infty}=\sup_{0 < \|w\|_2 <
 \infty}\frac{\|z\|_\infty}{\|w\|_2} < \gamma
   \end{equation}
+
 - There exists $P$ satisfying the LMIs:
+
   $$\begin{align}
   \left[\begin{matrix} A^\text{T} P+PA&PB \\ B^\text{T} P& -I\end{matrix}\right]
 \lt 0\nonumber\\
@@ -695,15 +728,19 @@ If $D=0$ then the following statements are equivalent:
 ### Generalized $\mathcal{H}_2$ State Feedback Controller
 
 Consider the following linear system:
+
 $$\begin{align}
 \dot x=&Ax+B_ww+B_uu\nonumber\\
 z =&C_zx+D_uu
 \end{align}$$
+
 where $u$ is the control input. We would like to design a controller of the form
 $u=Kx$ such that for the closed loop system:
+
 \begin{equation}
 \sup_{\|w\|_2\neq 0}\frac{\|z\|_\infty}{\|w\|_2}<\gamma
 \end{equation}
+
 The design problem can be formulated as the following matrix inequality:
 
 $$\begin{align}

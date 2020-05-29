@@ -628,43 +628,52 @@ values. In the followin, we will review a few special cases of dissipativity.</p
 I \\ T(j\omega)\end{matrix}\right] \gt 0
   \end{equation}\end{split}\]</div>
 </li>
-<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-<span class="math notranslate nohighlight">\($\begin{equation}
-\left[\begin{matrix} A^\TR P+PA &amp; PB \\ B^\TR P &amp; 0
+<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  \left[\begin{matrix} A^\TR P+PA &amp; PB \\ B^\TR P &amp; 0
 \end{matrix}\right]-\left[\begin{matrix} 0&amp;I \\ C&amp;D\end{matrix}\right]^\text{T}
 \left[\begin{matrix} Q&amp; S \\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
 0&amp;I \\ C&amp;D\end{matrix}\right] \lt 0
-\end{equation}\)</span>$</p></li>
+  \end{equation}\end{split}\]</div>
+</li>
 </ul>
 </div>
 <div class="section" id="passivity">
 <h3>Passivity<a class="headerlink" href="#passivity" title="Permalink to this headline">¶</a></h3>
 <p>The following statements are equivalent:</p>
-<ul class="simple">
-<li><p>System () is strictly dissipative with the supply rate:
-\begin{equation}
+<ul>
+<li><p>System () is strictly dissipative with the supply rate:</p>
+<p>\begin{equation}
 s(w,z)= w^\text{T} z+z^\text{T} w=2w^\text{T} z
-\end{equation}</p></li>
-<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span> with <span class="math notranslate nohighlight">\(\det(j\omega I-A)\neq 0\)</span>, there holds:
-\begin{equation}
+\end{equation}</p>
+</li>
+<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span> with <span class="math notranslate nohighlight">\(\det(j\omega I-A)\neq 0\)</span>, there holds:</p>
+<p>\begin{equation}
 T(j\omega)^\star+T(j\omega)&gt;0
-\end{equation}</p></li>
-<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-<span class="math notranslate nohighlight">\($\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T} \\ B^\text{T} P-C &amp;
+\end{equation}</p>
+</li>
+<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  \left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T} \\ B^\text{T} P-C &amp;
 D+D^\text{T} \end{matrix}\right] &lt; 0
-\end{equation}\)</span>$</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(D=0\)</span>, there exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying:
-<span class="math notranslate nohighlight">\($\begin{align}
-A^\text{T}P+PA&lt;0 \nonumber\\
-PB=C^\text{T}
-\end{align}\)</span>$</p></li>
+  \end{equation}\end{split}\]</div>
+</li>
+<li><p>If <span class="math notranslate nohighlight">\(D=0\)</span>, there exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+  A^\text{T}P+PA&lt;0 \nonumber\\
+  PB=C^\text{T}
+  \end{align}\end{split}\]</div>
+</li>
 <li><p>System () is RLC realizable, i.e. there exists an RLC network with transfer
 function <span class="math notranslate nohighlight">\(T(j\omega)\)</span>.</p></li>
-<li><p>For SISO systems:
-\begin{equation}
+<li><p>For SISO systems:</p>
+<p>\begin{equation}
 |\angle G(j\omega)| &lt; 90^\circ, \text{Re}(G(j\omega))&gt;0
-\end{equation}</p></li>
+\end{equation}</p>
+</li>
 <li><p>Gain margin of system () is infinite.</p></li>
 </ul>
 <p>One of the properties of passive systems is that the feedback connection of two
@@ -673,26 +682,31 @@ passive systems is always stable (the loop phase is less than 180 degrees).</p>
 <div class="section" id="mathcal-h-infty-gain-bounded-l-2-rightarrow-bounded-l-2">
 <h3><span class="math notranslate nohighlight">\(\mathcal{H}_\infty\)</span> Gain (Bounded <span class="math notranslate nohighlight">\(L_2\rightarrow\)</span> Bounded <span class="math notranslate nohighlight">\(L_2\)</span>)<a class="headerlink" href="#mathcal-h-infty-gain-bounded-l-2-rightarrow-bounded-l-2" title="Permalink to this headline">¶</a></h3>
 <p>The following statements are equivalent:</p>
-<ul class="simple">
-<li><p>The system is strictly dissipative with the supply rate:
-\begin{equation}
+<ul>
+<li><p>The system is strictly dissipative with the supply rate:</p>
+<p>\begin{equation}
 s(w,z)=\gamma^2 w^\text{T} w-z^\text{T} z
-\end{equation}</p></li>
-<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span>:
-\begin{equation}
+\end{equation}</p>
+</li>
+<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span>:</p>
+<p>\begin{equation}
 |T(j\omega)|<em>\infty=\sup</em>{0&lt;|w|_2&lt;\infty}\frac{|z|_2}{|w|_2} \lt
 \gamma
-\end{equation}</p></li>
-<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-<span class="math notranslate nohighlight">\($\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C &amp; PB+C^\text{T}
+\end{equation}</p>
+</li>
+<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  \left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C &amp; PB+C^\text{T}
 D\\ B^\text{T} P+D^\text{T} C &amp; D^\text{T} D-\gamma^2 I \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$</p></li>
-<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-\begin{equation}
+  \end{equation}\end{split}\]</div>
+</li>
+<li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:</p>
+<p>\begin{equation}
 \left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\B^\text{T} P  &amp;
 -\gamma^2 I &amp; D^\text{T}\C&amp;D&amp;-I \end{matrix}\right]&lt; 0
-\end{equation}</p></li>
+\end{equation}</p>
+</li>
 </ul>
 </div>
 <div class="section" id="mathcal-h-infty-state-feedback-controller">
@@ -704,21 +718,22 @@ D\\ B^\text{T} P+D^\text{T} C &amp; D^\text{T} D-\gamma^2 I \end{matrix}\right]&
 z =&amp;C_zx+D_ww+D_uu
 \end{align}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> is the control input. We would like to design a controller of the form
-<span class="math notranslate nohighlight">\(u=Kx\)</span> such that for the closed loop system:
-\begin{equation}
+<span class="math notranslate nohighlight">\(u=Kx\)</span> such that for the closed loop system:</p>
+<p>\begin{equation}
 \sup_{|w|_2\neq 0}\frac{|z|_2}{|w|_2}&lt;\gamma
 \end{equation}</p>
 <p>The design problem can be formulated as the following matrix inequality:</p>
 <p>\begin{equation}
 Q&gt;0
-\end{equation}
-<span class="math notranslate nohighlight">\($\begin{equation}
+\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &amp;
 (C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T} \\ C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$
-where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
+\end{equation}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
 <p><strong>Proof:</strong> It can easily be shown that the <span class="math notranslate nohighlight">\(\mathcal{H}_\infty\)</span> norm of  the
 system is less than <span class="math notranslate nohighlight">\(\gamma\)</span> if it is dissipative with the following supply
 rate:</p>
@@ -737,13 +752,14 @@ D^\text{T} \\ C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
 <p>Now, if we write the same LMI for the closed loop system, we have:</p>
 <p>\begin{equation}
 P&gt;0
-\end{equation}
-<span class="math notranslate nohighlight">\($\begin{equation}
+\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) &amp; {\color{red} P}B_w &amp;
 (C+D_u{\color{red} K})^\text{T} \\ B_w^\text{T} {\color{red} P}  &amp; - I &amp;
 D_w^\text{T} \\ C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$</p>
+\end{equation}\end{split}\]</div>
 <p>Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:</p>
 <div class="math notranslate nohighlight">
@@ -758,65 +774,73 @@ of the inequality by:</p>
 K})^\text{T} \\ B_w^\text{T}  &amp; - I &amp; D_w^\text{T} \\ (C+D_u{\color{red}
 K}){\color{red} Q}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
 \end{equation}\end{split}\]</div>
-<p>Now, if we define <span class="math notranslate nohighlight">\(Y=KQ\)</span>, we have the following LMI:
-<span class="math notranslate nohighlight">\($\begin{equation}
+<p>Now, if we define <span class="math notranslate nohighlight">\(Y=KQ\)</span>, we have the following LMI:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} &amp; B_w &amp; {\color{red}
 Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T} \\ B_w^\text{T}  &amp; - I &amp;
 D_w^\text{T} \\ C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
 \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$
-This LMI can be rearranged as:
-<span class="math notranslate nohighlight">\($\begin{equation}
+\end{equation}\end{split}\]</div>
+<p>This LMI can be rearranged as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} &amp; {\color{red} Q}C^\text{T}+{\color{red}
 Y}^\text{T}D_u^\text{T} &amp; B_w \\ C{\color{red} Q}+D_u{\color{red}
 Y}&amp;-\gamma^2I&amp;D_w \\ B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$
-Using the Schur complement, we can now write the LMI as:
-<span class="math notranslate nohighlight">\($\begin{equation}
+\end{equation}\end{split}\]</div>
+<p>Using the Schur complement, we can now write the LMI as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} &amp; {\color{red}
 Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T} 
 \\ C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]&lt; 0
-\end{equation}\)</span>$
-This LMI is the same as we were looking for and it ends the proof.</p>
+\end{equation}\end{split}\]</div>
+<p>This LMI is the same as we were looking for and it ends the proof.</p>
 </div>
 <div class="section" id="generalized-mathcal-h-2-gain-bounded-l-2-rightarrow-bounded-l-infty">
 <h3>Generalized <span class="math notranslate nohighlight">\(\mathcal{H}_2\)</span> Gain (Bounded <span class="math notranslate nohighlight">\(L_2\rightarrow\)</span> Bounded <span class="math notranslate nohighlight">\(L_\infty\)</span>)<a class="headerlink" href="#generalized-mathcal-h-2-gain-bounded-l-2-rightarrow-bounded-l-infty" title="Permalink to this headline">¶</a></h3>
 <p>If <span class="math notranslate nohighlight">\(D=0\)</span> then the following statements are equivalent:</p>
-<ul class="simple">
-<li><p>System () is strictly dissipative with the supply rate:
-\begin{equation}
+<ul>
+<li><p>System () is strictly dissipative with the supply rate:</p>
+<p>\begin{equation}
 s(w,z)=w^\text{T}w
-\end{equation}</p></li>
-<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span>:
-\begin{equation}
+\end{equation}</p>
+</li>
+<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\)</span>:</p>
+<p>\begin{equation}
 |T(j\omega)|<em>{2,\infty}=\sup</em>{0 &lt; |w|<em>2 &lt;
 \infty}\frac{|z|</em>\infty}{|w|_2} &lt; \gamma
-\end{equation}</p></li>
-<li><p>There exists <span class="math notranslate nohighlight">\(P\)</span> satisfying the LMIs:
-<span class="math notranslate nohighlight">\($\begin{align}
-\left[\begin{matrix} A^\text{T} P+PA&amp;PB \\ B^\text{T} P&amp; -I\end{matrix}\right]
+\end{equation}</p>
+</li>
+<li><p>There exists <span class="math notranslate nohighlight">\(P\)</span> satisfying the LMIs:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+  \left[\begin{matrix} A^\text{T} P+PA&amp;PB \\ B^\text{T} P&amp; -I\end{matrix}\right]
 \lt 0\nonumber\\
-\left[\begin{matrix} P&amp;C^\text{T} \\ C&amp;\gamma^2 I\end{matrix}\right] \gt 0
-\end{align}\)</span>$</p></li>
+  \left[\begin{matrix} P&amp;C^\text{T} \\ C&amp;\gamma^2 I\end{matrix}\right] \gt 0
+  \end{align}\end{split}\]</div>
+</li>
 </ul>
 </div>
 <div class="section" id="generalized-mathcal-h-2-state-feedback-controller">
 <h3>Generalized <span class="math notranslate nohighlight">\(\mathcal{H}_2\)</span> State Feedback Controller<a class="headerlink" href="#generalized-mathcal-h-2-state-feedback-controller" title="Permalink to this headline">¶</a></h3>
-<p>Consider the following linear system:
-<span class="math notranslate nohighlight">\($\begin{align}
+<p>Consider the following linear system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
 \dot x=&amp;Ax+B_ww+B_uu\nonumber\\
 z =&amp;C_zx+D_uu
-\end{align}\)</span>$
-where <span class="math notranslate nohighlight">\(u\)</span> is the control input. We would like to design a controller of the form
-<span class="math notranslate nohighlight">\(u=Kx\)</span> such that for the closed loop system:
-\begin{equation}
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(u\)</span> is the control input. We would like to design a controller of the form
+<span class="math notranslate nohighlight">\(u=Kx\)</span> such that for the closed loop system:</p>
+<p>\begin{equation}
 \sup_{|w|<em>2\neq 0}\frac{|z|</em>\infty}{|w|_2}&lt;\gamma
-\end{equation}
-The design problem can be formulated as the following matrix inequality:</p>
+\end{equation}</p>
+<p>The design problem can be formulated as the following matrix inequality:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
   \left[\begin{matrix}
