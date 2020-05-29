@@ -500,18 +500,20 @@ The following statements are equivalent:
   \end{equation}$$
   
 - For all $\omega\in\mathbb{R}\cup\{\infty\}$ there holds:
-  \begin{equation}
-  \left[\begin{matrix} I\\\\T(j\omega)\end{matrix}\right]^\star
-\left[\begin{matrix} Q& S\\\\S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
-I\\\\ T(j\omega)\end{matrix}\right] \gt 0
-  \end{equation}
+  
+  $$\begin{equation}
+  \left[\begin{matrix} I\\ T(j\omega)\end{matrix}\right]^\star
+\left[\begin{matrix} Q& S\\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
+I\\ T(j\omega)\end{matrix}\right] \gt 0
+  \end{equation}$$
+
 - There exists $P>0$ satisfying the LMI:
-  \begin{equation}
-  \left[\begin{matrix} A^\TR P+PA & PB\\\\B^\TR P & 0
-\end{matrix}\right]-\left[\begin{matrix} 0&I\\\\C&D\end{matrix}\right]^\text{T}
-\left[\begin{matrix} Q& S\\\\S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
-0&I\\\\ C&D\end{matrix}\right] \lt 0
-  \end{equation}
+  $$\begin{equation}
+  \left[\begin{matrix} A^\TR P+PA & PB\\ B^\TR P & 0
+\end{matrix}\right]-\left[\begin{matrix} 0&I\\ C&D\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q& S\\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
+0&I\\ C&D\end{matrix}\right] \lt 0
+  \end{equation}$$
 
 ### Passivity
 
@@ -526,10 +528,10 @@ The following statements are equivalent:
   T(j\omega)^\star+T(j\omega)>0
   \end{equation}
 - There exists $P>0$ satisfying the LMI:
-  \begin{equation}
-  \left[\begin{matrix} A^\text{T} P+PA & PB-C^\text{T}\\\\B^\text{T} P-C &
+  $$\begin{equation}
+  \left[\begin{matrix} A^\text{T} P+PA & PB-C^\text{T}\\ B^\text{T} P-C &
 D+D^\text{T} \end{matrix}\right] < 0
-  \end{equation}
+  \end{equation}$$
 - If $D=0$, there exists $P>0$ satisfying:
   $$\begin{align}
   A^\text{T}P+PA<0\nonumber\\
@@ -560,10 +562,10 @@ The following statements are equivalent:
 \gamma
   \end{equation}
 - There exists $P>0$ satisfying the LMI:
-  \begin{equation}
+  $$\begin{equation}
   \left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C & PB+C^\text{T}
-D\\\\B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
-  \end{equation}
+D\\ B^\text{T} P+D^\text{T} C & D^\text{T} D-\gamma^2 I \end{matrix}\right]< 0
+  \end{equation}$$
 - There exists $P>0$ satisfying the LMI:
   \begin{equation}
   \left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  &

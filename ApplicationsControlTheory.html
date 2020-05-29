@@ -620,19 +620,21 @@ values. In the followin, we will review a few special cases of dissipativity.</p
 \bmat w \\ z \emat
   \end{equation}\end{split}\]</div>
 </li>
-<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds:
-\begin{equation}
-\left[\begin{matrix} I\T(j\omega)\end{matrix}\right]^\star
-\left[\begin{matrix} Q&amp; S\S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
-I\ T(j\omega)\end{matrix}\right] \gt 0
-\end{equation}</p></li>
+<li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{equation}
+  \left[\begin{matrix} I\\ T(j\omega)\end{matrix}\right]^\star
+\left[\begin{matrix} Q&amp; S\\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+I\\ T(j\omega)\end{matrix}\right] \gt 0
+  \end{equation}\end{split}\]</div>
+</li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-\begin{equation}
-\left[\begin{matrix} A^\TR P+PA &amp; PB\B^\TR P &amp; 0
-\end{matrix}\right]-\left[\begin{matrix} 0&amp;I\C&amp;D\end{matrix}\right]^\text{T}
-\left[\begin{matrix} Q&amp; S\S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
-0&amp;I\ C&amp;D\end{matrix}\right] \lt 0
-\end{equation}</p></li>
+<span class="math notranslate nohighlight">\($\begin{equation}
+\left[\begin{matrix} A^\TR P+PA &amp; PB\\ B^\TR P &amp; 0
+\end{matrix}\right]-\left[\begin{matrix} 0&amp;I\\ C&amp;D\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q&amp; S\\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+0&amp;I\\ C&amp;D\end{matrix}\right] \lt 0
+\end{equation}\)</span>$</p></li>
 </ul>
 </div>
 <div class="section" id="passivity">
@@ -648,10 +650,10 @@ s(w,z)= w^\text{T} z+z^\text{T} w=2w^\text{T} z
 T(j\omega)^\star+T(j\omega)&gt;0
 \end{equation}</p></li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T}\B^\text{T} P-C &amp;
+<span class="math notranslate nohighlight">\($\begin{equation}
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T}\\ B^\text{T} P-C &amp;
 D+D^\text{T} \end{matrix}\right] &lt; 0
-\end{equation}</p></li>
+\end{equation}\)</span>$</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(D=0\)</span>, there exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying:
 <span class="math notranslate nohighlight">\($\begin{align}
 A^\text{T}P+PA&lt;0\nonumber\\
@@ -682,10 +684,10 @@ s(w,z)=\gamma^2 w^\text{T} w-z^\text{T} z
 \gamma
 \end{equation}</p></li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
-\begin{equation}
+<span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} A^\text{T} P+PA+C^\text{T} C &amp; PB+C^\text{T}
-D\B^\text{T} P+D^\text{T} C &amp; D^\text{T} D-\gamma^2 I \end{matrix}\right]&lt; 0
-\end{equation}</p></li>
+D\\ B^\text{T} P+D^\text{T} C &amp; D^\text{T} D-\gamma^2 I \end{matrix}\right]&lt; 0
+\end{equation}\)</span>$</p></li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
 \begin{equation}
 \left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\B^\text{T} P  &amp;
