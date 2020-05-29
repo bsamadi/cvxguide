@@ -623,17 +623,17 @@ values. In the followin, we will review a few special cases of dissipativity.</p
 <li><p>For all <span class="math notranslate nohighlight">\(\omega\in\mathbb{R}\cup\{\infty\}\)</span> there holds:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
-  \left[\begin{matrix} I\\ T(j\omega)\end{matrix}\right]^\star
-\left[\begin{matrix} Q&amp; S\\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
-I\\ T(j\omega)\end{matrix}\right] \gt 0
+  \left[\begin{matrix} I \\ T(j\omega)\end{matrix}\right]^\star
+\left[\begin{matrix} Q&amp; S \\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+I \\ T(j\omega)\end{matrix}\right] \gt 0
   \end{equation}\end{split}\]</div>
 </li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
 <span class="math notranslate nohighlight">\($\begin{equation}
-\left[\begin{matrix} A^\TR P+PA &amp; PB\\ B^\TR P &amp; 0
-\end{matrix}\right]-\left[\begin{matrix} 0&amp;I\\ C&amp;D\end{matrix}\right]^\text{T}
-\left[\begin{matrix} Q&amp; S\\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
-0&amp;I\\ C&amp;D\end{matrix}\right] \lt 0
+\left[\begin{matrix} A^\TR P+PA &amp; PB \\ B^\TR P &amp; 0
+\end{matrix}\right]-\left[\begin{matrix} 0&amp;I \\ C&amp;D\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q&amp; S \\ S^\text{T}&amp;R\end{matrix}\right]\left[\begin{matrix}
+0&amp;I \\ C&amp;D\end{matrix}\right] \lt 0
 \end{equation}\)</span>$</p></li>
 </ul>
 </div>
@@ -651,12 +651,12 @@ T(j\omega)^\star+T(j\omega)&gt;0
 \end{equation}</p></li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying the LMI:
 <span class="math notranslate nohighlight">\($\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T}\\ B^\text{T} P-C &amp;
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB-C^\text{T} \\ B^\text{T} P-C &amp;
 D+D^\text{T} \end{matrix}\right] &lt; 0
 \end{equation}\)</span>$</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(D=0\)</span>, there exists <span class="math notranslate nohighlight">\(P&gt;0\)</span> satisfying:
 <span class="math notranslate nohighlight">\($\begin{align}
-A^\text{T}P+PA&lt;0\nonumber\\
+A^\text{T}P+PA&lt;0 \nonumber\\
 PB=C^\text{T}
 \end{align}\)</span>$</p></li>
 <li><p>System () is RLC realizable, i.e. there exists an RLC network with transfer
@@ -715,7 +715,7 @@ Q&gt;0
 <span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &amp;
-(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\\C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
+(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T} \\ C_zQ+D_uY+D_wB_w^\text{T} &amp; D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]&lt; 0
 \end{equation}\)</span>$
 where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
@@ -731,8 +731,8 @@ P&gt;0
 \end{equation}</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T}\\B^\text{T} P  &amp; - I &amp;
-D^\text{T}\\C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+\left[\begin{matrix} A^\text{T} P+PA &amp; PB &amp; C^\text{T} \\ B^\text{T} P  &amp; - I &amp;
+D^\text{T} \\ C&amp;D&amp;-\gamma^2I \end{matrix}\right]&lt; 0
 \end{equation}\end{split}\]</div>
 <p>Now, if we write the same LMI for the closed loop system, we have:</p>
 <p>\begin{equation}
@@ -741,44 +741,44 @@ P&gt;0
 <span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) &amp; {\color{red} P}B_w &amp;
-(C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  &amp; - I &amp;
-D_w^\text{T}\\C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
+(C+D_u{\color{red} K})^\text{T} \\ B_w^\text{T} {\color{red} P}  &amp; - I &amp;
+D_w^\text{T} \\ C+D_u{\color{red} K}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
 \end{equation}\)</span>$</p>
 <p>Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
-\left[\begin{matrix}Q &amp; 0&amp; 0\\0&amp;I&amp;0\\0&amp;0&amp; I\end{matrix}\right]
+\left[\begin{matrix}Q &amp; 0&amp; 0 \\ 0&amp;I&amp;0 \\ 0&amp;0&amp; I\end{matrix}\right]
 \end{equation}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Q=P^{-1}\)</span>. The result is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{equation}
 \left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
 +(A+B_u{\color{red} K}){\color{red} Q} &amp; B_w &amp; {\color{red} Q}(C+D_u{\color{red}
-K})^\text{T}\\B_w^\text{T}  &amp; - I &amp; D_w^\text{T}\\(C+D_u{\color{red}
+K})^\text{T} \\ B_w^\text{T}  &amp; - I &amp; D_w^\text{T} \\ (C+D_u{\color{red}
 K}){\color{red} Q}&amp;D_w&amp;-\gamma^2I \end{matrix}\right]&lt; 0
 \end{equation}\end{split}\]</div>
 <p>Now, if we define <span class="math notranslate nohighlight">\(Y=KQ\)</span>, we have the following LMI:
 <span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} &amp; B_w &amp; {\color{red}
-Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\\B_w^\text{T}  &amp; - I &amp;
-D_w^\text{T}\\C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T} \\ B_w^\text{T}  &amp; - I &amp;
+D_w^\text{T} \\ C{\color{red} Q}+D_u{\color{red} Y}&amp;D_w&amp;-\gamma^2I
 \end{matrix}\right]&lt; 0
 \end{equation}\)</span>$
 This LMI can be rearranged as:
 <span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} &amp; {\color{red} Q}C^\text{T}+{\color{red}
-Y}^\text{T}D_u^\text{T} &amp; B_w \\C{\color{red} Q}+D_u{\color{red}
-Y}&amp;-\gamma^2I&amp;D_w\\B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
+Y}^\text{T}D_u^\text{T} &amp; B_w \\ C{\color{red} Q}+D_u{\color{red}
+Y}&amp;-\gamma^2I&amp;D_w \\ B_w^\text{T} &amp; D_w^\text{T} &amp; - I \end{matrix}\right]&lt; 0
 \end{equation}\)</span>$
 Using the Schur complement, we can now write the LMI as:
 <span class="math notranslate nohighlight">\($\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} &amp; {\color{red}
-Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
-\\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T} 
+\\ C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&amp;-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]&lt; 0
 \end{equation}\)</span>$
 This LMI is the same as we were looking for and it ends the proof.</p>
@@ -797,11 +797,11 @@ s(w,z)=w^\text{T}w
 \infty}\frac{|z|</em>\infty}{|w|_2} &lt; \gamma
 \end{equation}</p></li>
 <li><p>There exists <span class="math notranslate nohighlight">\(P\)</span> satisfying the LMIs:
-\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA&amp;PB\B^\text{T} P&amp; -I\end{matrix}\right]
-\lt 0\nonumber\
-\left[\begin{matrix} P&amp;C^\text{T}\C&amp;\gamma^2 I\end{matrix}\right] \gt 0
-\end{equation}</p></li>
+<span class="math notranslate nohighlight">\($\begin{align}
+\left[\begin{matrix} A^\text{T} P+PA&amp;PB \\ B^\text{T} P&amp; -I\end{matrix}\right]
+\lt 0\nonumber\\
+\left[\begin{matrix} P&amp;C^\text{T} \\ C&amp;\gamma^2 I\end{matrix}\right] \gt 0
+\end{align}\)</span>$</p></li>
 </ul>
 </div>
 <div class="section" id="generalized-mathcal-h-2-state-feedback-controller">
@@ -816,15 +816,16 @@ where <span class="math notranslate nohighlight">\(u\)</span> is the control inp
 \begin{equation}
 \sup_{|w|<em>2\neq 0}\frac{|z|</em>\infty}{|w|_2}&lt;\gamma
 \end{equation}
-The design problem can be formulated as the following matrix inequality:
-\begin{equation}
-\left[\begin{matrix}
-AQ+QA^\text{T}+B_uY+Y^\text{T}B_u^\text{T}&amp;B_w\B_w^\text{T}&amp;
--I\end{matrix}\right] \lt 0\nonumber\
-\left[\begin{matrix} Q&amp;QC^\text{T}+Y^\text{T}D_u^\text{T}\CQ+D_uY&amp;\gamma^2
+The design problem can be formulated as the following matrix inequality:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+  \left[\begin{matrix}
+AQ+QA^\text{T}+B_uY+Y^\text{T}B_u^\text{T}&amp;B_w \\ B_w^\text{T}&amp;
+-I\end{matrix}\right] \lt 0\nonumber\\
+  \left[\begin{matrix} Q&amp;QC^\text{T}+Y^\text{T}D_u^\text{T} \\ CQ+D_uY&amp;\gamma^2
 I\end{matrix}\right] \gt 0
-\end{equation}
-where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(K=YQ^{-1}\)</span></p>
 </div>
 </div>
 </div>

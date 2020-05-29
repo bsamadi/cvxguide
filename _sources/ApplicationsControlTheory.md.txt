@@ -502,17 +502,17 @@ The following statements are equivalent:
 - For all $\omega\in\mathbb{R}\cup\{\infty\}$ there holds:
   
   $$\begin{equation}
-  \left[\begin{matrix} I\\ T(j\omega)\end{matrix}\right]^\star
-\left[\begin{matrix} Q& S\\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
-I\\ T(j\omega)\end{matrix}\right] \gt 0
+  \left[\begin{matrix} I \\ T(j\omega)\end{matrix}\right]^\star
+\left[\begin{matrix} Q& S \\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
+I \\ T(j\omega)\end{matrix}\right] \gt 0
   \end{equation}$$
 
 - There exists $P>0$ satisfying the LMI:
   $$\begin{equation}
-  \left[\begin{matrix} A^\TR P+PA & PB\\ B^\TR P & 0
-\end{matrix}\right]-\left[\begin{matrix} 0&I\\ C&D\end{matrix}\right]^\text{T}
-\left[\begin{matrix} Q& S\\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
-0&I\\ C&D\end{matrix}\right] \lt 0
+  \left[\begin{matrix} A^\TR P+PA & PB \\ B^\TR P & 0
+\end{matrix}\right]-\left[\begin{matrix} 0&I \\ C&D\end{matrix}\right]^\text{T}
+\left[\begin{matrix} Q& S \\ S^\text{T}&R\end{matrix}\right]\left[\begin{matrix}
+0&I \\ C&D\end{matrix}\right] \lt 0
   \end{equation}$$
 
 ### Passivity
@@ -529,12 +529,12 @@ The following statements are equivalent:
   \end{equation}
 - There exists $P>0$ satisfying the LMI:
   $$\begin{equation}
-  \left[\begin{matrix} A^\text{T} P+PA & PB-C^\text{T}\\ B^\text{T} P-C &
+  \left[\begin{matrix} A^\text{T} P+PA & PB-C^\text{T} \\ B^\text{T} P-C &
 D+D^\text{T} \end{matrix}\right] < 0
   \end{equation}$$
 - If $D=0$, there exists $P>0$ satisfying:
   $$\begin{align}
-  A^\text{T}P+PA<0\nonumber\\
+  A^\text{T}P+PA<0 \nonumber\\
   PB=C^\text{T}
   \end{align}$$
 - System () is RLC realizable, i.e. there exists an RLC network with transfer
@@ -595,7 +595,7 @@ Q>0
 $$\begin{equation}
 \left[\begin{matrix} AQ+Qa^\text{T}+B_uY+Y^\text{T}B_u^\text{T}+B_wB_w^\text{T}
 &
-(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T}\\C_zQ+D_uY+D_wB_w^\text{T} & D_w
+(C_zQ+D_{zu}Y+D_wB_w^\text{T})^\text{T} \\ C_zQ+D_uY+D_wB_w^\text{T} & D_w
 D_w^\text{T}-\gamma^2 I \end{matrix}\right]< 0
 \end{equation}$$
 where $K=YQ^{-1}$
@@ -615,8 +615,8 @@ P>0
 \end{equation}
 
 $$\begin{equation}
-\left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T}\\B^\text{T} P  & - I &
-D^\text{T}\\C&D&-\gamma^2I \end{matrix}\right]< 0
+\left[\begin{matrix} A^\text{T} P+PA & PB & C^\text{T} \\ B^\text{T} P  & - I &
+D^\text{T} \\ C&D&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}$$
 
 Now, if we write the same LMI for the closed loop system, we have:
@@ -627,15 +627,15 @@ P>0
 $$\begin{equation}
 \left[\begin{matrix} (A+B_u{\color{red} K})^\text{T} {\color{red}
 P}+{\color{red} P}(A+B_u{\color{red} K}) & {\color{red} P}B_w &
-(C+D_u{\color{red} K})^\text{T}\\B_w^\text{T} {\color{red} P}  & - I &
-D_w^\text{T}\\C+D_u{\color{red} K}&D_w&-\gamma^2I \end{matrix}\right]< 0
+(C+D_u{\color{red} K})^\text{T} \\ B_w^\text{T} {\color{red} P}  & - I &
+D_w^\text{T} \\ C+D_u{\color{red} K}&D_w&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}$$
 
 Again, this is a BMI. To formulate the problem as a LMI, let multiply both sides
 of the inequality by:
 
 $$\begin{equation}
-\left[\begin{matrix}Q & 0& 0\\0&I&0\\0&0& I\end{matrix}\right]
+\left[\begin{matrix}Q & 0& 0 \\ 0&I&0 \\ 0&0& I\end{matrix}\right]
 \end{equation}$$
 
 where $Q=P^{-1}$. The result is:
@@ -643,7 +643,7 @@ where $Q=P^{-1}$. The result is:
 $$\begin{equation}
 \left[\begin{matrix} {\color{red} Q}(A+B_u{\color{red} K})^\text{T}
 +(A+B_u{\color{red} K}){\color{red} Q} & B_w & {\color{red} Q}(C+D_u{\color{red}
-K})^\text{T}\\B_w^\text{T}  & - I & D_w^\text{T}\\(C+D_u{\color{red}
+K})^\text{T} \\ B_w^\text{T}  & - I & D_w^\text{T} \\ (C+D_u{\color{red}
 K}){\color{red} Q}&D_w&-\gamma^2I \end{matrix}\right]< 0
 \end{equation}$$
 
@@ -651,23 +651,23 @@ Now, if we define $Y=KQ$, we have the following LMI:
 $$\begin{equation}
 \left[\begin{matrix} {\color{red} Q}A^\text{T} +A{\color{red}
 Q}+Y^\text{T}B_u^\text{T}+B_u{\color{red} Y} & B_w & {\color{red}
-Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}\\B_w^\text{T}  & - I &
-D_w^\text{T}\\C{\color{red} Q}+D_u{\color{red} Y}&D_w&-\gamma^2I
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T} \\ B_w^\text{T}  & - I &
+D_w^\text{T} \\ C{\color{red} Q}+D_u{\color{red} Y}&D_w&-\gamma^2I
 \end{matrix}\right]< 0
 \end{equation}$$
 This LMI can be rearranged as:
 $$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+Y^\text{T}B_u^\text{T} & {\color{red} Q}C^\text{T}+{\color{red}
-Y}^\text{T}D_u^\text{T} & B_w \\C{\color{red} Q}+D_u{\color{red}
-Y}&-\gamma^2I&D_w\\B_w^\text{T} & D_w^\text{T} & - I \end{matrix}\right]< 0
+Y}^\text{T}D_u^\text{T} & B_w \\ C{\color{red} Q}+D_u{\color{red}
+Y}&-\gamma^2I&D_w \\ B_w^\text{T} & D_w^\text{T} & - I \end{matrix}\right]< 0
 \end{equation}$$
 Using the Schur complement, we can now write the LMI as:
 $$\begin{equation}
 \left[\begin{matrix} A{\color{red} Q}+{\color{red} Q}A^\text{T} +B_u{\color{red}
 Y}+{\color{red} Y}^\text{T}B_u^\text{T}+B_wB_w^\text{T} & {\color{red}
-Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T}
-\\C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&-\gamma^2I+D_wD_w^\text{T}
+Q}C^\text{T}+{\color{red} Y}^\text{T}D_u^\text{T}+B_wD_w^\text{T} 
+\\ C{\color{red} Q}+D_u{\color{red} Y}+D_wB_w^\text{T}&-\gamma^2I+D_wD_w^\text{T}
 \end{matrix}\right]< 0
 \end{equation}$$
 This LMI is the same as we were looking for and it ends the proof.
@@ -686,11 +686,11 @@ If $D=0$ then the following statements are equivalent:
 \infty}\frac{\|z\|_\infty}{\|w\|_2} < \gamma
   \end{equation}
 - There exists $P$ satisfying the LMIs:
-  \begin{equation}
-  \left[\begin{matrix} A^\text{T} P+PA&PB\\\\B^\text{T} P& -I\end{matrix}\right]
+  $$\begin{align}
+  \left[\begin{matrix} A^\text{T} P+PA&PB \\ B^\text{T} P& -I\end{matrix}\right]
 \lt 0\nonumber\\
-  \left[\begin{matrix} P&C^\text{T}\\\\C&\gamma^2 I\end{matrix}\right] \gt 0
-  \end{equation}
+  \left[\begin{matrix} P&C^\text{T} \\ C&\gamma^2 I\end{matrix}\right] \gt 0
+  \end{align}$$
 
 ### Generalized $\mathcal{H}_2$ State Feedback Controller
 
@@ -705,12 +705,14 @@ $u=Kx$ such that for the closed loop system:
 \sup_{\|w\|_2\neq 0}\frac{\|z\|_\infty}{\|w\|_2}<\gamma
 \end{equation}
 The design problem can be formulated as the following matrix inequality:
-\begin{equation}
+
+$$\begin{align}
   \left[\begin{matrix}
-AQ+QA^\text{T}+B_uY+Y^\text{T}B_u^\text{T}&B_w\\\\B_w^\text{T}&
+AQ+QA^\text{T}+B_uY+Y^\text{T}B_u^\text{T}&B_w \\ B_w^\text{T}&
 -I\end{matrix}\right] \lt 0\nonumber\\
-  \left[\begin{matrix} Q&QC^\text{T}+Y^\text{T}D_u^\text{T}\\\\CQ+D_uY&\gamma^2
+  \left[\begin{matrix} Q&QC^\text{T}+Y^\text{T}D_u^\text{T} \\ CQ+D_uY&\gamma^2
 I\end{matrix}\right] \gt 0
-\end{equation}
+\end{align}$$
+
 where $K=YQ^{-1}$
 
