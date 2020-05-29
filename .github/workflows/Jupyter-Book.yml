@@ -36,7 +36,14 @@ jobs:
         run: pip install -U "jupyter-book>=0.7.0b"
         
       - name: Build
-        run: jupyter-book build cvxguide_jbook/
+        run: |
+             jupyter-book build cvxguide_jbook/
+             mkdir -p ./cvxguide_jbook/_build/html/slides
+             cp cvxguideslides.html ./cvxguide_jbook/_build/html/slides
+             cp cvxguide_files ./cvxguide_jbook/_build/html/slides/cvxguide_files
+             wget https://github.com/hakimel/reveal.js/archive/master.tar.gz
+             tar -xzvf master.tar.gz
+             mv reveal.js-master ./cvxguide_jbook/_build/html/slides/reveal.js
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
