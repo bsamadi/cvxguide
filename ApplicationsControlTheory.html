@@ -537,10 +537,7 @@ K = YQ^{-1}
 inequalities by <span class="math notranslate nohighlight">\(Q=P^{-1}\)</span> and perform the same trick.</p>
 <p><em>Example:</em> Consider the following linear system:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{equation}
-\dot x = \left[\begin{matrix}1&amp;0.1\\0&amp;-2\end{matrix}\right]x+\left[\begin{matrix
-}0\\1\end{matrix}\right]u
-\end{equation}\end{split}\]</div>
+\[\begin{split}\beq \dot x = \bmat 1 &amp; 0.1 \\ 0 &amp; -2 \emat x+\bmat 0 \\ 1 \emat u \eeq\end{split}\]</div>
 <p>The objective is to find <span class="math notranslate nohighlight">\(K\)</span> such that with <span class="math notranslate nohighlight">\(u=Kx\)</span> the closed loop system is
 stable.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = cp.Parameter(2,2)
