@@ -4,7 +4,7 @@
 cvxguide
 ========
 
-A practical guide to convex optimization using Python
+This is a practical guide to convex optimization using Python. You can read the guide [here](http://bsamadi.github.io/cvxguide/Introduction.html). If you want to read the guide and also run the code, please click on one of the two buttons at the top.
 
 # Requirements
 
